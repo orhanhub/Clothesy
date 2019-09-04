@@ -22,3 +22,8 @@ branches:
 script:
   - npm install
   - npm test
+
+notifications:
+  email:
+    recipients:
+      - fecpanther@gmail.com
