@@ -21,3 +21,4 @@ branches:
 
 script:
   - npm install
+  - npm test
