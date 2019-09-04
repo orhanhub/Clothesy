@@ -1,0 +1,19 @@
+language: node_js
+git:
+  depth: 3
+  quiet: true
+
+#Github branches to test:
+
+# blocklist
+# branches:
+#   except:
+#   - legacy
+
+# safelist
+branches:
+  only:
+    - master
+
+install:
+  - npm install
