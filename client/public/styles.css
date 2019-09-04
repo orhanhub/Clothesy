@@ -1,0 +1,35 @@
+.bar-and-marker {
+  height: 16px;
+  overflow: hidden;
+  width: 200px;
+  position: relative;
+}
+
+.vert-sep {
+  position: absolute;
+  width: 10px;
+  height: 20px;
+  background: white;
+  z-index: 20;
+  top: 0px;
+}
+
+.vert-sep-left {
+  left: 95px;
+}
+
+.vert-sep-right {
+  left: 205px;
+}
+
+.bar-and-marker .bar {
+  height: 50%;
+  background: #ebebeb;
+  position: relative;
+}
+
+.bar-and-marker .marker {
+  position: relative;
+  top: -67%;
+  font-size: 90%;
+}

@@ -1,2 +1,4 @@
 const React = require("react");
-module.exports = props => <div className="omni">{props.children}</div>;
+const { Container } = require("@material-ui/core");
+
+module.exports = props => <Container>{props.children}</Container>;
