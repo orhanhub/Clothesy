@@ -1,3 +1,10 @@
-const store = require("../store");
+const { mount } = require("enzyme");
+const React = require("react");
 
-test("store has all properties input by the root reducer", () => {});
+const App = require("../client/src/App.jsx");
+const Omni = require("../client/src/components/Omni.jsx");
+
+test("all store properties are accessible to app", () => {
+  let wrapper = mount(<App />);
+  expect(Object.keys(wrapper.find(Omni).props())).toContain("prop1");
+});
