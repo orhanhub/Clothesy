@@ -1,5 +1,6 @@
 const React = require("react");
-const axios = require("../../../helpers/axiosApi.js");
+const axios = require("../../../../helpers/axiosApi.js");
+const { useState, useEffect } = require("react");
 const { Paper, Typography, Grid } = require("@material-ui/core");
 const { makeStyles } = require("@material-ui/core/styles");
 const MarkerBar = require("../shared/MarkerBar.jsx");
@@ -15,6 +16,8 @@ const useStyles = makeStyles(theme => ({
 
 module.exports = props => {
   const classes = useStyles();
+  axios.request(`/reviews/${props.currentProduct.id}/meta`);
+
   return (
     <Paper className={classes.root}>
       <Typography>{"RATINGS & REVIEWS"}</Typography>

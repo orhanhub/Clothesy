@@ -1,1 +1,4 @@
-/* require all action creators within this directory */
+const changeCurrentProduct = require("./changeCurrentProduct.js");
+module.exports = {
+  changeCurrentProduct
+};
