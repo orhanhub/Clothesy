@@ -36,7 +36,7 @@
 .bar-and-marker .marker {
   position: absolute;
   font-size: 90%;
-  top: -3px;
+  top: -2px;
 }
 
 .stars {
@@ -44,6 +44,7 @@
   overflow: hidden;
   width: 80px;
   position: relative;
+  font-size: 13px;
 }
 .full-stars,
 .empty-stars {
