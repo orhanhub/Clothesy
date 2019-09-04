@@ -22,14 +22,32 @@
   left: 205px;
 }
 
-.bar-and-marker .bar {
-  height: 50%;
-  background: #ebebeb;
+.bar-and-marker {
   position: relative;
 }
 
+.bar-and-marker .bar {
+  height: 50%;
+  background: #ebebeb;
+  position: absolute;
+  width: 100%;
+}
+
 .bar-and-marker .marker {
-  position: relative;
-  top: -67%;
+  position: absolute;
   font-size: 90%;
+  top: -2px;
+}
+
+.stars {
+  height: 22px;
+  overflow: hidden;
+  width: 80px;
+  position: relative;
+  font-size: 13px;
+}
+.full-stars,
+.empty-stars {
+  position: absolute;
+  overflow: hidden;
 }
