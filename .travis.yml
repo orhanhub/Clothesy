@@ -1,6 +1,9 @@
 language: node_js
+node_js:
+  - "node"
+
 git:
-  depth: 3
+  depth: 2
   quiet: true
 
 #Github branches to test:
@@ -16,5 +19,5 @@ branches:
     - master
     - travis_test
 
-install:
+script:
   - npm install
