@@ -1,8 +1,12 @@
 const React = require("react");
-const { Paper, Typography } = require("@material-ui/core");
+const axios = require("../../../../helpers/axiosApi.js");
+const { useState, useEffect } = require("react");
+const { Paper, Typography, Grid } = require("@material-ui/core");
 const { makeStyles } = require("@material-ui/core/styles");
 const MarkerBar = require("../shared/MarkerBar.jsx");
 const StarFill = require("../shared/StarFill.jsx");
+const Ratings = require("./Ratings.jsx");
+const RevsList = require("./RevsList.jsx");
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -12,11 +16,17 @@ const useStyles = makeStyles(theme => ({
 
 module.exports = props => {
   const classes = useStyles();
+  axios.request(`/reviews/${props.currentProduct.id}/meta`);
+
   return (
     <Paper className={classes.root}>
-      <Typography>Hello, revieworld.</Typography>
-      <MarkerBar percentage={25} />
-      <StarFill percentage={67.5} />
+      <Typography>{"RATINGS & REVIEWS"}</Typography>
+      <Grid container spacing={2}>
+        <Ratings />
+        <RevsList />
+      </Grid>
+      {/* <MarkerBar percentage={25} />
+      <StarFill percentage={67.5} /> */}
     </Paper>
   );
 };
