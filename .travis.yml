@@ -27,3 +27,5 @@ notifications:
   email:
     recipients:
       - fecpanther@gmail.com
+    on_success: always
+    on_failure: always
