@@ -16,7 +16,10 @@ const useStyles = makeStyles(theme => ({
 
 module.exports = props => {
   const classes = useStyles();
-  axios.request(`/reviews/${props.currentProduct.id}/meta`);
+  axios
+    .request(`/reviews/${props.currentProduct.id}/meta`)
+    .then(({ data }) => console.log(data))
+    .catch(console.error);
 
   return (
     <Paper className={classes.root}>

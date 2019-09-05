@@ -3,11 +3,11 @@ const axios = require("../../helpers/axiosApi.js");
 module.exports = id => {
   return dispatch => {
     axios
-      .get(`/products/${id}`)
+      .get(`/reviews/${id}/meta`)
       .then(({ data }) => {
         dispatch({
-          type: "CHANGE_CURRENT_PRODUCT",
-          payload: { product: data }
+          type: "CHANGE_REVIEWS_META",
+          payload: { reviewsMeta: data }
         });
       })
       .catch(console.error);
