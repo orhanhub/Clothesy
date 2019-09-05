@@ -1,3 +1,5 @@
 module.exports = {
-  currentProduct: require("./currentProduct.js")
+  currentProduct: require("./currentProduct.js"),
+  relatedProducts: require("./relatedProducts.js"),
+  reviewsMeta: require("./reviewsMeta.js")
 };

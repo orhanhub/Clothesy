@@ -10,7 +10,7 @@ const product1 = {
 module.exports = (state = product1, action) => {
   switch (action.payload) {
     case "CHANGE_CURRENT_PRODUCT":
-      return action.payload;
+      return action.payload.product;
     default:
       return state;
   }
