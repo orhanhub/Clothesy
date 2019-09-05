@@ -8,7 +8,7 @@ const product1 = {
   default_price: "140"
 };
 module.exports = (state = product1, action) => {
-  switch (action.payload) {
+  switch (action.type) {
     case "CHANGE_CURRENT_PRODUCT":
       return action.payload.product;
     default:

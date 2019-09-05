@@ -1,7 +1,7 @@
 module.exports = (state = [], action) => {
   switch (action.type) {
-    case "CHANGE_RELATED_PRODUCTS":
-      return action.payload.products;
+    case "CHANGE_REVIEWS":
+      return action.payload.reviews;
     default:
       return state;
   }
