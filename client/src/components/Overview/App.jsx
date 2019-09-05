@@ -11,6 +11,7 @@ const App = props => {
     <div>
       <Grid container spacing={1} justify="center">
         <Grid item xs={6}>
+          <ImageGalleryList />
           <ImageGallery />
         </Grid>
 
