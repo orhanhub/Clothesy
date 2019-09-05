@@ -14,7 +14,8 @@ useStyles = makeStyles({
     maxHeight: 150,
     borderRadius: 0,
     border: "1px solid black",
-    boxShadow: "none"
+    boxShadow: "none",
+    display: "inline - block"
   },
   cardContent: {
     padding: "2px"
@@ -41,9 +42,6 @@ useStyles = makeStyles({
 
 module.exports = function CardItem(props) {
   const classes = useStyles();
-  console.log(props.product);
-  console.log(props.styles.results);
-  console.log(props.styles.results[0].photos[0].thumbnail_url);
   return (
     <div>
       <Card className={classes.card}>
