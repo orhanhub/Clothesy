@@ -1,9 +1,13 @@
 const React = require("react");
 const { makeStyles } = require("@material-ui/core");
-const { Button } = require("@material-ui/core");
-const { Modal } = require("@material-ui/core");
-const { Backdrop } = require("@material-ui/core");
-const { Fade } = require("@material-ui/core");
+const {
+  Button,
+  Modal,
+  Backdrop,
+  Fade,
+  TextField,
+  Typography
+} = require("@material-ui/core");
 
 const useStyles = makeStyles(theme => ({
   button: {},
@@ -58,10 +62,10 @@ module.exports.AddQuestion = () => {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <h2 id="transition-modal-title">ADD A QUESTION</h2>
-            <p id="transition-modal-description">
-              react-transiton-group animates me.
-            </p>
+            <Typography id="transition-modal-title">ADD A QUESTION </Typography>
+            <form noValidate autoComplete="off">
+              <TextField />
+            </form>
           </div>
         </Fade>
       </Modal>
