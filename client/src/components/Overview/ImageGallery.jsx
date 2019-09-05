@@ -5,7 +5,7 @@ const Image = require("react-bootstrap/Image");
 
 const ImageGallery = props => {
   const cropImage = {
-    width: "650px",
+    width: "700px",
     height: "550px",
     "object-fit": "cover",
     padding: "10px"
