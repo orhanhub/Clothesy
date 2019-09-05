@@ -53,7 +53,7 @@ module.exports.SearchQnaButton = () => {
         <Search />
       </div>
       <InputBase
-        placeholder="Search…"
+        placeholder="SEARCH FOR ANSWERS..."
         classes={{
           root: classes.inputRoot,
           input: classes.inputInput

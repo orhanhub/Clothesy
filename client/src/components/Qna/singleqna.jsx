@@ -1,11 +1,13 @@
 const React = require("react");
 const { makeStyles } = require("@material-ui/core");
-const { Typography, Grid } = require("@material-ui/core");
+const { Typography, Grid, Link } = require("@material-ui/core");
 
+//TODO: add the link format
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    textAlign: "left"
+    textAlign: "left",
+    padding: 10
   },
   boldFont: {
     fontWeight: "bold"
@@ -18,6 +20,11 @@ const useStyles = makeStyles(theme => ({
     textAlign: "right",
     fontWeight: "fontWeightLight",
     fontSize: 10
+  },
+  link: {
+    margin: "",
+    color: "inherit",
+    variant: "body2"
   }
 }));
 
@@ -41,11 +48,17 @@ module.exports.QnaOneWrap = () => {
           </Typography>
         </Grid>
         <Grid item xs={1}>
-          <Typography className={classes.smallGreyFont}>Yes(#)</Typography>
+          <Typography className={classes.smallGreyFont}>
+            <Link href="" className={classes.link}>
+              Yes(#)
+            </Link>
+          </Typography>
         </Grid>
         <Grid item xs={1}>
           <Typography className={classes.smallGreyFont}>
-            Add Answer(Link)
+            <Link href="" className={classes.link}>
+              Add Answer(Link)
+            </Link>
           </Typography>
         </Grid>
       </Grid>
@@ -79,11 +92,17 @@ module.exports.QnaOneWrap = () => {
             </Typography>
           </Grid>
           <Grid item xs={1}>
-            <Typography className={classes.smallGreyFont}>Yes(#)</Typography>
+            <Typography className={classes.smallGreyFont}>
+              <Link href="" className={classes.link}>
+                Yes(#)
+              </Link>
+            </Typography>
           </Grid>
           <Grid item xs={1}>
             <Typography className={classes.smallGreyFont}>
-              Report(Link)
+              <Link href="" className={classes.link}>
+                Report(Link)
+              </Link>
             </Typography>
           </Grid>
         </Grid>

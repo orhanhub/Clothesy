@@ -1,22 +1,34 @@
 const React = require("react");
-const { Container, Typography, Grid, Paper } = require("@material-ui/core");
-const { QnaOneWrap } = require("./singleqna.jsx");
-const { SearchQnaButton } = require("./searchqnabutton.jsx");
+const { Container, Typography } = require("@material-ui/core");
+//import the modules used under the questions and answers widget
+
+//QnaOneWrap is the questions and answers part
+//SearchQna searches the answers, not the questions
+//AddQuestion is add a question button
+//Showmore expands the answers
+
+const { QnaOneWrap } = require("./singleqna");
+const { SearchQnaButton } = require("./searchqnabutton");
+const { AddQuestion } = require("./modaladdquestion");
+const { ShowMore } = require("./buttonshowmore");
 
 module.exports = props => {
   return (
     <div className="qnaComponentWrapper">
+      <div>
+        <Typography>QUESTIONS & ANSWERS</Typography>
+      </div>
       <Container maxWidth="lg">
-        <div>Search Bar</div>
         <SearchQnaButton />
-        <div>end</div>
         <div className="qnaListWrapper">
           <QnaOneWrap />
           <QnaOneWrap />
           <QnaOneWrap />
         </div>
-        <button>More Answered Questions</button>
-        <button>Add a Question +</button>
+        <div>
+          <AddQuestion />
+          <ShowMore />
+        </div>
       </Container>
     </div>
   );
