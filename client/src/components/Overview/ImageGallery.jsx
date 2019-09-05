@@ -1,11 +1,9 @@
 const React = require("react");
-const ImageGalleryList = require("./ImageGalleryList.jsx");
 const Carousel = require("react-bootstrap/Carousel");
-const Image = require("react-bootstrap/Image");
 
 const ImageGallery = props => {
   const cropImage = {
-    width: "700px",
+    width: "775px",
     height: "550px",
     "object-fit": "cover",
     padding: "10px"
