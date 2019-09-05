@@ -10,8 +10,9 @@ const { sizing } = "@material-ui/system";
 
 useStyles = makeStyles({
   card: {
-    maxWidth: 100,
-    maxHeight: 150,
+    width: 200,
+    height: 300,
+    maxHeight: 350,
     borderRadius: 0,
     border: "1px solid black",
     boxShadow: "none",
@@ -21,21 +22,21 @@ useStyles = makeStyles({
     padding: "2px"
   },
   category: {
-    fontSize: 6,
+    fontSize: 10,
     textTransform: "uppercase"
   },
   productName: {
     marginBottom: 0,
-    fontSize: 8,
+    fontSize: 12,
     fontWeight: "bold",
     color: "black",
-    lineHeight: "6pt"
+    lineHeight: "10pt"
   },
   media: {
-    height: 100
+    height: "200px"
   },
   price: {
-    fontSize: 5,
+    fontSize: 8,
     lineHeight: "8pt"
   }
 });

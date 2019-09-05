@@ -15,6 +15,10 @@ const useStyles = makeStyles({
     flexWrap: "nowrap",
     transform: "translateZ(0)"
     // // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
+  },
+  gridListItem: {
+    width: "100px",
+    margin: "0px"
   }
 });
 
@@ -23,7 +27,15 @@ module.exports = function RelatedCardList(props) {
   return (
     <div className={classes.root}>
       <GridList className={classes.gridList}>
-        <GridListTile>
+        <CardItem product={props.data.product} styles={props.data.styles} />
+        <CardItem product={props.data.product} styles={props.data.styles} />
+        <CardItem product={props.data.product} styles={props.data.styles} />
+        <CardItem product={props.data.product} styles={props.data.styles} />
+        <CardItem product={props.data.product} styles={props.data.styles} />
+        <CardItem product={props.data.product} styles={props.data.styles} />
+        <CardItem product={props.data.product} styles={props.data.styles} />
+        <CardItem product={props.data.product} styles={props.data.styles} />
+        {/* <GridListTile className={classes.gridListItem}>
           <CardItem product={props.data.product} styles={props.data.styles} />
         </GridListTile>
         <GridListTile>
@@ -43,7 +55,7 @@ module.exports = function RelatedCardList(props) {
         </GridListTile>
         <GridListTile>
           <CardItem product={props.data.product} styles={props.data.styles} />
-        </GridListTile>
+        </GridListTile> */}
       </GridList>
     </div>
   );

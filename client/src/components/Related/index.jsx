@@ -10,7 +10,10 @@ class Related extends React.Component {
 
   render() {
     return (
-      <div>
+      <div style={{ fontSize: "10pt", textTransform: "uppercase" }}>
+        Related Products
+        <RelatedCardList data={data} />
+        Your Outfit
         <RelatedCardList data={data} />
       </div>
     );
