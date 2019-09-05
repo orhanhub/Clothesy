@@ -5,7 +5,7 @@ const ImageGallery = props => {
   const cropImage = {
     width: "775px",
     height: "550px",
-    "object-fit": "cover",
+    objectFit: "cover",
     padding: "10px"
   };
   return (
