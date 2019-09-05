@@ -22,6 +22,17 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const QuantitySizeSelect = () => {
+  const [state, setState] = React.useState({
+    size: "",
+    quantity: "1"
+  });
+
+  const handleChange = name => event => {
+    setState({
+      ...state,
+      [name]: event.target.value
+    });
+  };
   const classes = useStyles();
   const inputLabel = React.useRef(null);
   const [labelWidth, setLabelWidth] = React.useState(0);
@@ -31,15 +42,11 @@ const QuantitySizeSelect = () => {
   return (
     <div>
       <FormControl className={classes.formControl}>
-        <InputLabel ref={inputLabel} htmlFor="outlined-age-simple">
-          Select Size
-        </InputLabel>
+        <InputLabel ref={inputLabel}>Select Size</InputLabel>
         <Select
-          labelWidth={labelWidth}
-          inputProps={{
-            name: "age",
-            id: "filled-age-simple"
-          }}
+          value={state.size}
+          labelwidth={labelWidth}
+          onChange={handleChange("size")}
         >
           <MenuItem value="S">S</MenuItem>
           <MenuItem value="M">M</MenuItem>
@@ -48,15 +55,11 @@ const QuantitySizeSelect = () => {
       </FormControl>
 
       <FormControl className={classes.formControl}>
-        <InputLabel ref={inputLabel} htmlFor="outlined-age-simple">
-          Quantity
-        </InputLabel>
+        <InputLabel ref={inputLabel}>Quantity</InputLabel>
         <Select
-          labelWidth={labelWidth}
-          inputProps={{
-            name: "age",
-            id: "filled-age-simple"
-          }}
+          value={state.quantity}
+          labelwidth={labelWidth}
+          onChange={handleChange("quantity")}
         >
           <MenuItem value="1">1</MenuItem>
           <MenuItem value="2">2</MenuItem>
