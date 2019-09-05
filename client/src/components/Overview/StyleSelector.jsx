@@ -1,19 +1,46 @@
 const React = require("react");
+const { Grid } = require("@material-ui/core");
 
 const StyleSelector = () => {
   return (
-    <div>
-      <div>Style > Selected Style</div>
-      <div>
-        <button>Forest Green & Black</button>
-        <button>Desert Brown & Tan</button>
-        <button>Ocean Blue & Grey</button>
-        <button>Digital Red & Black</button>
+    <div style={{ marginTop: "20px" }}>
+      <div style={{ marginBottom: "20px" }}>
+        <strong>Style</strong> > Selected Style
       </div>
-      <div>
-        <button>Sky Blue & White</button>
-        <button>Dark Grey & Black</button>
-      </div>
+
+      <Grid container spacing={1} justify="center">
+        <Grid item xs={3} style={{ padding: "10px" }}>
+          <button
+            style={{
+              "border-radius": "50%",
+              padding: "25px",
+              background:
+                "url(https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=70&q=80) no-repeat center"
+            }}
+          ></button>
+        </Grid>
+        <Grid item xs={3} style={{ padding: "10px" }}>
+          <button style={{ "border-radius": "50%", padding: "25px" }}></button>
+        </Grid>
+        <Grid item xs={3} style={{ padding: "10px" }}>
+          <button style={{ "border-radius": "50%", padding: "25px" }}></button>
+        </Grid>
+        <Grid item xs={3} style={{ padding: "10px" }}>
+          <button style={{ "border-radius": "50%", padding: "25px" }}></button>
+        </Grid>
+        <Grid item xs={3} style={{ padding: "10px" }}>
+          <button style={{ "border-radius": "50%", padding: "25px" }}></button>
+        </Grid>
+        <Grid item xs={3} style={{ padding: "10px" }}>
+          <button style={{ "border-radius": "50%", padding: "25px" }}></button>
+        </Grid>
+        <Grid item xs={3} style={{ padding: "10px" }}>
+          <button style={{ "border-radius": "50%", padding: "25px" }}></button>
+        </Grid>
+        <Grid item xs={3} style={{ padding: "10px" }}>
+          <button style={{ "border-radius": "50%", padding: "25px" }}></button>
+        </Grid>
+      </Grid>
 
       <select value="hi">
         <option style={{ display: "none" }} selected>

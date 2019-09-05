@@ -4,11 +4,12 @@ const ProductInformation = require("./ProductInformation.jsx");
 const StyleSelector = require("./StyleSelector.jsx");
 const ProductDescription = require("./ProductDescription.jsx");
 const { Grid } = require("@material-ui/core");
+const ImageGalleryList = require("./ImageGalleryList.jsx");
 
 const App = props => {
   return (
     <div>
-      <Grid container spacing={3} justify="center">
+      <Grid container spacing={1} justify="center">
         <Grid item xs={6}>
           <ImageGallery />
         </Grid>
