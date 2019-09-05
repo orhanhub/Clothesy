@@ -1,8 +1,10 @@
 const React = require("react");
 const starsToPct = require("./helpers/starsToPct.js");
 
-module.exports = stars => {
+module.exports = ({ stars }) => {
+  console.log(stars);
   let percentage = starsToPct(stars);
+  console.log(percentage);
   return (
     <div className="stars">
       <div className="empty-stars">☆☆☆☆☆</div>
