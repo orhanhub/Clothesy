@@ -1,1 +1,10 @@
-/* require all action creators within this directory */
+const changeCurrentProduct = require("./changeCurrentProduct.js");
+const changeRelatedProducts = require("./changeRelatedProducts.js");
+const changeReviewsMeta = require("./changeReviewsMeta.js");
+const changeReviews = require("./changeReviews.js");
+module.exports = {
+  changeCurrentProduct,
+  changeRelatedProducts,
+  changeReviewsMeta,
+  changeReviews
+};

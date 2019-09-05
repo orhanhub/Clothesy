@@ -1,0 +1,53 @@
+.bar-and-marker {
+  height: 16px;
+  overflow: hidden;
+  width: 200px;
+  position: relative;
+}
+
+.vert-sep {
+  position: absolute;
+  width: 10px;
+  height: 20px;
+  background: white;
+  z-index: 20;
+  top: 0px;
+}
+
+.vert-sep-left {
+  left: 95px;
+}
+
+.vert-sep-right {
+  left: 205px;
+}
+
+.bar-and-marker {
+  position: relative;
+}
+
+.bar-and-marker .bar {
+  height: 50%;
+  background: #ebebeb;
+  position: absolute;
+  width: 100%;
+}
+
+.bar-and-marker .marker {
+  position: absolute;
+  font-size: 90%;
+  top: -2px;
+}
+
+.stars {
+  height: 22px;
+  overflow: hidden;
+  width: 80px;
+  position: relative;
+  font-size: 13px;
+}
+.full-stars,
+.empty-stars {
+  position: absolute;
+  overflow: hidden;
+}

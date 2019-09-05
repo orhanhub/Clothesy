@@ -1,2 +1,10 @@
 const React = require("react");
-module.exports = props => <div className="omni">{props.children}</div>;
+const { useEffect } = require("react");
+const { Container } = require("@material-ui/core");
+
+module.exports = props => {
+  useEffect(() => {
+    props.changeCurrentProduct(1);
+  }, []);
+  return <Container>{props.children}</Container>;
+};
