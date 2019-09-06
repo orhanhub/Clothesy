@@ -3,7 +3,7 @@ const { GridList } = require("@material-ui/core");
 const { GridListTile } = require("@material-ui/core");
 const { makeStyles } = require("@material-ui/core/styles");
 
-const ImageGalleryList = ({ initialProduct, styles }) => {
+const ImageGalleryList = ({ initialProduct, styles, changeTile }) => {
   const useStyles = makeStyles(theme => ({
     root: {
       display: "flex",
@@ -16,6 +16,9 @@ const ImageGalleryList = ({ initialProduct, styles }) => {
   }));
   const classes = useStyles();
   const initialProductHolder = initialProduct;
+  const handleClick = index => {
+    changeTile(index);
+  };
 
   return (
     <div className={classes.root}>
@@ -25,22 +28,20 @@ const ImageGalleryList = ({ initialProduct, styles }) => {
         spacing={6}
         style={{ height: "550px" }}
       >
-        {initialProductHolder.productStyles[0] && !styles.photos ? (
-          initialProductHolder.productStyles[0].photos.map((photo, i) => {
-            return (
-              <GridListTile key={i}>
-                <img src={photo.thumbnail_url} />
-              </GridListTile>
-            );
-          })
-        ) : (
-          <GridListTile></GridListTile>
-        )}
+        {initialProductHolder.productStyles[0] && !styles.photos
+          ? initialProductHolder.productStyles[0].photos.map((photo, i) => {
+              return (
+                <GridListTile key={i} onClick={() => handleClick(i)}>
+                  <img src={photo.thumbnail_url} />
+                </GridListTile>
+              );
+            })
+          : null}
 
         {styles.photos
           ? styles.photos.map((photo, i) => {
               return (
-                <GridListTile key={i}>
+                <GridListTile key={i} onClick={() => handleClick(i)}>
                   <img src={photo.thumbnail_url} />
                 </GridListTile>
               );

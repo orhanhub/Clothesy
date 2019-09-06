@@ -1,7 +1,7 @@
 const React = require("react");
 const Carousel = require("react-bootstrap/Carousel");
 
-const ImageGallery = ({ initialProduct, styles }) => {
+const ImageGallery = ({ initialProduct, styles, tileIndex }) => {
   const cropImage = {
     width: "775px",
     height: "550px",
