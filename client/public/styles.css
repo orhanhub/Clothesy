@@ -1,8 +1,17 @@
+.bar-and-marker,
+.progress-bar-custom {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+
 .bar-and-marker {
   height: 16px;
-  overflow: hidden;
-  width: 200px;
-  position: relative;
+}
+
+.progress-bar-custom {
+  height: 8px;
+  top: 39%;
 }
 
 .vert-sep {
@@ -22,15 +31,18 @@
   left: 205px;
 }
 
-.bar-and-marker {
-  position: relative;
+.bar-and-marker .bar,
+.progress-bar-custom .bar {
+  background: #ebebeb;
+  position: absolute;
+  width: 100%;
 }
 
 .bar-and-marker .bar {
   height: 50%;
-  background: #ebebeb;
-  position: absolute;
-  width: 100%;
+}
+.progress-bar-custom .bar {
+  height: 100%;
 }
 
 .bar-and-marker .marker {
@@ -47,7 +59,13 @@
   font-size: 13px;
 }
 .full-stars,
-.empty-stars {
+.empty-stars,
+.bar-full {
   position: absolute;
   overflow: hidden;
+}
+
+.progress-bar-custom .bar-full {
+  background: #808080;
+  z-index: 2;
 }
