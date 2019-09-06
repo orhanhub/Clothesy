@@ -1,11 +1,15 @@
 const React = require("react");
-const { Grid, Typography } = require("@material-ui/core");
+const { Box, Grid, Typography } = require("@material-ui/core");
 const { makeStyles } = require("@material-ui/core/styles");
 
-module.exports = props => {
+const AvgRatingAndStar = require("./AvgRatingAndStar.jsx");
+const RatingHistogram = require("./RatingHistogram.jsx");
+
+module.exports = ({ reviewsMeta }) => {
   return (
     <Grid item xs={3}>
-      <Typography>Ratings</Typography>
+      <AvgRatingAndStar avgRating={reviewsMeta.avgRating} />
+      <RatingHistogram />
     </Grid>
   );
 };
