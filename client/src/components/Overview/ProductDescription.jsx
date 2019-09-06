@@ -2,7 +2,7 @@ const React = require("react");
 
 const ProductDescription = () => {
   return (
-    <div style={{ textAlign: "left", marginTop: "40px" }}>
+    <div style={{ textAlign: "left", marginTop: "25px" }}>
       <h5>Product Slogan</h5>
       <div styles={{ "font-size": "100px" }}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non risu potius
