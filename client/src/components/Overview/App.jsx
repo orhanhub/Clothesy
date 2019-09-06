@@ -32,7 +32,6 @@ const App = ({ initialProduct }) => {
           />
         </Grid>
         <Grid item xs={8}>
-          {console.log("state", state.tileIndex)}
           <ImageGallery
             initialProduct={initialProduct}
             styles={state.styles}
