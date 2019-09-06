@@ -18,7 +18,7 @@ module.exports = props => {
   const classes = useStyles();
   axios
     .request(`/reviews/${props.currentProduct.id}/meta`)
-    .then(({ data }) => console.log(data))
+    .then(({ data }) => console.log('reviews axios fired'))
     .catch(console.error);
 
   return (

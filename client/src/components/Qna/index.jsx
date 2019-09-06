@@ -1,5 +1,7 @@
 const React = require("react");
+const { useState } = require("react");
 const { Container, Typography } = require("@material-ui/core");
+
 //import the modules used under the questions and answers widget
 
 //QnaOneWrap is the questions and answers part
@@ -12,7 +14,14 @@ const { SearchQnaButton } = require("./searchqnabutton");
 const { AddQuestion } = require("./modaladdquestion");
 const { ShowMore } = require("./buttonshowmore");
 
+const staticdata = require("./staticdata");
+const { Singleq } = require("./singleq");
+
 module.exports = props => {
+  //TODO: fix naming here
+  let apiData = staticdata.static.listquestions.results;
+  const [apiDatas, setData] = useState(apiData);
+
   return (
     <div className="qnaComponentWrapper">
       <div>
@@ -24,6 +33,10 @@ module.exports = props => {
           <QnaOneWrap />
           <QnaOneWrap />
           <QnaOneWrap />
+        </div>
+
+        <div>
+          <Singleq questions={apiDatas} />
         </div>
         <div>
           <AddQuestion />
