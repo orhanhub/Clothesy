@@ -18,7 +18,12 @@ const ImageGalleryList = ({ initialProduct }) => {
 
   return (
     <div className={classes.root}>
-      <GridList cellHeight={100} cols={1} spacing={6}>
+      <GridList
+        cellHeight={100}
+        cols={1}
+        spacing={6}
+        style={{ height: "550px" }}
+      >
         {initialProduct.productStyles[0] ? (
           initialProduct.productStyles[0].photos.map((photo, i) => {
             return (
