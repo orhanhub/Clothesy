@@ -1,5 +1,5 @@
 const React = require("react");
-const { useState } = require("react");
+const { useState, useEffect } = require("react");
 const staticdata = require("./staticdata");
 const { makeStyles } = require("@material-ui/core");
 const { Typography, Grid, Link } = require("@material-ui/core");
@@ -31,40 +31,28 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+const handleGetAnswers = qid => {
+  return (
+    axios
+      // .request(`/qa/1/answers`)
+      .request(`/qa/${qid}/answers`)
+  );
+};
+
 module.exports.SingleA = ({ questionid }) => {
   const classes = useStyles();
+  const [apiDatas, setData] = useState({ results: [] });
 
-  const handleGetAnswers = qid => {
-    return (
-      axios
-        // .request(`/qa/1/answers`)
-        .request(`/qa/${qid}/answers`)
-        .then(({ data }) => {
-          console.log(data);
-        })
-        .catch(console.error)
-    );
-  };
-
-  //   let apiData = staticdata.static.listanswers.results;
-  const apiData = handleGetAnswers(questionid);
-  const [apiDatas, setData] = useState(apiData);
+  useEffect(() => {
+    handleGetAnswers(questionid).then(({ data }) => setData(data));
+  }, [1]);
 
   return (
-    <div>{console.log("fired")}</div>
-
-    // simple solution
-    //   return (
-    //     <div>
-    //       <p
-    //         onLoad={() => {
-    //           setData(apiDatas);
-    //         }}
-    //       >
-    //         {console.log(apiDatas)}
-    //       </p>
-    //     </div>
-    //   );
+    <ul>
+      {apiDatas.results.map(i => {
+        return <li>{i.body}</li>;
+      })}
+    </ul>
   );
 };
 
@@ -80,9 +68,8 @@ module.exports.SingleA = ({ questionid }) => {
 //       </p>
 //     </div>
 //   );
-
-/* <div className={classes.root} onLoad={() => setData(apiData)}>
-      {apiDatas.map(i => (
+/* <div className={classes.root}>
+      {apiDatas.results.map(i => (
         <Grid container spacing={1}>
           <Grid item xs={1}>
             <Typography className={classes.boldFont}>A:</Typography>
