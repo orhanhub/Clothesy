@@ -1,6 +1,7 @@
 const React = require("react");
 const RelatedCardList = require("./RelatedCardList.jsx");
 const data = require("./sampleData.js");
+const OutfitList = require("./OutfitList.jsx");
 
 // module.exports = props => <div>Hello, related world.</div>;
 class Related extends React.Component {
@@ -14,7 +15,7 @@ class Related extends React.Component {
         Related Products
         <RelatedCardList data={data} />
         Your Outfit
-        <RelatedCardList data={data} />
+        <OutfitList data={data} />
       </div>
     );
   }
