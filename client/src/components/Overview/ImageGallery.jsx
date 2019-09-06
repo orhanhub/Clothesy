@@ -11,7 +11,6 @@ const ImageGallery = ({ initialProduct, styles }) => {
 
   return (
     <div style={{ overflow: "hidden", marginTop: "20px", width: "775px" }}>
-      {console.log("sty in gallery", styles.pho)}
       <Carousel wrap={true}>
         {initialProductHolder.productStyles[0] && !styles.photos
           ? initialProductHolder.productStyles[0].photos.map((photo, i) => {

@@ -22,7 +22,10 @@ const App = ({ initialProduct }) => {
       {console.log("state", state.styles)}
       <Grid container spacing={1} justify="center">
         <Grid item xs={1}>
-          <ImageGalleryList initialProduct={initialProduct} />
+          <ImageGalleryList
+            initialProduct={initialProduct}
+            styles={state.styles}
+          />
         </Grid>
         <Grid item xs={8}>
           <ImageGallery initialProduct={initialProduct} styles={state.styles} />
