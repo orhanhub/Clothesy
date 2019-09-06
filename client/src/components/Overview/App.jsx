@@ -8,15 +8,24 @@ const ImageGalleryList = require("./ImageGalleryList.jsx");
 const QuantitySizeSelect = require("./QuantitySizeSelect.jsx");
 
 const App = ({ initialProduct }) => {
+  const [state, setState] = React.useState({
+    styles: {}
+  });
+
+  const changeStyle = index => {
+    setState({ ...state, styles: initialProduct.productStyles[index] });
+  };
+
   return (
     <div>
       {console.log("initialProduct", initialProduct)}
+      {console.log("state", state.styles)}
       <Grid container spacing={1} justify="center">
         <Grid item xs={1}>
           <ImageGalleryList initialProduct={initialProduct} />
         </Grid>
         <Grid item xs={8}>
-          <ImageGallery initialProduct={initialProduct} />
+          <ImageGallery initialProduct={initialProduct} styles={state.styles} />
         </Grid>
 
         <Grid item xs={3}>
@@ -24,7 +33,10 @@ const App = ({ initialProduct }) => {
             <ProductInformation initialProduct={initialProduct} />
           </Grid>
           <Grid item xs={9}>
-            <StyleSelector />
+            <StyleSelector
+              initialProduct={initialProduct}
+              changeStyle={changeStyle}
+            />
           </Grid>
           <Grid item xs={12}>
             <QuantitySizeSelect />
