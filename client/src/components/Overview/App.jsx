@@ -10,6 +10,7 @@ const QuantitySizeSelect = require("./QuantitySizeSelect.jsx");
 const App = ({ initialProduct }) => {
   return (
     <div>
+      {console.log("initialProduct", initialProduct)}
       <Grid container spacing={1} justify="center">
         <Grid item xs={1}>
           <ImageGalleryList initialProduct={initialProduct} />
@@ -20,7 +21,7 @@ const App = ({ initialProduct }) => {
 
         <Grid item xs={3}>
           <Grid item xs={12}>
-            <ProductInformation />
+            <ProductInformation initialProduct={initialProduct} />
           </Grid>
           <Grid item xs={9}>
             <StyleSelector />
