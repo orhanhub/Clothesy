@@ -3,6 +3,6 @@ const App = require("./App.jsx");
 
 module.exports = props => (
   <div>
-    <App />
+    <App initialProduct={props} />
   </div>
 );

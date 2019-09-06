@@ -7,15 +7,15 @@ const { Grid } = require("@material-ui/core");
 const ImageGalleryList = require("./ImageGalleryList.jsx");
 const QuantitySizeSelect = require("./QuantitySizeSelect.jsx");
 
-const App = props => {
+const App = ({ initialProduct }) => {
   return (
     <div>
       <Grid container spacing={1} justify="center">
         <Grid item xs={1}>
-          <ImageGalleryList />
+          <ImageGalleryList initialProduct={initialProduct} />
         </Grid>
         <Grid item xs={8}>
-          <ImageGallery />
+          <ImageGallery initialProduct={initialProduct} />
         </Grid>
 
         <Grid item xs={3}>
