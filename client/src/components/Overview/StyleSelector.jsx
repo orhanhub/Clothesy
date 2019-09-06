@@ -1,6 +1,5 @@
 const React = require("react");
 const { Grid } = require("@material-ui/core");
-const { makeStyles } = require("@material-ui/core/styles");
 
 const StyleSelector = () => {
   return (

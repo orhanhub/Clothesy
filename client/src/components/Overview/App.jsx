@@ -11,16 +11,18 @@ const App = props => {
   return (
     <div>
       <Grid container spacing={1} justify="center">
-        <Grid item xs={8}>
+        <Grid item xs={1}>
           <ImageGalleryList />
+        </Grid>
+        <Grid item xs={8}>
           <ImageGallery />
         </Grid>
 
-        <Grid item xs={4}>
+        <Grid item xs={3}>
           <Grid item xs={12}>
             <ProductInformation />
           </Grid>
-          <Grid item xs={8}>
+          <Grid item xs={9}>
             <StyleSelector />
           </Grid>
           <Grid item xs={12}>
