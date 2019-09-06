@@ -9,7 +9,9 @@ const ProductInformation = ({ initialProduct }) => {
     <div>
       <div style={style}>
         <div style={{ display: "flex" }}>
-          <StarFill stars={4.5} />
+          {initialProduct.reviewsMeta.avgRating ? (
+            <StarFill stars={initialProduct.reviewsMeta.avgRating} />
+          ) : null}
           <a
             href="#"
             style={{

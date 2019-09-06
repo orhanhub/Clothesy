@@ -6,6 +6,7 @@ const ProductDescription = require("./ProductDescription.jsx");
 const { Grid } = require("@material-ui/core");
 const ImageGalleryList = require("./ImageGalleryList.jsx");
 const QuantitySizeSelect = require("./QuantitySizeSelect.jsx");
+const AddToCart = require("./AddToCart.jsx");
 
 const App = ({ initialProduct }) => {
   const [state, setState] = React.useState({
@@ -43,14 +44,17 @@ const App = ({ initialProduct }) => {
           <Grid item xs={12}>
             <ProductInformation initialProduct={initialProduct} />
           </Grid>
-          <Grid item xs={9}>
+          <Grid item xs={12}>
             <StyleSelector
               initialProduct={initialProduct}
               changeStyle={changeStyle}
             />
           </Grid>
           <Grid item xs={12}>
-            <QuantitySizeSelect />
+            <Grid container spacing={1} justify="center">
+              <QuantitySizeSelect />
+              <AddToCart />
+            </Grid>
           </Grid>
         </Grid>
       </Grid>
