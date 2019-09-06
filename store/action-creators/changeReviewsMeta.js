@@ -1,5 +1,5 @@
 const axios = require("../../helpers/axiosApi.js");
-const calcAverageRatings = require("./helpers/calcAverageRatings.js");
+const calcAverageRatings = require("../../helpers/calcAverageRatings.js");
 
 module.exports = id => {
   return dispatch => {
