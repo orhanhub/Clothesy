@@ -14,7 +14,7 @@ const ProductInformation = () => {
             href="#"
             style={{
               paddingTop: "1px",
-              paddingRight: "290px",
+              paddingRight: "190px",
               fontSize: "11px",
               color: "dimgrey"
             }}
