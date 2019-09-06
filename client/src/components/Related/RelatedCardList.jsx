@@ -4,6 +4,7 @@ const { GridList } = require("@material-ui/core");
 const { makeStyles } = require("@material-ui/core");
 const { GridListTile } = require("@material-ui/core");
 
+
 const useStyles = makeStyles({
   root: {
     display: "flex",
@@ -35,27 +36,6 @@ module.exports = function RelatedCardList(props) {
         <CardItem product={props.data.product} styles={props.data.styles} />
         <CardItem product={props.data.product} styles={props.data.styles} />
         <CardItem product={props.data.product} styles={props.data.styles} />
-        {/* <GridListTile className={classes.gridListItem}>
-          <CardItem product={props.data.product} styles={props.data.styles} />
-        </GridListTile>
-        <GridListTile>
-          <CardItem product={props.data.product} styles={props.data.styles} />
-        </GridListTile>
-        <GridListTile>
-          <CardItem product={props.data.product} styles={props.data.styles} />
-        </GridListTile>
-        <GridListTile>
-          <CardItem product={props.data.product} styles={props.data.styles} />
-        </GridListTile>
-        <GridListTile>
-          <CardItem product={props.data.product} styles={props.data.styles} />
-        </GridListTile>
-        <GridListTile>
-          <CardItem product={props.data.product} styles={props.data.styles} />
-        </GridListTile>
-        <GridListTile>
-          <CardItem product={props.data.product} styles={props.data.styles} />
-        </GridListTile> */}
       </GridList>
     </div>
   );
