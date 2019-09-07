@@ -11,8 +11,9 @@ const axios = require("../../../../helpers/axiosApi");
 const calcAverageRatings = require("../../../../helpers/calcAverageRatings");
 const { useState, useEffect } = require("react");
 const StarFill = require("../shared/StarFill.jsx");
+const Price = require("../shared/Price");
 
-useStyles = makeStyles({
+const useStyles = makeStyles({
   card: {
     width: 200,
     height: 300,
@@ -64,7 +65,8 @@ const getItemInfo = (id, styleNumber) => {
         previewImage:
           data[1].data.results[styleNumber].photos[0].thumbnail_url ||
           "https://via.placeholder.com/300x450",
-        starRating: calcAverageRatings(data[2].data.ratings)
+        starRating: calcAverageRatings(data[2].data.ratings),
+        ratingData: data[2].data.ratings
       };
       return cardInfo;
     })
@@ -81,11 +83,12 @@ module.exports = function CardItem(props) {
     original_price: null,
     sale_price: null,
     previewImage: null,
-    starRating: null
+    starRating: null,
+    ratingData: null
   });
 
   useEffect(() => {
-    getItemInfo(props.id || 1, 0).then(data => {
+    getItemInfo(props.id || 1, 3).then(data => {
       setItemInfo(data);
     });
   }, [1]);
@@ -122,11 +125,17 @@ module.exports = function CardItem(props) {
             <Typography className={classes.productName}>
               {itemInfo.productName}
             </Typography>
-            <Typography className={classes.price} color="textSecondary">
-              {itemInfo.price}
-            </Typography>
+            <Price
+              salePrice={itemInfo.sale_price}
+              originalPrice={itemInfo.original_price}
+            />
             <Typography component={"span"} className={classes.productName}>
-              <StarFill stars={itemInfo.starRating} />
+              {itemInfo.ratingData !== null &&
+              Object.keys(itemInfo.ratingData).length > 0 ? (
+                <StarFill stars={itemInfo.starRating} />
+              ) : (
+                <div></div>
+              )}
             </Typography>
           </CardContent>
         </CardActionArea>
