@@ -7,6 +7,7 @@ const RevBody = require("./RevBody.jsx");
 const RevRecomm = require("./RevRecomm.jsx");
 // const RevStars = require("./RevStars.jsx")
 const RevStarsAndDetails = require("./RevStarsAndDetails.jsx");
+const RevHelpfulOrReport = require("./RevHelpfulOrReport.jsx");
 
 module.exports = ({ review }) => {
   return (
@@ -15,6 +16,7 @@ module.exports = ({ review }) => {
       <RevTitle>{review.summary}</RevTitle>
       <RevBody>{review.body}</RevBody>
       <RevRecomm recommended={Boolean(review.recommend)} />
+      <RevHelpfulOrReport review={review} />
     </Grid>
   );
 };

@@ -1,14 +1,50 @@
 const React = require("react");
 const { useState } = require("react");
+const { Grid, Typography, Box } = require("@material-ui/core");
+const { makeStyles } = require("@material-ui/styles");
+const axios = require("../../../../helpers/axiosApi.js");
+
+const useStyles = makeStyles(theme => ({
+  smallGreyFont: {
+    fontWeight: "fontWeightLight",
+    fontSize: 10
+  },
+  smallGreyFontRightAlign: {
+    textAlign: "right",
+    fontWeight: "fontWeightLight",
+    fontSize: 10
+  }
+}));
+
+const markAsHelpful = {
+  question: id => axios.put(`/qa/question/${id}/report`),
+  answer: id => axios.put(`/qa/answer/${id}/report`),
+  review: id => axios.put(`/reviews/report/${id}`)
+};
+
+//ENDPOINTS -- expect 204
+//PUT /qa/question/:question_id/report
+//PUT /qa/answer/:answer_id/report
+//PUT /reviews/report/:review_id
 
 // TODO: // implement api endpoints
 // TODO: // implement material-ui typography et al.
 
-module.exports = () => {
+module.exports = ({ qar, qarId, addlOnClick }) => {
+  const classes = useStyles();
   const [isReported, setReport] = useState(0);
   return (
-    <p onClick={() => setReport(isReported + 1)}>
-      {isReported === 0 ? "Report" : "Reported"}
-    </p>
+    <Grid container spacing={1}>
+      <Grid item xs={12}>
+        <Typography
+          className={classes.smallGreyFont}
+          onClick={() => {
+            setReport(isReported + 1);
+          }}
+        >
+          {isReported === 0 ? "Report" : "Reported"}
+        </Typography>
+      </Grid>
+    </Grid>
   );
 };
