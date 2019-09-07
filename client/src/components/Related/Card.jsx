@@ -57,7 +57,6 @@ const getItemInfo = (id, styleNumber) => {
   ];
   return Promise.all(requests)
     .then(data => {
-      console.log(data[0].data.name, "ratings: ", data[2].data.ratings);
       const cardInfo = {
         productCategory: data[0].data.category,
         productName: data[0].data.name,
