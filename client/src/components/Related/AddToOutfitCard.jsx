@@ -6,7 +6,7 @@ const { Typography } = require("@material-ui/core");
 const { makeStyles } = require("@material-ui/core/styles");
 const { Icon } = require("@material-ui/core");
 
-useStyles = makeStyles({
+const useStyles = makeStyles({
   card: {
     width: 200,
     height: 300,

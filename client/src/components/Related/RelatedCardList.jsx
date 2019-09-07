@@ -23,40 +23,16 @@ const useStyles = makeStyles({
 });
 
 module.exports = function RelatedCardList(props) {
+  if (!props.related) {
+    return <div></div>;
+  }
   const classes = useStyles();
+  const items = props.related.map(item => {
+    return <CardItem id={item} key={item} />;
+  });
   return (
     <div className={classes.root}>
-      <GridList className={classes.gridList}>
-        <CardItem product={props.data.product} styles={props.data.styles} />
-        <CardItem product={props.data.product} styles={props.data.styles} />
-        <CardItem product={props.data.product} styles={props.data.styles} />
-        <CardItem product={props.data.product} styles={props.data.styles} />
-        <CardItem product={props.data.product} styles={props.data.styles} />
-        <CardItem product={props.data.product} styles={props.data.styles} />
-        <CardItem product={props.data.product} styles={props.data.styles} />
-        <CardItem product={props.data.product} styles={props.data.styles} />
-        {/* <GridListTile className={classes.gridListItem}>
-          <CardItem product={props.data.product} styles={props.data.styles} />
-        </GridListTile>
-        <GridListTile>
-          <CardItem product={props.data.product} styles={props.data.styles} />
-        </GridListTile>
-        <GridListTile>
-          <CardItem product={props.data.product} styles={props.data.styles} />
-        </GridListTile>
-        <GridListTile>
-          <CardItem product={props.data.product} styles={props.data.styles} />
-        </GridListTile>
-        <GridListTile>
-          <CardItem product={props.data.product} styles={props.data.styles} />
-        </GridListTile>
-        <GridListTile>
-          <CardItem product={props.data.product} styles={props.data.styles} />
-        </GridListTile>
-        <GridListTile>
-          <CardItem product={props.data.product} styles={props.data.styles} />
-        </GridListTile> */}
-      </GridList>
+      <GridList className={classes.gridList}>{items}</GridList>
     </div>
   );
 };
