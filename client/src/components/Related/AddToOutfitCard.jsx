@@ -27,16 +27,6 @@ const useStyles = makeStyles({
   }
 });
 
-const addToOutfit = product => {
-  if (window.localStorage.getItem("outfit") === null) {
-    window.localStorage.setItem("outfit", JSON.stringify([product]));
-  } else {
-    let items = JSON.parse(window.localStorage.getItem("outfit"));
-    if (items.indexOf(product) < 0) items.push(product);
-    window.localStorage.setItem("outfit", JSON.stringify(items));
-  }
-};
-
 module.exports = function AddToOutfitCard(props) {
   const classes = useStyles();
   return (
@@ -48,7 +38,7 @@ module.exports = function AddToOutfitCard(props) {
             className={classes.icon}
             color="action"
             onClick={() => {
-              addToOutfit(props.product);
+              props.addToOutfit(props.product);
             }}
           >
             add_circle
