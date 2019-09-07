@@ -22,8 +22,20 @@ const App = ({ initialProduct }) => {
     setState({ ...state, tileIndex: index });
   };
 
+  const updateDefaultStyle = style => {
+    setState({ ...state, selectedStyle: style[0] });
+  };
+
   return (
     <div>
+      {initialProduct.productStyles[0] && !state.selectedStyle
+        ? updateDefaultStyle(
+            initialProduct.productStyles.filter(style => {
+              return style["default?"] === 1;
+            })
+          )
+        : null}
+
       <Grid container spacing={1} justify="center">
         <Grid item xs={1}>
           <ImageGalleryList
@@ -52,7 +64,9 @@ const App = ({ initialProduct }) => {
           </Grid>
           <Grid item xs={12}>
             <Grid container spacing={1} justify="center">
-              <QuantitySizeSelect />
+              {state.selectedStyle ? (
+                <QuantitySizeSelect selectedStyle={state.selectedStyle} />
+              ) : null}
               <AddToCart />
             </Grid>
           </Grid>

@@ -21,11 +21,16 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const QuantitySizeSelect = () => {
+const QuantitySizeSelect = ({ selectedStyle }) => {
   const [state, setState] = React.useState({
     size: "",
-    quantity: "1"
+    quantity: 1
   });
+
+  React.useEffect(() => {
+    setLabelWidth(inputLabel.current.offsetWidth);
+    addSkus(selectedStyle.skus);
+  }, []);
 
   const handleChange = name => event => {
     setState({
@@ -33,12 +38,29 @@ const QuantitySizeSelect = () => {
       [name]: event.target.value
     });
   };
+
+  const addSkus = skus => {
+    setState({ ...state, skus: skus });
+  };
+
+  const quantityChanger = number => {
+    let quantityArray = [];
+    if (number > 15) {
+      for (let i = 2; i < 16; i++) {
+        quantityArray.push(i);
+      }
+    } else {
+      for (let i = 2; i < number; i++) {
+        quantityArray.push(i);
+      }
+    }
+    return quantityArray;
+  };
+
   const classes = useStyles();
   const inputLabel = React.useRef(null);
   const [labelWidth, setLabelWidth] = React.useState(0);
-  React.useEffect(() => {
-    setLabelWidth(inputLabel.current.offsetWidth);
-  }, []);
+
   return (
     <div>
       <FormControl className={classes.formControl}>
@@ -48,9 +70,15 @@ const QuantitySizeSelect = () => {
           labelwidth={labelWidth}
           onChange={handleChange("size")}
         >
-          <MenuItem value="S">S</MenuItem>
-          <MenuItem value="M">M</MenuItem>
-          <MenuItem value="L">L</MenuItem>
+          {state.skus
+            ? Object.keys(state.skus).map((size, i) => {
+                return (
+                  <MenuItem value={size} key={i}>
+                    {size}
+                  </MenuItem>
+                );
+              })
+            : null}
         </Select>
       </FormControl>
 
@@ -59,11 +87,18 @@ const QuantitySizeSelect = () => {
         <Select
           value={state.quantity}
           labelwidth={labelWidth}
-          onChange={handleChange("quantity")}
+          onChange={handleChange("size")}
         >
           <MenuItem value="1">1</MenuItem>
-          <MenuItem value="2">2</MenuItem>
-          <MenuItem value="3">3</MenuItem>
+          {state.skus
+            ? quantityChanger(state.skus[state.size]).map((number, i) => {
+                return (
+                  <MenuItem key={i} value={number}>
+                    {number}
+                  </MenuItem>
+                );
+              })
+            : null}
         </Select>
       </FormControl>
     </div>
