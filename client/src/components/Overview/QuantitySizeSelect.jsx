@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const QuantitySizeSelect = ({ selectedStyle }) => {
+const QuantitySizeSelect = ({ selectedStyle, handleQuantity }) => {
   const [state, setState] = React.useState({
     size: "",
     quantity: 1
@@ -39,12 +39,20 @@ const QuantitySizeSelect = ({ selectedStyle }) => {
     });
   };
 
+  React.useEffect(() => {
+    handleQuantityChange(state.size);
+  }, [state]);
+
   const addSkus = skus => {
     setState({ ...state, skus: skus });
   };
 
   const quantityChanger = number => {
     let quantityArray = [];
+    if (number === 0) {
+      return quantityArray;
+    }
+
     if (number > 15) {
       for (let i = 2; i < 16; i++) {
         quantityArray.push(i);
@@ -54,7 +62,18 @@ const QuantitySizeSelect = ({ selectedStyle }) => {
         quantityArray.push(i);
       }
     }
+
     return quantityArray;
+  };
+
+  const handleQuantityChange = size => {
+    if (size) {
+      if (state.skus[size] === 0) {
+        handleQuantity("soldOut");
+      } else {
+        handleQuantity("inStock");
+      }
+    }
   };
 
   const classes = useStyles();

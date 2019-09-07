@@ -11,7 +11,8 @@ const AddToCart = require("./AddToCart.jsx");
 const App = ({ initialProduct }) => {
   const [state, setState] = React.useState({
     styles: {},
-    tileIndex: 0
+    tileIndex: 0,
+    soldOut: false
   });
 
   const changeStyle = index => {
@@ -24,6 +25,15 @@ const App = ({ initialProduct }) => {
 
   const updateDefaultStyle = style => {
     setState({ ...state, selectedStyle: style[0] });
+  };
+
+  const handleQuantity = info => {
+    if (info === "soldOut") {
+      setState({ ...state, soldOut: true });
+    }
+    if (info === "inStock") {
+      setState({ ...state, soldOut: false });
+    }
   };
 
   return (
@@ -65,9 +75,12 @@ const App = ({ initialProduct }) => {
           <Grid item xs={12}>
             <Grid container spacing={1} justify="center">
               {state.selectedStyle ? (
-                <QuantitySizeSelect selectedStyle={state.selectedStyle} />
+                <QuantitySizeSelect
+                  selectedStyle={state.selectedStyle}
+                  handleQuantity={handleQuantity}
+                />
               ) : null}
-              <AddToCart />
+              <AddToCart soldOut={state.soldOut} />
             </Grid>
           </Grid>
         </Grid>
