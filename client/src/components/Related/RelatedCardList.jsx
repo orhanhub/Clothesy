@@ -23,12 +23,16 @@ const useStyles = makeStyles({
 });
 
 module.exports = function RelatedCardList(props) {
+  if (!props.related) {
+    return <div></div>;
+  }
   const classes = useStyles();
+  const items = props.related.map(item => {
+    return <CardItem id={item} key={item} />;
+  });
   return (
     <div className={classes.root}>
-      <GridList className={classes.gridList}>
-        <CardItem id={1} />
-      </GridList>
+      <GridList className={classes.gridList}>{items}</GridList>
     </div>
   );
 };
