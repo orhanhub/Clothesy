@@ -2,7 +2,7 @@ const React = require("react");
 const { useState } = require("react");
 const { Grid, Typography, Box } = require("@material-ui/core");
 const { makeStyles } = require("@material-ui/styles");
-const axios = require("../../../../helpers/axiosApijs");
+const axios = require("../../../../helpers/axiosApi.js");
 
 const useStyles = makeStyles(theme => ({
   smallGreyFont: {
