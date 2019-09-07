@@ -9,6 +9,7 @@ const { StarBorder } = require("@material-ui/icons");
 const { IconButton } = require("@material-ui/core");
 const axios = require("../../../../helpers/axiosApi");
 const calcAverageRatings = require("../../../../helpers/calcAverageRatings");
+const { useState, useEffect } = require("react");
 
 useStyles = makeStyles({
   card: {
@@ -105,11 +106,20 @@ module.exports = function CardItem(props) {
   const classes = useStyles();
   // const id = this.props.id;
   // const styleNumber = this.props.styleNumber;
-
-  getItemInfo(1, 0).then(data => {
-    console.log(data);
-    console.log("after promise all");
+  const [itemInfo, setItemInfo] = useState({
+    productCategory: null,
+    productName: null,
+    original_price: null,
+    sale_price: null,
+    previewImage: null,
+    starRating: null
   });
+
+  useEffect(() => {
+    getItemInfo(1, 0).then(data => {
+      setItemInfo(data);
+    });
+  }, [1]);
 
   return (
     <div>
@@ -140,7 +150,7 @@ module.exports = function CardItem(props) {
               color="textSecondary"
               gutterBottom
             >
-              {props.product.category}
+              {JSON.stringify(itemInfo)}
             </Typography>
             <Typography className={classes.productName}>
               Expanded Product Name with Extra Text
