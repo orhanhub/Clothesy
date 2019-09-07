@@ -9,12 +9,25 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const AddToCart = () => {
+const AddToCart = ({ soldOut }) => {
   const classes = useStyles();
   return (
-    <Button variant="outlined" className={classes.button}>
-      ADD TO BAG
-    </Button>
+    <div>
+      {!soldOut ? (
+        <Button variant="outlined" className={classes.button}>
+          ADD TO BAG
+        </Button>
+      ) : (
+        <Button
+          variant="contained"
+          color="secondary"
+          disabled
+          className={classes.button}
+        >
+          SOLD OUT
+        </Button>
+      )}
+    </div>
   );
 };
 
