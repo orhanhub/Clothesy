@@ -125,7 +125,7 @@ module.exports = function CardItem(props) {
             <Typography className={classes.price} color="textSecondary">
               {itemInfo.price}
             </Typography>
-            <Typography className={classes.productName}>
+            <Typography component={"span"} className={classes.productName}>
               <StarFill stars={itemInfo.starRating} />
             </Typography>
           </CardContent>
