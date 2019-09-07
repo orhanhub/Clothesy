@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
 
 module.exports = props => {
   const classes = useStyles();
-
+  console.log("rendering");
   return (
     <Paper className={classes.root}>
       <Typography>{"RATINGS & REVIEWS"}</Typography>
