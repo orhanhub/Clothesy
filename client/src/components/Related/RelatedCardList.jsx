@@ -27,35 +27,7 @@ module.exports = function RelatedCardList(props) {
   return (
     <div className={classes.root}>
       <GridList className={classes.gridList}>
-        <CardItem product={props.data.product} styles={props.data.styles} />
-        <CardItem product={props.data.product} styles={props.data.styles} />
-        <CardItem product={props.data.product} styles={props.data.styles} />
-        <CardItem product={props.data.product} styles={props.data.styles} />
-        <CardItem product={props.data.product} styles={props.data.styles} />
-        <CardItem product={props.data.product} styles={props.data.styles} />
-        <CardItem product={props.data.product} styles={props.data.styles} />
-        <CardItem product={props.data.product} styles={props.data.styles} />
-        {/* <GridListTile className={classes.gridListItem}>
-          <CardItem product={props.data.product} styles={props.data.styles} />
-        </GridListTile>
-        <GridListTile>
-          <CardItem product={props.data.product} styles={props.data.styles} />
-        </GridListTile>
-        <GridListTile>
-          <CardItem product={props.data.product} styles={props.data.styles} />
-        </GridListTile>
-        <GridListTile>
-          <CardItem product={props.data.product} styles={props.data.styles} />
-        </GridListTile>
-        <GridListTile>
-          <CardItem product={props.data.product} styles={props.data.styles} />
-        </GridListTile>
-        <GridListTile>
-          <CardItem product={props.data.product} styles={props.data.styles} />
-        </GridListTile>
-        <GridListTile>
-          <CardItem product={props.data.product} styles={props.data.styles} />
-        </GridListTile> */}
+        <CardItem id={1} />
       </GridList>
     </div>
   );
