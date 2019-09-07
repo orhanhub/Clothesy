@@ -17,7 +17,7 @@ class Related extends React.Component {
         <Typography style={{ fontSize: "10pt", textTransform: "uppercase" }}>
           Related Products
         </Typography>
-        <RelatedCardList data={data} />
+        <RelatedCardList relatedProducts={this.props.relatedProducts} />
         <Typography style={{ fontSize: "10pt", textTransform: "uppercase" }}>
           Your Outfit
         </Typography>

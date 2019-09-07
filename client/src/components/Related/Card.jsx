@@ -10,6 +10,7 @@ const { IconButton } = require("@material-ui/core");
 const axios = require("../../../../helpers/axiosApi");
 const calcAverageRatings = require("../../../../helpers/calcAverageRatings");
 const { useState, useEffect } = require("react");
+const StarFill = require("../shared/StarFill.jsx");
 
 useStyles = makeStyles({
   card: {
@@ -47,36 +48,6 @@ useStyles = makeStyles({
   }
 });
 
-const getProduct = id => {
-  axios.get(`/products/${id}`);
-  // .then(data => {
-  //   console.log(data);
-  //   console.log("GET PRODUCT", {
-  //     productCategory: data.data.category,
-  //     productName: data.data.name
-  //   });
-  // })
-  // .catch(err => {
-  //   console.log("Axios error", err);
-  // });
-};
-
-const getStyle = (id, styleNumber = 0) => {
-  return;
-  // .then(data => {
-  //   console.log(data.data.results);
-  //   console.log("GET STYLE: ", {
-  //     original_price: data.data.results[styleNumber].original_price,
-  //     sale_price: data.data.results[styleNumber].sale_price,
-  //     previewImage:
-  //       data.data.results[styleNumber].thumbnail_url ||
-  //       "https://via.placeholder.com/300x450",
-  //     starRating: undefined
-  //   });
-  // })
-  // .catch(err => console.log("axios getstyle error"));
-};
-
 const getItemInfo = (id, styleNumber) => {
   const requests = [
     axios.get(`/products/${id}`),
@@ -91,7 +62,7 @@ const getItemInfo = (id, styleNumber) => {
         original_price: data[1].data.results[styleNumber].original_price,
         sale_price: data[1].data.results[styleNumber].sale_price,
         previewImage:
-          data[1].data.results[styleNumber].thumbnail_url ||
+          data[1].data.results[styleNumber].photos[0].thumbnail_url ||
           "https://via.placeholder.com/300x450",
         starRating: calcAverageRatings(data[2].data.ratings)
       };
@@ -104,8 +75,6 @@ const getItemInfo = (id, styleNumber) => {
 
 module.exports = function CardItem(props) {
   const classes = useStyles();
-  // const id = this.props.id;
-  // const styleNumber = this.props.styleNumber;
   const [itemInfo, setItemInfo] = useState({
     productCategory: null,
     productName: null,
@@ -116,7 +85,7 @@ module.exports = function CardItem(props) {
   });
 
   useEffect(() => {
-    getItemInfo(1, 0).then(data => {
+    getItemInfo(props.id || 1, 0).then(data => {
       setItemInfo(data);
     });
   }, [1]);
@@ -132,17 +101,15 @@ module.exports = function CardItem(props) {
         >
           <CardMedia
             className={classes.media}
-            image={props.styles.results[0].photos[0].thumbnail_url}
-            title="Contemplative Reptile"
+            image={itemInfo.previewImage}
+            title={itemInfo.productName}
           >
-            {/* <IconButton className={classes.star}> */}
             <StarBorder
               className={classes.star}
               onClick={() => {
                 console.log("button");
               }}
             />
-            {/* </IconButton> */}
           </CardMedia>
           <CardContent className={classes.cardContent}>
             <Typography
@@ -150,15 +117,17 @@ module.exports = function CardItem(props) {
               color="textSecondary"
               gutterBottom
             >
-              {JSON.stringify(itemInfo)}
+              {itemInfo.productCategory}
             </Typography>
             <Typography className={classes.productName}>
-              Expanded Product Name with Extra Text
+              {itemInfo.productName}
             </Typography>
             <Typography className={classes.price} color="textSecondary">
-              $1000
+              {itemInfo.price}
             </Typography>
-            <Typography className={classes.productName}>★★★★★</Typography>
+            <Typography className={classes.productName}>
+              <StarFill stars={itemInfo.starRating} />
+            </Typography>
           </CardContent>
         </CardActionArea>
       </Card>
