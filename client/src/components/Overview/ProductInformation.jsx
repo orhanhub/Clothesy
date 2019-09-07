@@ -1,7 +1,7 @@
 const React = require("react");
 const StarFill = require("../shared/StarFill.jsx");
 
-const ProductInformation = () => {
+const ProductInformation = ({ initialProduct }) => {
   const style = {
     marginTop: "50px"
   };
@@ -9,7 +9,9 @@ const ProductInformation = () => {
     <div>
       <div style={style}>
         <div style={{ display: "flex" }}>
-          <StarFill />
+          {initialProduct.reviewsMeta.avgRating ? (
+            <StarFill stars={initialProduct.reviewsMeta.avgRating} />
+          ) : null}
           <a
             href="#"
             style={{
@@ -23,9 +25,9 @@ const ProductInformation = () => {
           </a>
         </div>
 
-        <div>Jackets</div>
-        <h1>Camo Onesie</h1>
-        <div>$140</div>
+        <div>{initialProduct.currentProduct.category}</div>
+        <h1>{initialProduct.currentProduct.name}</h1>
+        <div>${initialProduct.currentProduct.default_price}</div>
       </div>
     </div>
   );
