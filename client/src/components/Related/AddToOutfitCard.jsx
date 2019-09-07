@@ -32,7 +32,7 @@ const addToOutfit = product => {
     window.localStorage.setItem("outfit", JSON.stringify([product]));
   } else {
     let items = JSON.parse(window.localStorage.getItem("outfit"));
-    items.push(product);
+    if (items.indexOf(product) < 0) items.push(product);
     window.localStorage.setItem("outfit", JSON.stringify(items));
   }
 };

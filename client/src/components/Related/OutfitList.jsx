@@ -25,18 +25,15 @@ const useStyles = makeStyles({
 
 module.exports = function OutfitList(props) {
   const classes = useStyles();
+  const products = JSON.parse(window.localStorage.getItem("outfit"));
+  console.log(products);
   return (
     <div className={classes.root}>
       <GridList className={classes.gridList}>
         <AddToOutfitCard product={props.productId} />
-        <CardItem product={props.data.product} styles={props.data.styles} />
-        <CardItem product={props.data.product} styles={props.data.styles} />
-        <CardItem product={props.data.product} styles={props.data.styles} />
-        <CardItem product={props.data.product} styles={props.data.styles} />
-        <CardItem product={props.data.product} styles={props.data.styles} />
-        <CardItem product={props.data.product} styles={props.data.styles} />
-        <CardItem product={props.data.product} styles={props.data.styles} />
-        <CardItem product={props.data.product} styles={props.data.styles} />
+        {products.map(product => {
+          return <CardItem id={product} key={product} />;
+        })}
       </GridList>
     </div>
   );
