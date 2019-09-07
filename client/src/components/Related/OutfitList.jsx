@@ -25,8 +25,11 @@ const useStyles = makeStyles({
 
 module.exports = function OutfitList(props) {
   const classes = useStyles();
-  const products = JSON.parse(window.localStorage.getItem("outfit"));
-  console.log(products);
+  let products;
+  window.localStorage.getItem("outfit")
+    ? (products = JSON.parse(window.localStorage.getItem("outfit")))
+    : (products = []);
+
   return (
     <div className={classes.root}>
       <GridList className={classes.gridList}>
