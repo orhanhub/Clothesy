@@ -13,10 +13,10 @@ module.exports = props => {
   return (
     <Container>
       {" "}
-      {/* <Overview />
-      <Qna /> */}
+      <Overview />
+      <Qna />
       <Related />
-      {/* <Reviews /> */}
+      <Reviews />
     </Container>
   );
 };
