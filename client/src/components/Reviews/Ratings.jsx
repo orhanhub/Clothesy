@@ -9,7 +9,7 @@ module.exports = ({ reviewsMeta }) => {
   return (
     <Grid item xs={3}>
       <AvgRatingAndStar avgRating={reviewsMeta.avgRating} />
-      <RatingHistogram />
+      <RatingHistogram ratingRelFreq={reviewsMeta.ratingRelFreq} />
     </Grid>
   );
 };
