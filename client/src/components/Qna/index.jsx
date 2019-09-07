@@ -12,21 +12,38 @@ const { Container, Typography } = require("@material-ui/core");
 const { QnaOneWrap } = require("./singleqna");
 const { SearchQnaButton } = require("./searchqnabutton");
 const { AddQuestion } = require("./modaladdquestion");
-const { ShowMore } = require("./buttonshowmore");
+const ShowMore = require("../shared/ShowMoreButton");
 
 const staticdata = require("./staticdata");
 const { Singleq } = require("./singleq");
+const TempReport = require("../shared/Report");
+
+/* Helpfulness component scaffold: */
+
+//module exports:
 
 module.exports = props => {
   //TODO: fix naming here
   let apiData = staticdata.static.listquestions.results;
   const [apiDatas, setData] = useState(apiData);
-
+  const [count, setCount] = useState(1);
+  
+// helpfulness items
+  const TempHelpful = require("../shared/Helpfulness");
+  const [helpfulcount, setHelpfulCount] = useState(0);
+//end of helpfulness
   return (
     <div className="qnaComponentWrapper">
       <div>
         <Typography>QUESTIONS & ANSWERS</Typography>
       </div>
+      <TempReport />
+
+      <TempHelpful
+        helpfulnessCounter={helpfulcount}
+        onClick={() => setHelpfulCount(helpfulcount + 1)}
+      />
+
       <Container maxWidth="lg">
         <SearchQnaButton />
         <div className="qnaListWrapper">
@@ -34,13 +51,16 @@ module.exports = props => {
           <QnaOneWrap />
           <QnaOneWrap />
         </div>
-
         <div>
-          <Singleq questions={apiDatas} />
+          <Singleq questions={apiDatas.slice(0, count)} />
         </div>
         <div>
           <AddQuestion />
-          <ShowMore />
+          <ShowMore
+            onClick={() => {
+              setCount(count + 1);
+            }}
+          />
         </div>
       </Container>
     </div>
