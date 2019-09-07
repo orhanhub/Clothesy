@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const markAsHelpful = {
+const report = {
   question: id => axios.put(`/qa/question/${id}/report`),
   answer: id => axios.put(`/qa/answer/${id}/report`),
   review: id => axios.put(`/reviews/report/${id}`)
@@ -30,7 +30,7 @@ const markAsHelpful = {
 // TODO: // implement api endpoints
 // TODO: // implement material-ui typography et al.
 
-module.exports = ({ qar, qarId, addlOnClick }) => {
+module.exports = ({ qar, qarId, onSuccess = () => {}, onFail = () => {} }) => {
   const classes = useStyles();
   const [isReported, setReport] = useState(0);
   return (
@@ -38,9 +38,19 @@ module.exports = ({ qar, qarId, addlOnClick }) => {
       <Grid item xs={12}>
         <Typography
           className={classes.smallGreyFont}
-          onClick={() => {
-            setReport(isReported + 1);
-          }}
+          onClick={
+            isReported
+              ? () => {}
+              : () => {
+                  setReport(isReported + 1);
+                  report[qar](qarId)
+                    .then(onSuccess)
+                    .catch(() => {
+                      setReport(0);
+                      onFail();
+                    });
+                }
+          }
         >
           {isReported === 0 ? "Report" : "Reported"}
         </Typography>
