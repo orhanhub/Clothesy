@@ -28,7 +28,7 @@ module.exports = function OutfitList(props) {
   return (
     <div className={classes.root}>
       <GridList className={classes.gridList}>
-        <AddToOutfitCard />
+        <AddToOutfitCard product={props.productId} />
         <CardItem product={props.data.product} styles={props.data.styles} />
         <CardItem product={props.data.product} styles={props.data.styles} />
         <CardItem product={props.data.product} styles={props.data.styles} />

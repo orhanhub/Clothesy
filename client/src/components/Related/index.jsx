@@ -11,6 +11,7 @@ class Related extends React.Component {
   }
 
   render() {
+    console.log(this.props);
     return (
       <div>
         <Typography style={{ fontSize: "10pt", textTransform: "uppercase" }}>
@@ -20,7 +21,7 @@ class Related extends React.Component {
         <Typography style={{ fontSize: "10pt", textTransform: "uppercase" }}>
           Your Outfit
         </Typography>
-        <OutfitList data={data} />
+        <OutfitList productId={this.props.product} data={data} />
       </div>
     );
   }
