@@ -25,6 +25,7 @@ module.exports = props => {
         <OverallRatingSelect />
         {Object.entries(characteristics).map(([char, ratings]) => (
           <QualityRadioSelect
+            key={"add-review-radio" + char}
             characteristic={{ name: char, levels: ratings }}
           />
         ))}

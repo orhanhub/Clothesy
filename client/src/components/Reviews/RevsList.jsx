@@ -6,8 +6,14 @@ const { makeStyles } = require("@material-ui/core/styles");
 const RevsListItem = require("./RevsListItem.jsx");
 const AddReview = require("./AddReview.jsx");
 const SortReviewSelect = require("./SortReviewSelect.jsx");
+const ShowMoreReviews = require("./ShowMoreButton.jsx");
 
-module.exports = ({ reviews, changeSortBy, sortingBy }) => {
+module.exports = ({
+  reviews,
+  changeSortBy,
+  sortingBy,
+  increaseDisplayCount
+}) => {
   return (
     <Grid item xs={9}>
       <SortReviewSelect changeSortBy={changeSortBy} sortingBy={sortingBy} />
@@ -18,6 +24,7 @@ module.exports = ({ reviews, changeSortBy, sortingBy }) => {
       </Grid>
       <Grid container>
         <AddReview />
+        <ShowMoreReviews onClick={increaseDisplayCount} />
       </Grid>
     </Grid>
   );
