@@ -9,19 +9,19 @@ const { Container, Typography } = require("@material-ui/core");
 //AddQuestion is add a question button
 //Showmore expands the answers
 
-const { QnaOneWrap } = require("./singleqna");
 const { SearchQnaButton } = require("./searchqnabutton");
+const { Singleq } = require("./singleq");
 const AddQuestion = require("../shared/Modal");
 const ShowMore = require("../shared/ShowMoreButton");
 
 const staticdata = require("./staticdata");
-const { Singleq } = require("./singleq");
 
 module.exports = props => {
   //TODO: fix naming here
   let apiData = staticdata.static.listquestions.results;
   const [apiDatas, setData] = useState(apiData);
-  const [count, setCount] = useState(1);
+  const [count, setCount] = useState(2);
+  const [searchText, setSearchText] = useState("");
 
   return (
     <div className="qnaComponentWrapper">
@@ -29,10 +29,11 @@ module.exports = props => {
         <Typography>QUESTIONS & ANSWERS</Typography>
       </div>
       <Container maxWidth="lg">
-        <SearchQnaButton />
-        <div className="qnaListWrapper">
-          <QnaOneWrap />
-        </div>
+        <SearchQnaButton
+          value={searchText}
+          onChange={event => setSearchText(event.target.value)}
+        />
+        <div className="qnaListWrapper"></div>
         <div>
           <Singleq questions={apiDatas.slice(0, count)} />
         </div>
@@ -40,9 +41,7 @@ module.exports = props => {
           <AddQuestion
             qarfield={"answer"}
             bodyTextPlaceholder={"submit your answer"}
-          >
-            hello
-          </AddQuestion>
+          ></AddQuestion>
           <ShowMore
             onClick={() => {
               setCount(count + 1);

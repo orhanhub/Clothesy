@@ -9,9 +9,15 @@ const ImageGallery = ({ initialProduct, styles, tileIndex }) => {
   };
   const initialProductHolder = initialProduct;
 
+  const [index, setIndex] = React.useState(0);
+
+  const handleSelect = selectedIndex => {
+    setIndex(selectedIndex);
+  };
+
   return (
     <div style={{ overflow: "hidden", marginTop: "20px", width: "775px" }}>
-      <Carousel wrap={true}>
+      <Carousel wrap={true} activeIndex={index} onSelect={handleSelect}>
         {initialProductHolder.productStyles[0] && !styles.photos
           ? initialProductHolder.productStyles[0].photos.map((photo, i) => {
               return (
