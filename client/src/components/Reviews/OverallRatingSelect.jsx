@@ -1,29 +1,37 @@
 const React = require("react");
 const StarFill = require("../shared/StarFill.jsx");
-const { Typography } = require("@material-ui/core");
-const { Box } = require("@material-ui/core");
+const { Typography, Box, Grid } = require("@material-ui/core");
+//const { Box } = require("@material-ui/core");
 
 module.exports = () => {
   const [value, setValue] = React.useState(2);
   const [percent, setPercent] = React.useState(0);
+  const ratingDescs = ["Poor", "Fair", "Average", "Good", "Great"];
 
   return (
     <div
       onMouseMove={e => {
-        let { x, y, width, height, top, left, bottom } =
+        let { x, y, width, height, top, left, bottom, right } =
           document.getElementsByClassName("star-select")[0] &&
           document
             .getElementsByClassName("star-select")[0]
             .getBoundingClientRect();
         let { clientX, clientY } = e;
-        if (clientY >= top && clientY <= bottom) {
+        if (clientY >= top && clientY <= bottom && clientX <= right) {
           setPercent(Math.abs(clientX - x) / width);
         }
       }}
     >
       <Box component="fieldset" mb={3} borderColor="transparent">
         <Typography component="legend">Overall Rating</Typography>
-        <StarFill isSelectable={true} stars={5 * percent} />
+        <Grid container>
+          <Grid item xs={6}>
+            <StarFill isSelectable={true} stars={5 * percent} />
+          </Grid>
+          <Grid item xs={6}>
+            {ratingDescs.slice(percent * 5, percent * 5 + 1)}
+          </Grid>
+        </Grid>
       </Box>
     </div>
   );

@@ -88,7 +88,7 @@ module.exports = function CardItem(props) {
   });
 
   useEffect(() => {
-    getItemInfo(props.id || 1, 3).then(data => {
+    getItemInfo(props.id || 1, 0).then(data => {
       setItemInfo(data);
     });
   }, [1]);
