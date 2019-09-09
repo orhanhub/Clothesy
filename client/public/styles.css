@@ -6,7 +6,10 @@
 }
 
 .bar-and-marker {
+  position: relative;
   height: 16px;
+  overflow-x: visible;
+  overflow-y: hidden;
 }
 
 .progress-bar-custom {
@@ -47,8 +50,8 @@
 
 .bar-and-marker .marker {
   position: absolute;
-  font-size: 90%;
-  top: -2px;
+  font-size: 30px;
+  top: -23px;
 }
 
 .stars {
@@ -68,4 +71,11 @@
 .progress-bar-custom .bar-full {
   background: #808080;
   z-index: 2;
+}
+
+.quality-radio span {
+  font-weight: lighter;
+  font-size: 10px;
+  width: 67px;
+  text-align: center;
 }
