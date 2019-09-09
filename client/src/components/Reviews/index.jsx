@@ -6,6 +6,7 @@ const MarkerBar = require("../shared/MarkerBar.jsx");
 const StarFill = require("../shared/StarFill.jsx");
 const Ratings = require("./Ratings.jsx");
 const RevsList = require("./RevsList.jsx");
+const sortReviews = require("./helpers/sortReviews.js");
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -15,6 +16,8 @@ const useStyles = makeStyles(theme => ({
 
 module.exports = props => {
   const [starFilter, setStarFilter] = useState({});
+  const [sortingBy, setSorting] = useState("relevance");
+  const [displayCount, setDisplayCount] = useState(2);
   const classes = useStyles();
   return (
     <Paper className={classes.root}>
@@ -35,10 +38,15 @@ module.exports = props => {
           currFilters={Object.keys(starFilter)}
         />
         <RevsList
-          reviews={props.reviews.filter(
-            review =>
-              !Object.keys(starFilter).length || starFilter[review.rating]
-          )}
+          reviews={sortReviews(props.reviews)
+            [sortingBy].filter(
+              review =>
+                !Object.keys(starFilter).length || starFilter[review.rating]
+            )
+            .slice(0, displayCount)}
+          // sortedReviews={sortReviews(props.reviews)[sortingBy]}
+          changeSortBy={setSorting}
+          sortingBy={sortingBy}
         />
       </Grid>
       {/* <MarkerBar percentage={25} />
