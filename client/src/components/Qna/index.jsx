@@ -1,25 +1,17 @@
 const React = require("react");
 const { useState } = require("react");
-const { Container, Typography } = require("@material-ui/core");
+const { Container, Grid, Typography } = require("@material-ui/core");
 
-//import the modules used under the questions and answers widget
-
-//QnaOneWrap is the questions and answers part
-//SearchQna searches the answers, not the questions
-//AddQuestion is add a question button
-//Showmore expands the answers
-
-const { SearchQnaButton } = require("./searchqnabutton");
-const { Singleq } = require("./singleq");
+const SearchQnaButton = require("./searchqnabutton");
+const Singleq = require("./singleq");
 const AddQuestion = require("../shared/Modal");
 const ShowMore = require("../shared/ShowMoreButton");
-
 const staticdata = require("./staticdata");
 
 module.exports = props => {
-  //TODO: fix naming here
   let apiData = staticdata.static.listquestions.results;
   const [apiDatas, setData] = useState(apiData);
+
   const [count, setCount] = useState(2);
   const [searchText, setSearchText] = useState("");
 
@@ -34,13 +26,13 @@ module.exports = props => {
           onChange={event => setSearchText(event.target.value)}
         />
         <div className="qnaListWrapper"></div>
-        <div>
+        <Grid>
           <Singleq questions={apiDatas.slice(0, count)} />
-        </div>
+        </Grid>
         <div>
           <AddQuestion
-            qarfield={"answer"}
-            bodyTextPlaceholder={"submit your answer"}
+            qarfield={"question"}
+            bodyTextPlaceholder={"submit your question"}
           ></AddQuestion>
           <ShowMore
             onClick={() => {

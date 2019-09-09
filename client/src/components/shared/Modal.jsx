@@ -10,6 +10,11 @@ const {
 } = require("@material-ui/core");
 
 const useStyles = makeStyles(theme => ({
+  answerbutton: {
+    textAlign: "right",
+    fontWeight: "fontWeightLight",
+    fontSize: 10
+  },
   button: {},
   input: {},
   modal: {
@@ -33,7 +38,8 @@ module.exports = ({
   qarfield,
   bodyTextPlaceholder,
   children,
-  handleSubmit
+  handleSubmit,
+  border
 }) => {
   const classes = useStyles();
 
@@ -63,8 +69,10 @@ module.exports = ({
   return (
     <div>
       <Button
-        variant="outlined"
-        className={classes.button}
+        variant={qarfield === "answer" ? "text" : "outlined"}
+        className={
+          qarfield === "answer" ? classes.answerbutton : classes.button
+        }
         onClick={handleOpen}
       >
         {`ADD A${(qarfield === "answer" ? "N " : " ") + qarfield}+`}
