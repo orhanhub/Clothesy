@@ -1,4 +1,5 @@
 const React = require("react");
+const { useState, useEffect } = require("react");
 const ImageGallery = require("./ImageGallery.jsx");
 const ProductInformation = require("./ProductInformation.jsx");
 const StyleSelector = require("./StyleSelector.jsx");
@@ -8,13 +9,17 @@ const ImageGalleryList = require("./ImageGalleryList.jsx");
 const QuantitySizeSelect = require("./QuantitySizeSelect.jsx");
 const AddToCart = require("./AddToCart.jsx");
 const ShowCart = require("./ShowCart.jsx");
+const axios = require("../../../../helpers/axiosApi.js");
 
 const App = ({ initialProduct }) => {
-  const [state, setState] = React.useState({
+  const [state, setState] = useState({
     styles: {},
     tileIndex: 0,
     soldOut: false
   });
+
+  const [productImages, setProductImages] = useState([]);
+  const [productInfo, setProductInfo] = useState([]);
 
   const changeStyle = index => {
     setState({ ...state, styles: initialProduct.productStyles[index] });
@@ -36,6 +41,48 @@ const App = ({ initialProduct }) => {
       setState({ ...state, soldOut: false });
     }
   };
+
+  const getCart = () => {
+    axios
+      .get(`/cart/${document.cookie.split("=")[1]}`)
+      .then(response => {
+        let images = Promise.all(
+          response.data.map(product => {
+            return axios.get(
+              `/products/${product.product_id.toString()}/styles`
+            );
+          })
+        );
+
+        let productId = Promise.all(
+          response.data.map(product => {
+            return axios.get(`/products/${product.product_id.toString()}`);
+          })
+        );
+
+        return Promise.all([images, productId]);
+      })
+      .then(response => {
+        setProductImages(
+          response[0].map(product => {
+            return product.data.results[0].photos[0].url;
+          })
+        );
+        setProductInfo(
+          response[1].map(product => {
+            return product.data;
+          })
+        );
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    getCart();
+  }, []);
+
   return (
     <div>
       {initialProduct.productStyles[0] && !state.selectedStyle
@@ -89,8 +136,12 @@ const App = ({ initialProduct }) => {
               <AddToCart
                 soldOut={state.soldOut}
                 productId={initialProduct.currentProduct.id}
+                getCart={getCart}
               />
-              <ShowCart />
+              <ShowCart
+                productImages={productImages}
+                productInfo={productInfo}
+              />
             </Grid>
           </Grid>
         </Grid>

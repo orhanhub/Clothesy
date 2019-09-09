@@ -10,7 +10,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const AddToCart = ({ soldOut, productId }) => {
+const AddToCart = ({ soldOut, productId, getCart }) => {
   const classes = useStyles();
 
   handleClick = () => {
@@ -18,6 +18,9 @@ const AddToCart = ({ soldOut, productId }) => {
       .post("/cart", {
         user_session: parseInt(document.cookie.split("=")[1]),
         product_id: productId
+      })
+      .then(() => {
+        getCart();
       })
       .catch(err => {
         console.log(err);

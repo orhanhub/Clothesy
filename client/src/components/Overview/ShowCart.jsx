@@ -1,8 +1,7 @@
 const React = require("react");
-const { useState, useEffect } = require("react");
+const { useState } = require("react");
 const { makeStyles } = require("@material-ui/core/styles");
 const { Modal, Backdrop, Fade, Grid } = require("@material-ui/core");
-const axios = require("../../../../helpers/axiosApi.js");
 
 const useStyles = makeStyles(theme => ({
   modal: {
@@ -29,11 +28,9 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-ShowCart = () => {
+ShowCart = ({ productImages, productInfo }) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-  const [productImages, setProductImages] = useState([]);
-  const [productInfo, setProductInfo] = useState([]);
 
   const handleOpen = () => {
     setOpen(true);
@@ -42,43 +39,6 @@ ShowCart = () => {
   const handleClose = () => {
     setOpen(false);
   };
-
-  React.useEffect(() => {
-    axios
-      .get(`/cart/${document.cookie.split("=")[1]}`)
-      .then(response => {
-        let images = Promise.all(
-          response.data.map(product => {
-            return axios.get(
-              `/products/${product.product_id.toString()}/styles`
-            );
-          })
-        );
-
-        let productId = Promise.all(
-          response.data.map(product => {
-            return axios.get(`/products/${product.product_id.toString()}`);
-          })
-        );
-
-        return Promise.all([images, productId]);
-      })
-      .then(response => {
-        setProductImages(
-          response[0].map(product => {
-            return product.data.results[0].photos[0].url;
-          })
-        );
-        setProductInfo(
-          response[1].map(product => {
-            return product.data;
-          })
-        );
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }, []);
 
   return (
     <div>
