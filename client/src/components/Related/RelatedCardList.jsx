@@ -35,6 +35,14 @@ const useStyles = makeStyles(theme => ({
     border: "2px solid #000",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3)
+  },
+  modal: {
+    position: "absolute",
+    top: "10%",
+    left: "10%",
+    overflow: "scroll",
+    height: "100%",
+    display: "block"
   }
 }));
 
@@ -71,21 +79,7 @@ module.exports = function RelatedCardList(props) {
         selected: selectedName
       }
     ];
-    console.log(modalRows, "modalROws");
-    console.log(
-      "currentName",
-      currentName,
-      "currentFeatures",
-      currentFeatures,
-      "selectedName",
-      selectedName,
-      "selectedFeatures",
-      selectedFeatures,
-      "currfeat0.feat",
-      currentFeatures[0].feature,
-      "currentFeaturesObj",
-      currentFeaturesObj
-    );
+
     currentFeatures.map(elt => {
       currentFeaturesObj[elt.feature] = elt.value;
       if (elt.value === true) currentFeaturesObj[elt.feature] = "✓";
@@ -94,7 +88,6 @@ module.exports = function RelatedCardList(props) {
       selectedFeaturesObj[elt.feature] = elt.value;
       if (elt.value === true) selectedFeaturesObj[elt.feature] = "✓";
     });
-    console.log(selectedFeaturesObj, "selectedFeaturesObject");
     for (let feature in currentFeaturesObj) {
       starClickRows.push({
         current: currentFeaturesObj[feature] || "",
@@ -111,7 +104,6 @@ module.exports = function RelatedCardList(props) {
       });
     }
     handleOpen();
-    console.log("starclickrows", starClickRows);
     setModalRows(starClickRows);
   };
 
@@ -140,6 +132,7 @@ module.exports = function RelatedCardList(props) {
         BackdropProps={{
           timeout: 500
         }}
+        className={classes.modal}
       >
         <Fade in={open} className={classes.paper}>
           <div>
