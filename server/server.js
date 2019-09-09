@@ -13,9 +13,7 @@ app.use((req, res, next) => {
     var randomNumber = Math.random().toString();
     randomNumber = randomNumber.substring(2, randomNumber.length);
     res.cookie("cookieName", randomNumber);
-    console.log("cookie created successfully");
   } else {
-    console.log("cookie exists", cookie);
   }
   next();
 });
