@@ -97,16 +97,19 @@ module.exports = function CardItem(props) {
   }, [1]);
 
   const starIconType = true;
+  let insideStar = false;
+
+  const handleClick = inside => {
+    if (inside === true) {
+      insideStar = true;
+      props.onStarClick(itemInfo.productId);
+    } else if (!insideStar) props.changeCurrentProduct(itemInfo.productId);
+  };
 
   return (
     <div>
       <Card className={classes.card}>
-        <CardActionArea
-          component="div"
-          onClick={() => {
-            props.changeCurrentProduct(itemInfo.productId);
-          }}
-        >
+        <CardActionArea component="div" onClick={() => handleClick(false)}>
           <CardMedia
             className={classes.media}
             image={itemInfo.previewImage}
@@ -115,7 +118,7 @@ module.exports = function CardItem(props) {
             {starIconType ? (
               <StarBorder
                 className={classes.star}
-                onClick={() => props.onStarClick(itemInfo.productId)}
+                onClick={() => handleClick(true)}
               />
             ) : (
               <RemoveCircle />

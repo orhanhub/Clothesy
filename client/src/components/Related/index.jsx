@@ -11,6 +11,7 @@ class Related extends React.Component {
   }
 
   render() {
+    console.log(this.props);
     return (
       <div>
         <Typography style={{ fontSize: "10pt", textTransform: "uppercase" }}>
