@@ -39,11 +39,7 @@ module.exports = ({
   bodyTextPlaceholder,
   children,
   handleSubmit,
-<<<<<<< HEAD
-  border
-=======
   buttonText
->>>>>>> master
 }) => {
   const classes = useStyles();
 
