@@ -11,12 +11,16 @@ class Related extends React.Component {
   }
 
   render() {
+    console.log(this.props);
     return (
       <div>
         <Typography style={{ fontSize: "10pt", textTransform: "uppercase" }}>
           Related Products
         </Typography>
-        <RelatedCardList related={this.props.relatedProducts} />
+        <RelatedCardList
+          related={this.props.relatedProducts}
+          changeCurrentProduct={this.props.changeCurrentProduct}
+        />
         <Typography style={{ fontSize: "10pt", textTransform: "uppercase" }}>
           Your Outfit
         </Typography>
