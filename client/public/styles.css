@@ -55,12 +55,17 @@
 }
 
 .stars {
-  height: 22px;
   overflow: hidden;
-  width: 58px;
   position: relative;
+}
+
+.stars {
+  /* default size*/
+  height: 22px;
+  width: 58px;
   font-size: 13px;
 }
+
 .full-stars,
 .empty-stars,
 .bar-full {
@@ -78,4 +83,11 @@
   font-size: 10px;
   width: 67px;
   text-align: center;
+}
+
+.star-select {
+  cursor: pointer;
+  height: 44px;
+  width: 115px;
+  font-size: 26px;
 }

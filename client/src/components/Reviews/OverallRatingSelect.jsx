@@ -5,16 +5,25 @@ const { Box } = require("@material-ui/core");
 
 module.exports = () => {
   const [value, setValue] = React.useState(2);
+  const [percent, setPercent] = React.useState(0);
 
   return (
-    <div>
+    <div
+      onMouseMove={e => {
+        let { x, y, width, height, top, left, bottom } =
+          document.getElementsByClassName("star-select")[0] &&
+          document
+            .getElementsByClassName("star-select")[0]
+            .getBoundingClientRect();
+        let { clientX, clientY } = e;
+        if (clientY >= top && clientY <= bottom) {
+          setPercent(Math.abs(clientX - x) / width);
+        }
+      }}
+    >
       <Box component="fieldset" mb={3} borderColor="transparent">
         <Typography component="legend">Overall Rating</Typography>
-        <StarFill
-          onClick={e => {
-            console.log(e.target);
-          }}
-        />
+        <StarFill isSelectable={true} stars={5 * percent} />
       </Box>
     </div>
   );
