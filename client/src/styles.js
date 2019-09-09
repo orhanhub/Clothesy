@@ -23,5 +23,10 @@ module.exports = {
   },
   radioGroup: {
     justifyContent: "center"
+  },
+  ratingHistogramBar: {
+    "&:hover": {
+      background: "gray"
+    }
   }
 };

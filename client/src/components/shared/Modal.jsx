@@ -33,7 +33,8 @@ module.exports = ({
   qarfield,
   bodyTextPlaceholder,
   children,
-  handleSubmit
+  handleSubmit,
+  buttonText
 }) => {
   const classes = useStyles();
 
@@ -67,7 +68,7 @@ module.exports = ({
         className={classes.button}
         onClick={handleOpen}
       >
-        {`ADD A${(qarfield === "answer" ? "N " : " ") + qarfield}+`}
+        {buttonText}
       </Button>
 
       <Modal

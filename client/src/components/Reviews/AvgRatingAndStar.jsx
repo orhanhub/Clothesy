@@ -10,7 +10,7 @@ module.exports = ({ avgRating }) => {
         <Typography component="div">
           {" "}
           <Box component="div" fontSize="h2.fontSize" textAlign="center" m={1}>
-            {avgRating}
+            {avgRating && avgRating.toFixed(1)}
           </Box>
         </Typography>
       </Grid>
