@@ -19,6 +19,12 @@ module.exports = props => {
   const [sortingBy, setSorting] = useState("relevance");
   const [displayCount, setDisplayCount] = useState(2);
   const classes = useStyles();
+
+  let sortedReviews = sortReviews(props.reviews)
+    [sortingBy].filter(
+      review => !Object.keys(starFilter).length || starFilter[review.rating]
+    )
+    .slice(0, displayCount);
   return (
     <Paper className={classes.root}>
       <Typography>{"RATINGS & REVIEWS"}</Typography>
@@ -38,15 +44,18 @@ module.exports = props => {
           currFilters={Object.keys(starFilter)}
         />
         <RevsList
-          reviews={sortReviews(props.reviews)
-            [sortingBy].filter(
-              review =>
-                !Object.keys(starFilter).length || starFilter[review.rating]
-            )
-            .slice(0, displayCount)}
+          reviews={sortedReviews}
           // sortedReviews={sortReviews(props.reviews)[sortingBy]}
           changeSortBy={setSorting}
           sortingBy={sortingBy}
+          increaseDisplayCount={
+            displayCount < sortedReviews.length
+              ? () => setDisplayCount(displayCount + 1)
+              : () => {}
+          }
+          showShowMore={
+            sortedReviews.length && displayCount < sortedReviews.length
+          }
         />
       </Grid>
       {/* <MarkerBar percentage={25} />
