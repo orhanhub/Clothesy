@@ -1,10 +1,10 @@
 const React = require("react");
 const starsToPct = require("./helpers/starsToPct.js");
 
-module.exports = ({ stars }) => {
-  let percentage = starsToPct(stars);
+module.exports = ({ stars, percent, onClick }) => {
+  let percentage = percent || starsToPct(stars);
   return (
-    <div className="stars">
+    <div onClick={onClick || (() => {})} className="stars">
       <div className="empty-stars">☆☆☆☆☆</div>
       <div className="full-stars" style={{ width: `${percentage}%` }}>
         ★★★★★

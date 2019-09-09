@@ -14,6 +14,8 @@ const useStyles = makeStyles(theme => ({
   input: {},
   modal: {
     display: "flex",
+    height: "100%",
+    overflow: "scroll",
     alignItems: "center",
     justifyContent: "center"
   },
@@ -26,17 +28,23 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-module.exports = props => {
+module.exports = ({
+  fields,
+  qarfield,
+  bodyTextPlaceholder,
+  children,
+  handleSubmit
+}) => {
   const classes = useStyles();
 
   const common = {
-    bodyText: "default value here",
+    bodyText: bodyTextPlaceholder,
     nicknameText: "jack123",
     emailText: "jack@gmail.com"
   };
 
   const [values, setValues] = React.useState(
-    Object.assign(common, props.fields || {})
+    Object.assign(common, fields || {})
   );
 
   const handleChange = name => event => {
@@ -59,7 +67,7 @@ module.exports = props => {
         className={classes.button}
         onClick={handleOpen}
       >
-        ADD A QUESTION+
+        {`ADD A${(qarfield === "answer" ? "N " : " ") + qarfield}+`}
       </Button>
 
       <Modal
@@ -76,16 +84,14 @@ module.exports = props => {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <Typography id="transition-modal-title">
-              {props.qarfield}
-            </Typography>
+            <Typography id="transition-modal-title">{qarfield}</Typography>
             <form noValidate autoComplete="off">
               <TextField
                 id="standard-multiline-flexible"
-                label={props.bodyTextPlaceholder}
+                label={bodyTextPlaceholder}
                 multiline
                 rowsMax="4"
-                placeholder={values.bodyText}
+                placeholder={bodyTextPlaceholder}
                 onChange={handleChange("bodyText")}
                 className={classes.textField}
                 margin="normal"
@@ -108,9 +114,15 @@ module.exports = props => {
                 className={classes.textField}
                 margin="normal"
               />
-              {props.children}
+              {children}
             </form>
-            <button>submit</button>
+            <Button
+              variant="outlined"
+              className={classes.button}
+              onClick={handleSubmit || (() => {})}
+            >
+              {`SUBMIT YOUR ${qarfield}`}
+            </Button>
           </div>
         </Fade>
       </Modal>

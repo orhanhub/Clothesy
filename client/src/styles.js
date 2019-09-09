@@ -20,5 +20,8 @@ module.exports = {
     margin: "",
     color: "inherit",
     variant: "body2"
+  },
+  radioGroup: {
+    justifyContent: "center"
   }
 };

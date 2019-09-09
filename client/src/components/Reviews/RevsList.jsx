@@ -4,6 +4,7 @@ const { Grid, Typography } = require("@material-ui/core");
 const { makeStyles } = require("@material-ui/core/styles");
 
 const RevsListItem = require("./RevsListItem.jsx");
+const AddReview = require("./AddReview.jsx");
 
 module.exports = props => {
   return (
@@ -13,6 +14,7 @@ module.exports = props => {
           <RevsListItem key={review.review_id} review={review} />
         ))}
       </Grid>
+      <AddReview />
     </Grid>
   );
 };
