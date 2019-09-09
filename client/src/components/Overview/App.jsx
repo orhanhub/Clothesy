@@ -35,7 +35,6 @@ const App = ({ initialProduct }) => {
       setState({ ...state, soldOut: false });
     }
   };
-
   return (
     <div>
       {initialProduct.productStyles[0] && !state.selectedStyle
@@ -64,7 +63,13 @@ const App = ({ initialProduct }) => {
 
         <Grid item xs={3}>
           <Grid item xs={12}>
-            <ProductInformation initialProduct={initialProduct} />
+            {state.selectedStyle ? (
+              <ProductInformation
+                initialProduct={initialProduct}
+                styles={state.styles}
+                selectedStyle={state.selectedStyle}
+              />
+            ) : null}
           </Grid>
           <Grid item xs={12}>
             <StyleSelector
