@@ -129,14 +129,14 @@ module.exports = function CardItem(props) {
               salePrice={itemInfo.sale_price}
               originalPrice={itemInfo.original_price}
             />
-            <Typography component={"span"} className={classes.productName}>
+            <span className={classes.productName}>
               {itemInfo.ratingData !== null &&
               Object.keys(itemInfo.ratingData).length > 0 ? (
                 <StarFill stars={itemInfo.starRating} />
               ) : (
                 <div></div>
               )}
-            </Typography>
+            </span>
           </CardContent>
         </CardActionArea>
       </Card>
