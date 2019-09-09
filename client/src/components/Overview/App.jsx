@@ -7,6 +7,7 @@ const { Grid } = require("@material-ui/core");
 const ImageGalleryList = require("./ImageGalleryList.jsx");
 const QuantitySizeSelect = require("./QuantitySizeSelect.jsx");
 const AddToCart = require("./AddToCart.jsx");
+const ShowCart = require("./ShowCart.jsx");
 
 const App = ({ initialProduct }) => {
   const [state, setState] = React.useState({
@@ -85,7 +86,11 @@ const App = ({ initialProduct }) => {
                   handleQuantity={handleQuantity}
                 />
               ) : null}
-              <AddToCart soldOut={state.soldOut} />
+              <AddToCart
+                soldOut={state.soldOut}
+                productId={initialProduct.currentProduct.id}
+              />
+              <ShowCart />
             </Grid>
           </Grid>
         </Grid>
