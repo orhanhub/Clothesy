@@ -31,7 +31,7 @@ const AddToCart = ({ soldOut, productId }) => {
           className={classes.button}
           onClick={handleClick}
         >
-          ADD TO BAG
+          ADD TO CART
         </Button>
       ) : (
         <Button
