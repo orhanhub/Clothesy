@@ -42,8 +42,28 @@ module.exports = function RelatedCardList(props) {
   const handleClose = () => {
     setOpen(false);
   };
-  const onStarClick = id => {
+
+  let modalInfo = "hello!";
+
+  const onStarClick = selectedItem => {
     handleOpen();
+    let currentName = props.indexProps.currentProduct.name;
+    let currentFeatures = props.indexProps.currentProduct.features;
+    let selectedName = selectedItem.productName;
+    let selectedFeatures = selectedItem.features;
+    // console.log(
+    //   "currentName",
+    //   currentName,
+    //   "currentFeatures",
+    //   currentFeatures,
+    //   "selectedName",
+    //   selectedName,
+    //   "selectedFeatures",
+    //   selectedFeatures
+    // );
+    for(let i = 0; i < currentFeatures.length; i++){
+      
+    }
   };
 
   const classes = useStyles();
@@ -60,8 +80,8 @@ module.exports = function RelatedCardList(props) {
   return (
     <div>
       <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
+        aria-labelledby="item-comparison"
+        aria-describedby="compares-selected-with-current-item"
         className={classes.modal}
         open={open}
         onClose={handleClose}
@@ -72,7 +92,7 @@ module.exports = function RelatedCardList(props) {
         }}
       >
         <Fade in={open} className={classes.paper}>
-          <div>Comparison Modal</div>
+          <div>{modalInfo}</div>
         </Fade>
       </Modal>
       <div className={classes.root}>
