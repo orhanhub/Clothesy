@@ -126,7 +126,7 @@ const App = ({ initialProduct }) => {
             />
           </Grid>
           <Grid item xs={12}>
-            <Grid container spacing={1} justify="center">
+            <Grid container spacing={1} justify="center" alignItems="center">
               {state.selectedStyle ? (
                 <QuantitySizeSelect
                   selectedStyle={state.selectedStyle}

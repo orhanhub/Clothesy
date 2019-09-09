@@ -1,7 +1,7 @@
 const React = require("react");
 const { useState } = require("react");
 const { makeStyles } = require("@material-ui/core/styles");
-const { Modal, Backdrop, Fade, Grid } = require("@material-ui/core");
+const { Modal, Backdrop, Fade, Grid, Button } = require("@material-ui/core");
 
 const useStyles = makeStyles(theme => ({
   modal: {
@@ -42,9 +42,9 @@ ShowCart = ({ productImages, productInfo }) => {
 
   return (
     <div>
-      <button type="button" onClick={handleOpen}>
+      <Button type="button" onClick={handleOpen} variant="outlined">
         Cart
-      </button>
+      </Button>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
