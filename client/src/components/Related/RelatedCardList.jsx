@@ -34,7 +34,6 @@ module.exports = function RelatedCardList(props) {
   if (!props.related) {
     return <div></div>;
   }
-  let insideStar = false;
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
@@ -45,8 +44,6 @@ module.exports = function RelatedCardList(props) {
   };
   const onStarClick = id => {
     handleOpen();
-    console.log("onstarclick", insideStar);
-    insideStar = true;
   };
 
   const classes = useStyles();
@@ -56,7 +53,6 @@ module.exports = function RelatedCardList(props) {
         id={item}
         key={item}
         onStarClick={onStarClick}
-        insideStar={insideStar}
         changeCurrentProduct={props.changeCurrentProduct}
       />
     );
