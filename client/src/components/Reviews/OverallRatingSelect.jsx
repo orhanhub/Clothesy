@@ -26,7 +26,7 @@ module.exports = () => {
         <Typography component="legend">Overall Rating</Typography>
         <Grid container>
           <Grid item xs={6}>
-            <StarFill isSelectable={true} stars={5 * percent} />
+            <StarFill isSelectable={true} stars={Math.floor(5 * percent) + 1} />
           </Grid>
           <Grid item xs={6}>
             {ratingDescs.slice(percent * 5, percent * 5 + 1)}

@@ -14,13 +14,32 @@ const useStyles = makeStyles(theme => ({
 }));
 
 module.exports = props => {
+  const [starFilter, setStarFilter] = useState({});
   const classes = useStyles();
   return (
     <Paper className={classes.root}>
       <Typography>{"RATINGS & REVIEWS"}</Typography>
       <Grid container spacing={2}>
-        <Ratings reviewsMeta={props.reviewsMeta} />
-        <RevsList reviews={props.reviews} />
+        <Ratings
+          reviewsMeta={props.reviewsMeta}
+          setStarFilter={rating => {
+            let currFilters = { ...starFilter };
+            if (currFilters[rating]) {
+              delete currFilters[rating];
+            } else {
+              currFilters[rating] = true;
+            }
+            setStarFilter(currFilters);
+          }}
+          resetStarFilter={() => setStarFilter({})}
+          currFilters={Object.keys(starFilter)}
+        />
+        <RevsList
+          reviews={props.reviews.filter(
+            review =>
+              !Object.keys(starFilter).length || starFilter[review.rating]
+          )}
+        />
       </Grid>
       {/* <MarkerBar percentage={25} />
       <StarFill percentage={67.5} /> */}
