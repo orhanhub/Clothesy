@@ -37,7 +37,9 @@ module.exports = function AddToOutfitCard(props) {
           <Icon
             className={classes.icon}
             color="action"
-            onClick={() => console.log("add to outfit")}
+            onClick={() => {
+              props.addToOutfit(props.product);
+            }}
           >
             add_circle
           </Icon>

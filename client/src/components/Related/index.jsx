@@ -20,7 +20,7 @@ class Related extends React.Component {
         <Typography style={{ fontSize: "10pt", textTransform: "uppercase" }}>
           Your Outfit
         </Typography>
-        <OutfitList data={data} />
+        <OutfitList productId={this.props.currentProduct.id} data={data} />
       </div>
     );
   }
