@@ -103,10 +103,8 @@ module.exports = function CardItem(props) {
       <Card className={classes.card}>
         <CardActionArea
           component="div"
-          value={itemInfo.productId}
-          onClick={event => {
-            console.log("itemInfo.productId", itemInfo);
-            // props.changeCurrentProduct(itemInfo.productId);
+          onClick={() => {
+            props.changeCurrentProduct(itemInfo.productId);
           }}
         >
           <CardMedia
