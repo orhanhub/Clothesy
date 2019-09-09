@@ -1,9 +1,41 @@
 const React = require("react");
 const StarFill = require("../shared/StarFill.jsx");
+const { Typography } = require("@material-ui/core");
+const { makeStyles } = require("@material-ui/core/styles");
 
-const ProductInformation = ({ initialProduct }) => {
+const ProductInformation = ({ initialProduct, styles, selectedStyle }) => {
   const style = {
     marginTop: "50px"
+  };
+
+  const useStyles = makeStyles({
+    regularPrice: {
+      color: "black"
+    },
+    struckthroughPrice: {
+      color: "black",
+      textDecoration: "line-through",
+      display: "inline-block"
+    },
+    salePrice: {
+      color: "red",
+      display: "inline-block"
+    }
+  });
+  const Price = props => {
+    const classes = useStyles();
+    if (props.sale_price === undefined || props.sale_price === "0") {
+      return <Typography>${props.original_price}</Typography>;
+    } else {
+      return (
+        <div>
+          <div className={classes.struckthroughPrice}>
+            ${props.original_price}
+          </div>
+          <div className={classes.salePrice}>${props.sale_price}</div>
+        </div>
+      );
+    }
   };
   return (
     <div>
@@ -27,7 +59,7 @@ const ProductInformation = ({ initialProduct }) => {
 
         <div>{initialProduct.currentProduct.category}</div>
         <h1>{initialProduct.currentProduct.name}</h1>
-        <div>${initialProduct.currentProduct.default_price}</div>
+        {!styles.style_id ? Price(selectedStyle) : Price(styles)}
       </div>
     </div>
   );
