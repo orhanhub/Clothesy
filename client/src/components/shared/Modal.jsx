@@ -39,7 +39,11 @@ module.exports = ({
   bodyTextPlaceholder,
   children,
   handleSubmit,
+<<<<<<< HEAD
   border
+=======
+  buttonText
+>>>>>>> master
 }) => {
   const classes = useStyles();
 
@@ -75,7 +79,7 @@ module.exports = ({
         }
         onClick={handleOpen}
       >
-        {`ADD A${(qarfield === "answer" ? "N " : " ") + qarfield}+`}
+        {buttonText}
       </Button>
 
       <Modal
