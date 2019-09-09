@@ -5,7 +5,7 @@ const { CardContent } = require("@material-ui/core");
 const { Typography } = require("@material-ui/core");
 const { makeStyles } = require("@material-ui/core/styles");
 const { CardMedia } = require("@material-ui/core");
-const { StarBorder } = require("@material-ui/icons");
+const { StarBorder, RemoveCircle } = require("@material-ui/icons");
 const { IconButton } = require("@material-ui/core");
 const axios = require("../../../../helpers/axiosApi");
 const calcAverageRatings = require("../../../../helpers/calcAverageRatings");
@@ -60,6 +60,8 @@ const getItemInfo = (id, styleNumber) => {
       const cardInfo = {
         productCategory: data[0].data.category,
         productName: data[0].data.name,
+        productId: id,
+        //results[styleNumber]
         original_price: data[1].data.results[styleNumber].original_price,
         sale_price: data[1].data.results[styleNumber].sale_price,
         previewImage:
@@ -80,6 +82,7 @@ module.exports = function CardItem(props) {
   const [itemInfo, setItemInfo] = useState({
     productCategory: null,
     productName: null,
+    productId: null,
     original_price: null,
     sale_price: null,
     previewImage: null,
@@ -88,10 +91,12 @@ module.exports = function CardItem(props) {
   });
 
   useEffect(() => {
-    getItemInfo(props.id || 1, 3).then(data => {
+    getItemInfo(props.id || 1, 0).then(data => {
       setItemInfo(data);
     });
   }, [1]);
+
+  const starIconType = true;
 
   return (
     <div>
@@ -99,7 +104,7 @@ module.exports = function CardItem(props) {
         <CardActionArea
           component="div"
           onClick={() => {
-            console.log("click click");
+            props.changeCurrentProduct(itemInfo.productId);
           }}
         >
           <CardMedia
@@ -107,12 +112,14 @@ module.exports = function CardItem(props) {
             image={itemInfo.previewImage}
             title={itemInfo.productName}
           >
-            <StarBorder
-              className={classes.star}
-              onClick={() => {
-                console.log("button");
-              }}
-            />
+            {starIconType ? (
+              <StarBorder
+                className={classes.star}
+                onClick={() => props.onStarClick(itemInfo.productId)}
+              />
+            ) : (
+              <RemoveCircle />
+            )}
           </CardMedia>
           <CardContent className={classes.cardContent}>
             <Typography
