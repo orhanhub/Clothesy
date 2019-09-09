@@ -31,7 +31,13 @@ const markAsHelpful = {
 //onClick behaviour coming from the parent component as a prop can change
 //the helpfulnessCounter; which is rendered on the DOM
 
-module.exports = ({ helpfulnessCounter, addlOnClick, qar, qarId }) => {
+module.exports = ({
+  helpfulnessCounter,
+  onSuccess = () => {},
+  onFail = () => {},
+  qar,
+  qarId
+}) => {
   const classes = useStyles();
 
   // primitive structure of this component:
@@ -50,8 +56,9 @@ module.exports = ({ helpfulnessCounter, addlOnClick, qar, qarId }) => {
           item
           xs={6}
           onClick={() => {
-            markAsHelpful[qar]();
-            addlOnClick();
+            markAsHelpful[qar](qarId)
+              .then(() => onSuccess())
+              .catch(() => onFail());
           }}
         >
           <Typography className={classes.smallGreyFont}>
