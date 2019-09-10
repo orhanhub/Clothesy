@@ -25,7 +25,7 @@ module.exports = props => {
     handleGetQuestions(props.currentProduct.id)
       .then(({ data }) => setData(data))
       .catch(error => console.log(error));
-  }, [1]);
+  }, [props.currentProduct.id]);
 
   return (
     <div className="qnaComponentWrapper">
