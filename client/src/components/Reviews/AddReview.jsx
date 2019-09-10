@@ -23,6 +23,7 @@ module.exports = props => {
     <Grid item xs={12}>
       <AddReviewModal
         qarfield={"review"}
+        modalTitle={"Write Your Review"}
         bodyTextPlaceholder={"Review Body"}
         buttonText={`ADD A REVIEW +`}
       >

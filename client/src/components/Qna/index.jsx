@@ -1,19 +1,34 @@
+//Dependencies:
 const React = require("react");
-const { useState } = require("react");
+const { useState, useEffect } = require("react");
 const { Container, Grid, Typography } = require("@material-ui/core");
 
+//Modules
 const SearchQnaButton = require("./searchqnabutton");
 const Singleq = require("./singleq");
 const AddQuestion = require("../shared/Modal");
 const ShowMore = require("../shared/ShowMoreButton");
-const staticdata = require("./staticdata");
+const sortCriteria = require("../../../../helpers/sortCriteria");
+const axios = require("../../../../helpers/axiosApi");
+
+// const staticdata = require("./staticdata");
+
+//Get data
+const handleGetQuestions = endpoint => {
+  return axios.request(`/qa/${endpoint}`);
+};
 
 module.exports = props => {
-  let apiData = staticdata.static.listquestions.results;
-  const [apiDatas, setData] = useState(apiData);
+  // let apiData = staticdata.static.listquestions.results;
+  const [apiData, setData] = useState({ product_id: undefined, results: [] });
 
   const [count, setCount] = useState(2);
   const [searchText, setSearchText] = useState("");
+  useEffect(() => {
+    handleGetQuestions(props.currentProduct.id)
+      .then(({ data }) => setData(data))
+      .catch(error => console.log(error));
+  }, [1]);
 
   return (
     <div className="qnaComponentWrapper">
@@ -27,35 +42,32 @@ module.exports = props => {
         />
         <div className="qnaListWrapper"></div>
         <Grid>
-          <Singleq questions={apiDatas.slice(0, count)} />
-        </Grid>
-        <div>
-          <AddQuestion
-            buttonText={"ADD A QUESTION"}
-            qarfield={"question"}
-            bodyTextPlaceholder={"submit your question"}
-          ></AddQuestion>
-          <ShowMore
-            onClick={() => {
-              setCount(count + 1);
-            }}
+          <Singleq
+            questions={apiData.results
+              .sort(sortCriteria("question_helpfulness"))
+              .slice(0, count)}
           />
-        </div>
+        </Grid>
+        <Grid container spacing={2}>
+          <Grid item>
+            <ShowMore
+              buttonText={"MORE ANSWERED QUESTIONS"}
+              onClick={() => {
+                setCount(count + 1);
+              }}
+            />
+          </Grid>
+          <Grid item>
+            <AddQuestion
+              buttonText={"ADD A QUESTION +"}
+              qarfield={"question"}
+              modalTitle={"Ask Your Question"}
+              bodyTextPlaceholder={"Submit your question"}
+            ></AddQuestion>
+          </Grid>
+        </Grid>
       </Container>
+      <br />
     </div>
   );
 };
-
-/* Helpfulness component scaffold: 
-//module exports:
-const TempHelpful = require("../shared/Helpfulness");
-const [helpfulcount, setHelpfulCount] = useState(0);
-
-//return( ... DOM location)
-
-      <TempHelpful
-        helpfulnessCounter={helpfulcount}
-        onClick={() => setHelpfulCount(helpfulcount + 1)}
-      />
-
-*/

@@ -1,37 +1,15 @@
 const React = require("react");
 const { useState, useEffect } = require("react");
 const { makeStyles } = require("@material-ui/core");
-const { Typography, Grid, Link } = require("@material-ui/core");
+const { Typography, Grid } = require("@material-ui/core");
 const axios = require("../../../../helpers/axiosApi");
 const ShowMore = require("../shared/ShowMoreButton");
 const SingleABottom = require("./singleabottom");
-const staticdata = require("./staticdata");
-//TODO: add the link format
+const sortCriteria = require("../../../../helpers/sortCriteria");
+
 const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
-    textAlign: "left",
-    padding: 10
-  },
   answers: {
     noWrap: true
-  },
-  boldFont: {
-    fontWeight: "bold"
-  },
-  smallGreyFont: {
-    fontWeight: "fontWeightLight",
-    fontSize: 10
-  },
-  smallGreyFontRightAlign: {
-    textAlign: "right",
-    fontWeight: "fontWeightLight",
-    fontSize: 10
-  },
-  link: {
-    margin: "",
-    color: "inherit",
-    variant: "body2"
   }
 }));
 
@@ -41,6 +19,7 @@ const handleGetAnswers = qid => {
 
 module.exports = ({ questionid }) => {
   const classes = useStyles();
+
   const [apiDatas, setData] = useState({ results: [] });
   const [answercount, setAnswerCount] = useState(1);
 
@@ -50,15 +29,24 @@ module.exports = ({ questionid }) => {
 
   return (
     <Grid container spacing={1} direction={"column"}>
-      {apiDatas.results.slice(0, answercount).map(i => {
-        return (
-          <Grid key={i.answer_id} item xs={11}>
-            <Typography className={classes.answers}>{i.body}</Typography>
-            <SingleABottom />
-          </Grid>
-        );
-      })}
+      {apiDatas.results
+        .sort(sortCriteria("helpfulness"))
+        .slice(0, answercount)
+        .map(i => {
+          return (
+            <Grid key={i.answer_id} item xs={11}>
+              <Typography className={classes.answers}>{i.body}</Typography>
+              <SingleABottom
+                answerid={i.answer_id}
+                date={i.date}
+                answerername={i.answerer_name}
+                helpfulcount={i.helpfulness}
+              />
+            </Grid>
+          );
+        })}
       <ShowMore
+        buttonText={"LOAD MORE ANSWERS"}
         onClick={() => {
           setAnswerCount(answercount + 1);
         }}
