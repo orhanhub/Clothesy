@@ -6,6 +6,8 @@ const SearchQnaButton = require("./searchqnabutton");
 const Singleq = require("./singleq");
 const AddQuestion = require("../shared/Modal");
 const ShowMore = require("../shared/ShowMoreButton");
+const sortCriteria = require("../../../../helpers/sortCriteria");
+
 const staticdata = require("./staticdata");
 
 module.exports = props => {
@@ -27,35 +29,32 @@ module.exports = props => {
         />
         <div className="qnaListWrapper"></div>
         <Grid>
-          <Singleq questions={apiDatas.slice(0, count)} />
-        </Grid>
-        <div>
-          <AddQuestion
-            buttonText={"ADD A QUESTION"}
-            qarfield={"question"}
-            bodyTextPlaceholder={"submit your question"}
-          ></AddQuestion>
-          <ShowMore
-            onClick={() => {
-              setCount(count + 1);
-            }}
+          <Singleq
+            questions={apiDatas
+              .sort(sortCriteria("question_helpfulness"))
+              .slice(0, count)}
           />
-        </div>
+        </Grid>
+        <Grid container spacing={2}>
+          <Grid item>
+            <ShowMore
+              buttonText={"MORE ANSWERED QUESTIONS"}
+              onClick={() => {
+                setCount(count + 1);
+              }}
+            />
+          </Grid>
+          <Grid item>
+            <AddQuestion
+              buttonText={"ADD A QUESTION +"}
+              qarfield={"question"}
+              modalTitle={"Ask Your Question"}
+              bodyTextPlaceholder={"Submit your question"}
+            ></AddQuestion>
+          </Grid>
+        </Grid>
       </Container>
+      <br />
     </div>
   );
 };
-
-/* Helpfulness component scaffold: 
-//module exports:
-const TempHelpful = require("../shared/Helpfulness");
-const [helpfulcount, setHelpfulCount] = useState(0);
-
-//return( ... DOM location)
-
-      <TempHelpful
-        helpfulnessCounter={helpfulcount}
-        onClick={() => setHelpfulCount(helpfulcount + 1)}
-      />
-
-*/
