@@ -46,6 +46,7 @@ module.exports = ({
           item
           xs={6}
           onClick={() => {
+            
             markAsHelpful[qar](qarId)
               .then(() => onSuccess())
               .catch(() => onFail());

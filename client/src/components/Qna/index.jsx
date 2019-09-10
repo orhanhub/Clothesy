@@ -11,19 +11,16 @@ const ShowMore = require("../shared/ShowMoreButton");
 const sortCriteria = require("../../../../helpers/sortCriteria");
 const axios = require("../../../../helpers/axiosApi");
 
-// const staticdata = require("./staticdata");
-
 //Get data
 const handleGetQuestions = endpoint => {
   return axios.request(`/qa/${endpoint}`);
 };
 
 module.exports = props => {
-  // let apiData = staticdata.static.listquestions.results;
   const [apiData, setData] = useState({ product_id: undefined, results: [] });
-
   const [count, setCount] = useState(2);
   const [searchText, setSearchText] = useState("");
+
   useEffect(() => {
     handleGetQuestions(props.currentProduct.id)
       .then(({ data }) => setData(data))
@@ -43,9 +40,15 @@ module.exports = props => {
         <div className="qnaListWrapper"></div>
         <Grid>
           <Singleq
-            questions={apiData.results
-              .sort(sortCriteria("question_helpfulness"))
-              .slice(0, count)}
+            questions={
+              searchText.length > 3
+                ? apiData.results
+                    .sort(sortCriteria("question_helpfulness"))
+                    .filter(qry => qry.question_body.includes(searchText))
+                : apiData.results
+                    .sort(sortCriteria("question_helpfulness"))
+                    .slice(0, count)
+            }
           />
         </Grid>
         <Grid container spacing={2}>
