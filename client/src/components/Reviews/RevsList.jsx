@@ -12,7 +12,8 @@ module.exports = ({
   reviews,
   changeSortBy,
   sortingBy,
-  increaseDisplayCount
+  increaseDisplayCount,
+  showShowMore
 }) => {
   return (
     <Grid item xs={9}>
@@ -24,7 +25,9 @@ module.exports = ({
       </Grid>
       <Grid container>
         <AddReview />
-        <ShowMoreReviews onClick={increaseDisplayCount} />
+        {showShowMore ? (
+          <ShowMoreReviews onClick={increaseDisplayCount} />
+        ) : null}
       </Grid>
     </Grid>
   );
