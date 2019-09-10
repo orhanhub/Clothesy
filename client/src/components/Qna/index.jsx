@@ -6,6 +6,8 @@ const SearchQnaButton = require("./searchqnabutton");
 const Singleq = require("./singleq");
 const AddQuestion = require("../shared/Modal");
 const ShowMore = require("../shared/ShowMoreButton");
+const sortCriteria = require("../../../../helpers/sortCriteria");
+
 const staticdata = require("./staticdata");
 
 module.exports = props => {
@@ -27,7 +29,11 @@ module.exports = props => {
         />
         <div className="qnaListWrapper"></div>
         <Grid>
-          <Singleq questions={apiDatas.slice(0, count)} />
+          <Singleq
+            questions={apiDatas
+              .sort(sortCriteria("question_helpfulness"))
+              .slice(0, count)}
+          />
         </Grid>
         <Grid container spacing={2}>
           <Grid item>

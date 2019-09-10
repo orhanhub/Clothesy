@@ -1,3 +1,4 @@
+// Sort array of objects
 // this function takes two inputs
 // the specific object key that will be used to compare and
 // direction (default direction is descending) otherwise, "ascending" has to be provided
