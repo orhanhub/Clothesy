@@ -1,16 +1,31 @@
 const React = require("react");
 const { Grid } = require("@material-ui/core");
 
-const StyleSelector = ({ initialProduct, changeStyle, handleSelect }) => {
+const StyleSelector = ({
+  initialProduct,
+  changeStyle,
+  handleSelect,
+  styles,
+  selectedStyle
+}) => {
   const handleClick = index => {
     changeStyle(index);
     handleSelect(0);
   };
+
   return (
     <div style={{ marginTop: "20px" }}>
-      <div style={{ marginBottom: "20px" }}>
-        <strong>Style</strong> > Selected Style
-      </div>
+      {selectedStyle ? (
+        Object.entries(styles).length === 0 ? (
+          <div style={{ marginBottom: "20px" }}>
+            <strong>Style</strong> > {selectedStyle.name}
+          </div>
+        ) : (
+          <div style={{ marginBottom: "20px" }}>
+            <strong>Style</strong> > {styles.name}
+          </div>
+        )
+      ) : null}
 
       <Grid container spacing={1} justify="center">
         {initialProduct.productStyles.map((style, i) => {

@@ -134,6 +134,8 @@ const App = ({ initialProduct }) => {
               initialProduct={initialProduct}
               changeStyle={changeStyle}
               handleSelect={handleSelect}
+              styles={state.styles}
+              selectedStyle={state.selectedStyle}
             />
           </Grid>
           <Grid item xs={12}>
