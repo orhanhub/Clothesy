@@ -3,7 +3,7 @@ const { GridList } = require("@material-ui/core");
 const { GridListTile } = require("@material-ui/core");
 const { makeStyles } = require("@material-ui/core/styles");
 
-const ImageGalleryList = ({ initialProduct, styles, changeTile }) => {
+const ImageGalleryList = ({ initialProduct, styles, handleSelect }) => {
   const useStyles = makeStyles(theme => ({
     root: {
       display: "flex",
@@ -17,7 +17,7 @@ const ImageGalleryList = ({ initialProduct, styles, changeTile }) => {
   const classes = useStyles();
   const initialProductHolder = initialProduct;
   const handleClick = index => {
-    changeTile(index);
+    handleSelect(index);
   };
 
   return (

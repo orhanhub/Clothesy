@@ -14,7 +14,6 @@ const axios = require("../../../../helpers/axiosApi.js");
 const App = ({ initialProduct }) => {
   const [state, setState] = useState({
     styles: {},
-    tileIndex: 0,
     soldOut: false
   });
 
@@ -28,10 +27,6 @@ const App = ({ initialProduct }) => {
 
   const changeStyle = index => {
     setState({ ...state, styles: initialProduct.productStyles[index] });
-  };
-
-  const changeTile = index => {
-    setState({ ...state, tileIndex: index });
   };
 
   const updateDefaultStyle = style => {
@@ -112,14 +107,13 @@ const App = ({ initialProduct }) => {
           <ImageGalleryList
             initialProduct={initialProduct}
             styles={state.styles}
-            changeTile={changeTile}
+            handleSelect={handleSelect}
           />
         </Grid>
         <Grid item xs={8}>
           <ImageGallery
             initialProduct={initialProduct}
             styles={state.styles}
-            tileIndex={state.tileIndex}
             pictureIndex={pictureIndex}
             handleSelect={handleSelect}
           />

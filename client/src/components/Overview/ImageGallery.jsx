@@ -4,7 +4,6 @@ const Carousel = require("react-bootstrap/Carousel");
 const ImageGallery = ({
   initialProduct,
   styles,
-  tileIndex,
   pictureIndex,
   handleSelect
 }) => {
