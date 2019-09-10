@@ -1,4 +1,5 @@
 const React = require("react");
+const { useState } = require("react");
 const { Typography, Grid } = require("@material-ui/core");
 const { makeStyles } = require("@material-ui/core");
 const axios = require("../../../../helpers/axiosApi.js");
@@ -34,6 +35,7 @@ module.exports = ({
   qarId
 }) => {
   const classes = useStyles();
+  const [hctr, setHctr] = useState(helpfulnessCounter);
   return (
     <div>
       <Grid container spacing={1}>
@@ -46,15 +48,16 @@ module.exports = ({
           item
           xs={6}
           onClick={() => {
-            
+            setHctr(hctr + 1);
             markAsHelpful[qar](qarId)
               .then(() => onSuccess())
-              .catch(() => onFail());
+              .catch(() => {
+                onFail();
+                setHctr(hctr -1);
+              });
           }}
         >
-          <Typography className={classes.smallGreyFont}>
-            Yes({helpfulnessCounter})
-          </Typography>
+          <Typography className={classes.smallGreyFont}>Yes({hctr})</Typography>
         </Grid>
       </Grid>
     </div>
