@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-module.exports = ({ answerid, date, answerername }) => {
+module.exports = ({ answerid, date, answerername, helpfulcount }) => {
   const classes = useStyles();
 
   return (
@@ -28,7 +28,11 @@ module.exports = ({ answerid, date, answerername }) => {
           </Typography>
         </Grid>
         <Grid item xs={2}>
-          <Helpfulness qar={"answer"} qarid={answerid} helpfulnessCounter={0} />
+          <Helpfulness
+            qar={"answer"}
+            qarid={answerid}
+            helpfulnessCounter={helpfulcount}
+          />
         </Grid>
         <Grid item xs={2}>
           <Report />
