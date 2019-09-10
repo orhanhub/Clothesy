@@ -38,7 +38,12 @@ module.exports = ({ questions }) => {
               <Helpfulness helpfulnessCounter={0} />
             </Grid>
             <Grid item xs={1}>
-              <AddAnswer qarfield={"answer"} buttonText={"Add Answer"} />
+              <AddAnswer
+                qarfield={"answer"}
+                modalTitle={"Submit Your Answer"}
+                bodyTextPlaceholder={"Your Answer"}
+                buttonText={"Add Answer"}
+              />
             </Grid>
             <Grid item xs={1}>
               <Typography className={classes.boldFont}>A: </Typography>
@@ -52,9 +57,3 @@ module.exports = ({ questions }) => {
     </Grid>
   );
 };
-
-/*       <div id="afterq">
-        <SingleA questionid={question_id} answerlimit={answercount} />
-
-      </div>
-*/

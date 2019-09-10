@@ -37,6 +37,7 @@ const useStyles = makeStyles(theme => ({
 module.exports = ({
   fields,
   qarfield,
+  modalTitle,
   bodyTextPlaceholder,
   children,
   handleSubmit,
@@ -45,6 +46,7 @@ module.exports = ({
   const classes = useStyles();
 
   const common = {
+    modalTitle: modalTitle,
     bodyText: bodyTextPlaceholder,
     nicknameText: "jack123",
     emailText: "jack@gmail.com"
@@ -95,7 +97,7 @@ module.exports = ({
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <Typography id="transition-modal-title">{qarfield}</Typography>
+            <Typography id="transition-modal-title">{modalTitle}</Typography>
             <form noValidate autoComplete="off">
               <TextField
                 id="standard-multiline-flexible"
@@ -115,6 +117,7 @@ module.exports = ({
                 placeholder={values.nicknameText}
                 className={classes.textField}
                 margin="normal"
+                helperText="For privacy reasons, do not use your full name or email address"
               />
               <br />
               <TextField
@@ -124,6 +127,7 @@ module.exports = ({
                 placeholder={values.emailText}
                 className={classes.textField}
                 margin="normal"
+                helperText="For authentication reasons, you will not be emailed"
               />
               {children}
             </form>
