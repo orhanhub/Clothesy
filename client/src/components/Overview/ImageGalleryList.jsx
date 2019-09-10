@@ -22,12 +22,7 @@ const ImageGalleryList = ({ initialProduct, styles, handleSelect }) => {
 
   return (
     <div className={classes.root}>
-      <GridList
-        cellHeight={100}
-        cols={1}
-        spacing={6}
-        style={{ height: "550px" }}
-      >
+      <GridList cellHeight={100} cols={1} spacing={6}>
         {initialProductHolder.productStyles[0] && !styles.photos
           ? initialProductHolder.productStyles[0].photos.map((photo, i) => {
               return (

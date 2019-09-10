@@ -21,7 +21,7 @@ const StyleSelector = ({ initialProduct, changeStyle, handleSelect }) => {
                 style={{
                   borderRadius: "50%",
                   padding: "25px",
-                  background: `url(${style.photos[0].thumbnail_url}) no-repeat center`,
+                  background: `url(${style.photos[0].url}) no-repeat center`,
                   backgroundSize: "80px auto"
                 }}
               ></button>
