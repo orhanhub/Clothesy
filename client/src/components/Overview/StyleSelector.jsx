@@ -18,7 +18,7 @@ const StyleSelector = ({
       {selectedStyle ? (
         Object.entries(styles).length === 0 ? (
           <div style={{ marginBottom: "20px" }}>
-            <strong>Style</strong> > {selectedStyle.name}
+            <strong>Style</strong> > {initialProduct.productStyles[0].name}
           </div>
         ) : (
           <div style={{ marginBottom: "20px" }}>
