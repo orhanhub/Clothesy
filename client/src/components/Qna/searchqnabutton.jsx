@@ -45,7 +45,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-module.exports.SearchQnaButton = ({ value, onChange }) => {
+module.exports = ({ value, onChange }) => {
   const classes = useStyles();
   const [searchText, setSearchText] = useState("");
   // const handleSubmit = e => {

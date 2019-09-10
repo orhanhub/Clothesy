@@ -12,7 +12,6 @@ module.exports = props => {
   }, []);
   return (
     <Container>
-      {" "}
       <Overview />
       <Qna />
       <Related />
