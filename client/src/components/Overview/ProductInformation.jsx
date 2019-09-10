@@ -59,7 +59,9 @@ const ProductInformation = ({ initialProduct, styles, selectedStyle }) => {
 
         <div>{initialProduct.currentProduct.category}</div>
         <h1>{initialProduct.currentProduct.name}</h1>
-        {!styles.style_id ? Price(selectedStyle) : Price(styles)}
+        {!styles.style_id
+          ? Price(initialProduct.productStyles[0])
+          : Price(styles)}
       </div>
     </div>
   );

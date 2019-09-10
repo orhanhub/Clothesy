@@ -32,7 +32,7 @@ const ImageGalleryList = ({ initialProduct, styles, changeTile }) => {
           ? initialProductHolder.productStyles[0].photos.map((photo, i) => {
               return (
                 <GridListTile key={i} onClick={() => handleClick(i)}>
-                  <img src={photo.thumbnail_url} />
+                  <img src={photo.url} />
                 </GridListTile>
               );
             })
@@ -42,7 +42,7 @@ const ImageGalleryList = ({ initialProduct, styles, changeTile }) => {
           ? styles.photos.map((photo, i) => {
               return (
                 <GridListTile key={i} onClick={() => handleClick(i)}>
-                  <img src={photo.thumbnail_url} />
+                  <img src={photo.url} />
                 </GridListTile>
               );
             })

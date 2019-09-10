@@ -33,6 +33,10 @@ const App = ({ initialProduct }) => {
     setState({ ...state, selectedStyle: style[0] });
   };
 
+  const resetStyle = () => {
+    setState({ ...state, styles: {} });
+  };
+
   const handleQuantity = info => {
     if (info === "soldOut") {
       setState({ ...state, soldOut: true });
@@ -82,6 +86,10 @@ const App = ({ initialProduct }) => {
   useEffect(() => {
     getCart();
   }, []);
+
+  useEffect(() => {
+    resetStyle();
+  }, [initialProduct]);
 
   return (
     <div>

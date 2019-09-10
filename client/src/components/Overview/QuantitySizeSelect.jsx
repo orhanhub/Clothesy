@@ -68,7 +68,7 @@ const QuantitySizeSelect = ({ selectedStyle, handleQuantity }) => {
 
   const handleQuantityChange = size => {
     if (size) {
-      if (state.skus[size] === 0) {
+      if (state.skus[size] === 0 || null) {
         handleQuantity("soldOut");
       } else {
         handleQuantity("inStock");

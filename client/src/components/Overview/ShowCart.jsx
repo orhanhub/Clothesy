@@ -88,6 +88,10 @@ ShowCart = ({ productImages, productInfo }) => {
                 })}
               </Grid>
             </Grid>
+
+            <Grid container justify="center">
+              <Button>CHECKOUT</Button>
+            </Grid>
           </div>
         </Fade>
       </Modal>
