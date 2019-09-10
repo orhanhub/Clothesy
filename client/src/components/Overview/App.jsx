@@ -94,6 +94,7 @@ const App = ({ initialProduct }) => {
 
   useEffect(() => {
     resetStyle();
+    handleSelect(0);
   }, [initialProduct]);
 
   return (
