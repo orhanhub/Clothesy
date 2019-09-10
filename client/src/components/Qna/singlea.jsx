@@ -44,7 +44,6 @@ module.exports = ({ questionid }) => {
             </Grid>
           );
         })}
-      <p>{console.log(apiDatas.results.sort(sortCriteria("helpfulness")))}</p>
       <ShowMore
         buttonText={"LOAD MORE ANSWERS"}
         onClick={() => {

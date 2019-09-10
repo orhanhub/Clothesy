@@ -1,21 +1,34 @@
+//Dependencies:
 const React = require("react");
-const { useState } = require("react");
+const { useState, useEffect } = require("react");
 const { Container, Grid, Typography } = require("@material-ui/core");
 
+//Modules
 const SearchQnaButton = require("./searchqnabutton");
 const Singleq = require("./singleq");
 const AddQuestion = require("../shared/Modal");
 const ShowMore = require("../shared/ShowMoreButton");
 const sortCriteria = require("../../../../helpers/sortCriteria");
+const axios = require("../../../../helpers/axiosApi");
 
-const staticdata = require("./staticdata");
+// const staticdata = require("./staticdata");
+
+//Get data
+const handleGetQuestions = endpoint => {
+  return axios.request(`/qa/${endpoint}`);
+};
 
 module.exports = props => {
-  let apiData = staticdata.static.listquestions.results;
-  const [apiDatas, setData] = useState(apiData);
+  // let apiData = staticdata.static.listquestions.results;
+  const [apiData, setData] = useState({ product_id: undefined, results: [] });
 
   const [count, setCount] = useState(2);
   const [searchText, setSearchText] = useState("");
+  useEffect(() => {
+    handleGetQuestions(props.currentProduct.id)
+      .then(({ data }) => setData(data))
+      .catch(error => console.log(error));
+  }, [1]);
 
   return (
     <div className="qnaComponentWrapper">
@@ -30,7 +43,7 @@ module.exports = props => {
         <div className="qnaListWrapper"></div>
         <Grid>
           <Singleq
-            questions={apiDatas
+            questions={apiData.results
               .sort(sortCriteria("question_helpfulness"))
               .slice(0, count)}
           />
