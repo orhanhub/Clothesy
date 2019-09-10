@@ -5,7 +5,10 @@ const { CardContent } = require("@material-ui/core");
 const { Typography } = require("@material-ui/core");
 const { makeStyles } = require("@material-ui/core/styles");
 const { CardMedia } = require("@material-ui/core");
-const { StarBorder, RemoveCircle } = require("@material-ui/icons");
+const {
+  StarTwoTone,
+  RemoveCircleOutlineTwoTone
+} = require("@material-ui/icons");
 const { IconButton } = require("@material-ui/core");
 const axios = require("../../../../helpers/axiosApi");
 const calcAverageRatings = require("../../../../helpers/calcAverageRatings");
@@ -45,6 +48,9 @@ const useStyles = makeStyles({
     lineHeight: "8pt"
   },
   star: {
+    margin: "10px 0 0 170px"
+  },
+  removeCircle: {
     margin: "10px 0 0 170px"
   }
 });
@@ -98,14 +104,21 @@ module.exports = function CardItem(props) {
     });
   }, [1]);
 
-  const starIconType = true;
+  const starIconType = props.showStarIcon;
   let insideStar = false;
-
-  const handleClick = inside => {
+  let insideRemove = false;
+  const handleClick = (inside, iconType) => {
     if (inside === true) {
-      insideStar = true;
-      props.onStarClick(itemInfo);
-    } else if (!insideStar) props.changeCurrentProduct(itemInfo.productId);
+      if (iconType === "star") {
+        insideStar = true;
+        props.onStarClick(itemInfo);
+      }
+      if (iconType === "remove") {
+        insideRemove = true;
+        props.onRemoveClick();
+      }
+    } else if (!insideStar && !insideRemove)
+      props.changeCurrentProduct(itemInfo.productId);
   };
 
   return (
@@ -118,12 +131,16 @@ module.exports = function CardItem(props) {
             title={itemInfo.productName}
           >
             {starIconType ? (
-              <StarBorder
+              <StarTwoTone
+                htmlColor="white"
                 className={classes.star}
-                onClick={() => handleClick(true)}
+                onClick={() => handleClick(true, "star")}
               />
             ) : (
-              <RemoveCircle />
+              <RemoveCircleOutlineTwoTone
+                className={classes.removeCircle}
+                onClick={() => handleClick(true, "remove")}
+              />
             )}
           </CardMedia>
           <CardContent className={classes.cardContent}>
