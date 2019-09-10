@@ -1,5 +1,6 @@
 const React = require("react");
 const { makeStyles } = require("@material-ui/core/styles");
+const { useState, useEffect } = require("react");
 const {
   InputLabel,
   FormControl,
@@ -21,20 +22,35 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const QuantitySizeSelect = ({ selectedStyle, handleQuantity }) => {
-  const [state, setState] = React.useState({
+const QuantitySizeSelect = ({
+  selectedStyle,
+  handleQuantity,
+  styles,
+  initialProduct
+}) => {
+  const [state, setState] = useState({
     size: "",
     quantity: 1
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     setLabelWidth(inputLabel.current.offsetWidth);
     addSkus(selectedStyle.skus);
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
+    addSkus(initialProduct.productStyles[0].skus);
+  }, [initialProduct]);
+
+  useEffect(() => {
     handleQuantityChange(state.size);
-  }, [state]);
+  }, [state.size]);
+
+  useEffect(() => {
+    if (Object.entries(styles).length !== 0) {
+      addSkus(styles.skus);
+    }
+  }, [styles]);
 
   const addSkus = skus => {
     setState({ ...state, skus: skus });
@@ -58,7 +74,7 @@ const QuantitySizeSelect = ({ selectedStyle, handleQuantity }) => {
         quantityArray.push(i);
       }
     } else {
-      for (let i = 2; i < number; i++) {
+      for (let i = 2; i < number + 1; i++) {
         quantityArray.push(i);
       }
     }
@@ -68,7 +84,7 @@ const QuantitySizeSelect = ({ selectedStyle, handleQuantity }) => {
 
   const handleQuantityChange = size => {
     if (size) {
-      if (state.skus[size] === 0 || null) {
+      if (state.skus[size] === 0 || size === "null") {
         handleQuantity("soldOut");
       } else {
         handleQuantity("inStock");

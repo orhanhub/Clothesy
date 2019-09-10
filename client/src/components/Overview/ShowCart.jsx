@@ -7,13 +7,20 @@ const useStyles = makeStyles(theme => ({
   modal: {
     display: "flex",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    overflow: "scroll",
+    position: "absolute",
+    overflow: "scroll",
+    height: "100%"
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
     border: "2px solid #000",
     boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3)
+    padding: theme.spacing(2, 4, 3),
+    overflow: "scroll",
+    height: "100%",
+    width: "350px"
   },
   imageCrop: {
     height: "100px",
@@ -59,20 +66,24 @@ ShowCart = ({ productImages, productInfo }) => {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <h2 id="transition-modal-title">Shopping Cart</h2>
-            <Grid container spacing={1} justify="center">
+            <h2 id="transition-modal-title" style={{ textAlign: "center" }}>
+              Shopping Cart
+            </h2>
+            <Grid container spacing={3} justify="center">
               <Grid item xs={6}>
-                {productImages.map((image, i) => {
-                  return (
-                    <div className={classes.spacing} key={i}>
-                      <img
-                        id="transition-modal-description"
-                        src={image}
-                        className={classes.imageCrop}
-                      />
-                    </div>
-                  );
-                })}
+                <div style={{ float: "right" }}>
+                  {productImages.map((image, i) => {
+                    return (
+                      <div className={classes.spacing} key={i}>
+                        <img
+                          id="transition-modal-description"
+                          src={image}
+                          className={classes.imageCrop}
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
               </Grid>
               <Grid item xs={6}>
                 {productInfo.map((info, i) => {

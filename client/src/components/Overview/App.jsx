@@ -142,6 +142,8 @@ const App = ({ initialProduct }) => {
                 <QuantitySizeSelect
                   selectedStyle={state.selectedStyle}
                   handleQuantity={handleQuantity}
+                  styles={state.styles}
+                  initialProduct={initialProduct}
                 />
               ) : null}
               <AddToCart

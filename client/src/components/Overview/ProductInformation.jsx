@@ -56,7 +56,6 @@ const ProductInformation = ({ initialProduct, styles, selectedStyle }) => {
             <u>Reviews</u>
           </a>
         </div>
-
         <div>{initialProduct.currentProduct.category}</div>
         <h1>{initialProduct.currentProduct.name}</h1>
         {!styles.style_id
