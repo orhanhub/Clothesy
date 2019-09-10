@@ -9,7 +9,6 @@ const {
   StarTwoTone,
   RemoveCircleOutlineTwoTone
 } = require("@material-ui/icons");
-const { IconButton } = require("@material-ui/core");
 const axios = require("../../../../helpers/axiosApi");
 const calcAverageRatings = require("../../../../helpers/calcAverageRatings");
 const { useState, useEffect } = require("react");
@@ -55,33 +54,46 @@ const useStyles = makeStyles({
   }
 });
 
-const getItemInfo = (id, styleNumber) => {
+const findDefaultStyle = results => {
+  for (let i = 0; i < results.length; i++) {
+    if (results[i]["default?"] === 1) {
+      return i;
+    }
+  }
+  return 0;
+};
+
+const getItemInfo = id => {
   const requests = [
     axios.get(`/products/${id}`),
-    axios.get(`/products/${id}/styles`),
     axios.get(`/reviews/${id}/meta`)
   ];
-  return Promise.all(requests)
-    .then(data => {
-      const cardInfo = {
-        productCategory: data[0].data.category,
-        productName: data[0].data.name,
-        productId: id,
-        features: data[0].data.features,
-        //results[styleNumber]
-        original_price: data[1].data.results[styleNumber].original_price,
-        sale_price: data[1].data.results[styleNumber].sale_price,
-        previewImage:
-          data[1].data.results[styleNumber].photos[0].thumbnail_url ||
-          "https://via.placeholder.com/300x450",
-        starRating: calcAverageRatings(data[2].data.ratings),
-        ratingData: data[2].data.ratings
-      };
-      return cardInfo;
+  return axios
+    .get(`/products/${id}/styles`)
+    .then(styleData => {
+      const styleNumber = findDefaultStyle(styleData.data.results) || 0;
+      return Promise.all(requests)
+        .then(data => {
+          const cardInfo = {
+            productCategory: data[0].data.category,
+            productName: data[0].data.name,
+            productId: id,
+            features: data[0].data.features,
+            original_price: styleData.data.results[styleNumber].original_price,
+            sale_price: styleData.data.results[styleNumber].sale_price,
+            previewImage:
+              styleData.data.results[styleNumber].photos[0].thumbnail_url ||
+              "https://via.placeholder.com/300x450",
+            starRating: calcAverageRatings(data[1].data.ratings),
+            ratingData: data[1].data.ratings
+          };
+          return cardInfo;
+        })
+        .catch(err => {
+          console.log(err);
+        });
     })
-    .catch(err => {
-      console.log(err);
-    });
+    .catch(err => console.log(err));
 };
 
 module.exports = function CardItem(props) {
