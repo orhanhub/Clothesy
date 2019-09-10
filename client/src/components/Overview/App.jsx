@@ -20,6 +20,11 @@ const App = ({ initialProduct }) => {
 
   const [productImages, setProductImages] = useState([]);
   const [productInfo, setProductInfo] = useState([]);
+  const [pictureIndex, setPictureIndex] = React.useState(0);
+
+  const handleSelect = selectedIndex => {
+    setPictureIndex(selectedIndex);
+  };
 
   const changeStyle = index => {
     setState({ ...state, styles: initialProduct.productStyles[index] });
@@ -114,6 +119,8 @@ const App = ({ initialProduct }) => {
             initialProduct={initialProduct}
             styles={state.styles}
             tileIndex={state.tileIndex}
+            pictureIndex={pictureIndex}
+            handleSelect={handleSelect}
           />
         </Grid>
 
@@ -131,6 +138,7 @@ const App = ({ initialProduct }) => {
             <StyleSelector
               initialProduct={initialProduct}
               changeStyle={changeStyle}
+              handleSelect={handleSelect}
             />
           </Grid>
           <Grid item xs={12}>

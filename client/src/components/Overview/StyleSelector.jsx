@@ -1,9 +1,10 @@
 const React = require("react");
 const { Grid } = require("@material-ui/core");
 
-const StyleSelector = ({ initialProduct, changeStyle }) => {
+const StyleSelector = ({ initialProduct, changeStyle, handleSelect }) => {
   const handleClick = index => {
     changeStyle(index);
+    handleSelect(0);
   };
   return (
     <div style={{ marginTop: "20px" }}>
