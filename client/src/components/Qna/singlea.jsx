@@ -6,32 +6,10 @@ const axios = require("../../../../helpers/axiosApi");
 const ShowMore = require("../shared/ShowMoreButton");
 const SingleABottom = require("./singleabottom");
 const staticdata = require("./staticdata");
-//TODO: add the link format
+
 const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
-    textAlign: "left",
-    padding: 10
-  },
   answers: {
     noWrap: true
-  },
-  boldFont: {
-    fontWeight: "bold"
-  },
-  smallGreyFont: {
-    fontWeight: "fontWeightLight",
-    fontSize: 10
-  },
-  smallGreyFontRightAlign: {
-    textAlign: "right",
-    fontWeight: "fontWeightLight",
-    fontSize: 10
-  },
-  link: {
-    margin: "",
-    color: "inherit",
-    variant: "body2"
   }
 }));
 
@@ -54,11 +32,16 @@ module.exports = ({ questionid }) => {
         return (
           <Grid key={i.answer_id} item xs={11}>
             <Typography className={classes.answers}>{i.body}</Typography>
-            <SingleABottom />
+            <SingleABottom
+              answerid={i.answer_id}
+              date={i.date}
+              answerername={i.answerer_name}
+            />
           </Grid>
         );
       })}
       <ShowMore
+        buttonText={"LOAD MORE ANSWERS"}
         onClick={() => {
           setAnswerCount(answercount + 1);
         }}

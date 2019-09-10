@@ -5,7 +5,7 @@ const { Typography, Grid, Link } = require("@material-ui/core");
 const SingleA = require("./singlea.jsx");
 const Helpfulness = require("../shared/Helpfulness");
 const AddAnswer = require("../shared/Modal");
-//TODO: add the link format
+
 //styling section
 const useStyles = makeStyles(theme => ({
   singleqaroot: {
@@ -15,20 +15,6 @@ const useStyles = makeStyles(theme => ({
   },
   boldFont: {
     fontWeight: "bold"
-  },
-  smallGreyFont: {
-    fontWeight: "fontWeightLight",
-    fontSize: 10
-  },
-  smallGreyFontRightAlign: {
-    textAlign: "right",
-    fontWeight: "fontWeightLight",
-    fontSize: 10
-  },
-  link: {
-    margin: "",
-    color: "inherit",
-    variant: "body2"
   }
 }));
 

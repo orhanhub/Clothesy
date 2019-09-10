@@ -29,33 +29,25 @@ module.exports = props => {
         <Grid>
           <Singleq questions={apiDatas.slice(0, count)} />
         </Grid>
-        <div>
-          <AddQuestion
-            buttonText={"ADD A QUESTION"}
-            qarfield={"question"}
-            bodyTextPlaceholder={"submit your question"}
-          ></AddQuestion>
-          <ShowMore
-            onClick={() => {
-              setCount(count + 1);
-            }}
-          />
-        </div>
+        <Grid container spacing={2}>
+          <Grid item>
+            <ShowMore
+              buttonText={"MORE ANSWERED QUESTIONS"}
+              onClick={() => {
+                setCount(count + 1);
+              }}
+            />
+          </Grid>
+          <Grid item>
+            <AddQuestion
+              buttonText={"ADD A QUESTION +"}
+              qarfield={"question"}
+              bodyTextPlaceholder={"submit your question"}
+            ></AddQuestion>
+          </Grid>
+        </Grid>
       </Container>
+      <br />
     </div>
   );
 };
-
-/* Helpfulness component scaffold: 
-//module exports:
-const TempHelpful = require("../shared/Helpfulness");
-const [helpfulcount, setHelpfulCount] = useState(0);
-
-//return( ... DOM location)
-
-      <TempHelpful
-        helpfulnessCounter={helpfulcount}
-        onClick={() => setHelpfulCount(helpfulcount + 1)}
-      />
-
-*/

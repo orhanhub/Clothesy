@@ -2,6 +2,7 @@ const React = require("react");
 const { makeStyles } = require("@material-ui/core");
 const {
   Button,
+  Link,
   Modal,
   Backdrop,
   Fade,
@@ -11,9 +12,10 @@ const {
 
 const useStyles = makeStyles(theme => ({
   answerbutton: {
-    textAlign: "right",
     fontWeight: "fontWeightLight",
-    fontSize: 10
+    fontSize: 10,
+    verticalAlign: "top",
+    underline: "always"
   },
   button: {},
   input: {},
@@ -24,7 +26,6 @@ const useStyles = makeStyles(theme => ({
     alignItems: "center",
     justifyContent: "center"
   },
-
   paper: {
     backgroundColor: theme.palette.background.paper,
     border: "2px solid #000",
@@ -64,20 +65,22 @@ module.exports = ({
   const handleClose = () => {
     setOpen(false);
   };
-  //variant for answer button should not be outlined...
-  //Add a question is static, must be dynamic
+
   return (
     <div>
-      <Button
-        variant={qarfield === "answer" ? "text" : "outlined"}
-        className={
-          qarfield === "answer" ? classes.answerbutton : classes.button
-        }
-        onClick={handleOpen}
-      >
-        {buttonText}
-      </Button>
-
+      {qarfield === "answer" ? (
+        <Link onClick={handleOpen} className={classes.answerbutton}>
+          Add Answer
+        </Link>
+      ) : (
+        <Button
+          variant={"outlined"}
+          className={classes.button}
+          onClick={handleOpen}
+        >
+          {buttonText}
+        </Button>
+      )}
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
