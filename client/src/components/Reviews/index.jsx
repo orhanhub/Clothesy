@@ -6,6 +6,7 @@ const MarkerBar = require("../shared/MarkerBar.jsx");
 const StarFill = require("../shared/StarFill.jsx");
 const Ratings = require("./Ratings.jsx");
 const RevsList = require("./RevsList.jsx");
+const sortReviews = require("./helpers/sortReviews.js");
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -14,13 +15,47 @@ const useStyles = makeStyles(theme => ({
 }));
 
 module.exports = props => {
+  const [starFilter, setStarFilter] = useState({});
+  const [sortingBy, setSorting] = useState("relevance");
+  const [displayCount, setDisplayCount] = useState(2);
   const classes = useStyles();
+
+  let sortedReviews = sortReviews(props.reviews)[sortingBy].filter(
+    review => !Object.keys(starFilter).length || starFilter[review.rating]
+  );
+
   return (
     <Paper className={classes.root}>
       <Typography>{"RATINGS & REVIEWS"}</Typography>
       <Grid container spacing={2}>
-        <Ratings reviewsMeta={props.reviewsMeta} />
-        <RevsList reviews={props.reviews} />
+        <Ratings
+          reviewsMeta={props.reviewsMeta}
+          setStarFilter={rating => {
+            let currFilters = { ...starFilter };
+            if (currFilters[rating]) {
+              delete currFilters[rating];
+            } else {
+              currFilters[rating] = true;
+            }
+            setStarFilter(currFilters);
+          }}
+          resetStarFilter={() => setStarFilter({})}
+          currFilters={Object.keys(starFilter)}
+        />
+        <RevsList
+          reviews={sortedReviews.slice(0, displayCount)}
+          // sortedReviews={sortReviews(props.reviews)[sortingBy]}
+          changeSortBy={setSorting}
+          sortingBy={sortingBy}
+          increaseDisplayCount={() => {
+            displayCount < sortedReviews.length
+              ? setDisplayCount(displayCount + 1)
+              : null;
+          }}
+          showShowMore={
+            sortedReviews.length && displayCount < sortedReviews.length
+          }
+        />
       </Grid>
       {/* <MarkerBar percentage={25} />
       <StarFill percentage={67.5} /> */}

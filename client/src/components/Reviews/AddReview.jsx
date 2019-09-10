@@ -16,11 +16,16 @@ const characteristics = require("./constants/characteristics.js");
 
 module.exports = props => {
   return (
-    <Grid container spacing={2}>
-      <AddReviewModal qarfield={"review"} bodyTextPlaceholder={"Review Body"}>
+    <Grid item xs={12}>
+      <AddReviewModal
+        qarfield={"review"}
+        bodyTextPlaceholder={"Review Body"}
+        buttonText={`ADD A REVIEW +`}
+      >
         <OverallRatingSelect />
         {Object.entries(characteristics).map(([char, ratings]) => (
           <QualityRadioSelect
+            key={"add-review-radio" + char}
             characteristic={{ name: char, levels: ratings }}
           />
         ))}

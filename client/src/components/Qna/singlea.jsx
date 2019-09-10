@@ -1,16 +1,20 @@
 const React = require("react");
 const { useState, useEffect } = require("react");
-const staticdata = require("./staticdata");
 const { makeStyles } = require("@material-ui/core");
 const { Typography, Grid, Link } = require("@material-ui/core");
 const axios = require("../../../../helpers/axiosApi");
-
+const ShowMore = require("../shared/ShowMoreButton");
+const SingleABottom = require("./singleabottom");
+const staticdata = require("./staticdata");
 //TODO: add the link format
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
     textAlign: "left",
     padding: 10
+  },
+  answers: {
+    noWrap: true
   },
   boldFont: {
     fontWeight: "bold"
@@ -32,51 +36,33 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const handleGetAnswers = qid => {
-  return (
-    axios
-      // .request(`/qa/1/answers`)
-      .request(`/qa/${qid}/answers`)
-  );
+  return axios.request(`/qa/${qid}/answers`);
 };
 
-module.exports.SingleA = ({ questionid }) => {
+module.exports = ({ questionid }) => {
   const classes = useStyles();
   const [apiDatas, setData] = useState({ results: [] });
+  const [answercount, setAnswerCount] = useState(1);
 
   useEffect(() => {
     handleGetAnswers(questionid).then(({ data }) => setData(data));
   }, [1]);
 
   return (
-    <ul>
-      {apiDatas.results.map(i => {
-        return <li>{i.body}</li>;
+    <Grid container spacing={1} direction={"column"}>
+      {apiDatas.results.slice(0, answercount).map(i => {
+        return (
+          <Grid key={i.answer_id} item xs={11}>
+            <Typography className={classes.answers}>{i.body}</Typography>
+            <SingleABottom />
+          </Grid>
+        );
       })}
-    </ul>
+      <ShowMore
+        onClick={() => {
+          setAnswerCount(answercount + 1);
+        }}
+      />
+    </Grid>
   );
 };
-
-// simple solution
-//   return (
-//     <div>
-//       <p
-//         onLoad={() => {
-//           setData(apiDatas);
-//         }}
-//       >
-//         {console.log(apiDatas)}
-//       </p>
-//     </div>
-//   );
-/* <div className={classes.root}>
-      {apiDatas.results.map(i => (
-        <Grid container spacing={1}>
-          <Grid item xs={1}>
-            <Typography className={classes.boldFont}>A:</Typography>
-          </Grid>
-          <Grid item xs={8}>
-            <Typography>{i.body}</Typography>
-          </Grid>
-        </Grid>
-      ))}
-    </div> */

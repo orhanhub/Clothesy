@@ -21,6 +21,7 @@ module.exports = ({ characteristic, handleChange = () => {} }) => {
         return (
           <FormControlLabel
             className={"quality-radio"}
+            key={"quality-radio-label-" + rating}
             value={i + 1}
             control={<Radio color="primary" />}
             label={i === 0 || i === 4 ? rating : ""}

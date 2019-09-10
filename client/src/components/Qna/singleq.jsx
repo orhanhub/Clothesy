@@ -1,12 +1,14 @@
 const React = require("react");
+const { useState } = require("react");
 const { makeStyles } = require("@material-ui/core");
 const { Typography, Grid, Link } = require("@material-ui/core");
-const { SingleA } = require("./singlea.jsx");
-
+const SingleA = require("./singlea.jsx");
+const Helpfulness = require("../shared/Helpfulness");
+const AddAnswer = require("../shared/Modal");
 //TODO: add the link format
 //styling section
 const useStyles = makeStyles(theme => ({
-  root: {
+  singleqaroot: {
     flexGrow: 1,
     textAlign: "left",
     padding: 10
@@ -31,13 +33,13 @@ const useStyles = makeStyles(theme => ({
 }));
 
 //component
-module.exports.Singleq = ({ questions }) => {
+module.exports = ({ questions }) => {
   const classes = useStyles();
   return (
-    <div className={classes.root}>
+    <Grid container className={classes.singleqaroot}>
       {questions.map(i => {
         return (
-          <Grid container spacing={1}>
+          <Grid container spacing={1} key={i.question_id}>
             <Grid item xs={1}>
               <Typography className={classes.boldFont}>Q:</Typography>
             </Grid>
@@ -46,29 +48,27 @@ module.exports.Singleq = ({ questions }) => {
                 {i.question_body}
               </Typography>
             </Grid>
-            <Grid item xs={1}>
-              <Typography className={classes.smallGreyFontRightAlign}>
-                Helpful?
-              </Typography>
+            <Grid item xs={2}>
+              <Helpfulness helpfulnessCounter={0} />
             </Grid>
             <Grid item xs={1}>
-              <Typography className={classes.smallGreyFont}>
-                <Link href="" className={classes.link}>
-                  Yes(#)
-                </Link>
-              </Typography>
+              <AddAnswer qarfield={"answer"} buttonText={"Add Answer"} />
             </Grid>
             <Grid item xs={1}>
-              <Typography className={classes.smallGreyFont}>
-                <Link href="" className={classes.link}>
-                  Add Answer(Link)
-                </Link>
-              </Typography>
+              <Typography className={classes.boldFont}>A: </Typography>
             </Grid>
-            <SingleA questionid={i.question_id} />
+            <Grid item xs={11}>
+              <SingleA questionid={i.question_id} />
+            </Grid>
           </Grid>
         );
       })}
-    </div>
+    </Grid>
   );
 };
+
+/*       <div id="afterq">
+        <SingleA questionid={question_id} answerlimit={answercount} />
+
+      </div>
+*/
