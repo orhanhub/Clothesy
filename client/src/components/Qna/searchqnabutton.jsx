@@ -1,6 +1,6 @@
 const React = require("react");
 const { useState } = require("react");
-const { fade, makeStyles } = require("@material-ui/core");
+const { makeStyles } = require("@material-ui/core");
 const { InputBase } = require("@material-ui/core");
 const { Search } = require("@material-ui/icons");
 
@@ -11,10 +11,6 @@ const useStyles = makeStyles(theme => ({
   search: {
     position: "relative",
     borderRadius: theme.shape.borderRadius,
-    // backgroundColor: fade(theme.palette.common.white, 0.15),
-    // "&:hover": {
-    //   backgroundColor: fade(theme.palette.common.white, 0.25)
-    // },
     marginRight: theme.spacing(2),
     marginLeft: 0,
     width: "100%",
@@ -30,7 +26,7 @@ const useStyles = makeStyles(theme => ({
     pointerEvents: "none",
     display: "flex",
     alignItems: "center",
-    justifyContent: "center"
+    justify: "flex-start"
   },
   inputRoot: {
     color: "inherit"

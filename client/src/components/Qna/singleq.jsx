@@ -35,7 +35,7 @@ module.exports = ({ questions }) => {
               </Typography>
             </Grid>
             <Grid item xs={2}>
-              <Helpfulness helpfulnessCounter={0} />
+              <Helpfulness helpfulnessCounter={i.question_helpfulness} />
             </Grid>
             <Grid item xs={1}>
               <AddAnswer

@@ -40,6 +40,7 @@ module.exports = ({ questionid }) => {
                 answerid={i.answer_id}
                 date={i.date}
                 answerername={i.answerer_name}
+                helpfulcount={i.helpfulness}
               />
             </Grid>
           );
