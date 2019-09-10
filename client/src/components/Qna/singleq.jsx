@@ -52,7 +52,7 @@ module.exports = ({ questions }) => {
               <Helpfulness helpfulnessCounter={0} />
             </Grid>
             <Grid item xs={1}>
-              <AddAnswer qarfield={"answer"} />
+              <AddAnswer qarfield={"answer"} buttonText={"Add Answer"} />
             </Grid>
             <Grid item xs={1}>
               <Typography className={classes.boldFont}>A: </Typography>

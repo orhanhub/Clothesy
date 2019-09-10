@@ -31,6 +31,7 @@ module.exports = props => {
         </Grid>
         <div>
           <AddQuestion
+            buttonText={"ADD A QUESTION"}
             qarfield={"question"}
             bodyTextPlaceholder={"submit your question"}
           ></AddQuestion>

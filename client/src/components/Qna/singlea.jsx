@@ -52,7 +52,7 @@ module.exports = ({ questionid }) => {
     <Grid container spacing={1} direction={"column"}>
       {apiDatas.results.slice(0, answercount).map(i => {
         return (
-          <Grid key={i.id} item xs={11}>
+          <Grid key={i.answer_id} item xs={11}>
             <Typography className={classes.answers}>{i.body}</Typography>
             <SingleABottom />
           </Grid>
