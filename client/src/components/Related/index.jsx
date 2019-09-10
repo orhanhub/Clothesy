@@ -17,6 +17,7 @@ class Related extends React.Component {
           Related Products
         </Typography>
         <RelatedCardList
+          indexProps={this.props}
           related={this.props.relatedProducts}
           changeCurrentProduct={this.props.changeCurrentProduct}
         />

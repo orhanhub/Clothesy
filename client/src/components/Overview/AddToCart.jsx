@@ -1,6 +1,7 @@
 const React = require("react");
 const { makeStyles } = require("@material-ui/core/styles");
 const { Button } = require("@material-ui/core");
+const axios = require("../../../../helpers/axiosApi.js");
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -9,13 +10,31 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const AddToCart = ({ soldOut }) => {
+const AddToCart = ({ soldOut, productId, getCart }) => {
   const classes = useStyles();
+
+  handleClick = () => {
+    axios
+      .post("/cart", {
+        user_session: parseInt(document.cookie.split("=")[1]),
+        product_id: productId
+      })
+      .then(() => {
+        getCart();
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
   return (
     <div>
       {!soldOut ? (
-        <Button variant="outlined" className={classes.button}>
-          ADD TO BAG
+        <Button
+          variant="outlined"
+          className={classes.button}
+          onClick={handleClick}
+        >
+          ADD TO CART
         </Button>
       ) : (
         <Button

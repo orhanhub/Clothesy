@@ -26,11 +26,6 @@ const markAsHelpful = {
 //PUT /qa/answer/:answer_id/helpful
 //PUT /reviews/helpful/:review_id
 
-//How does the Helpfulness Work?
-//this module accepts 2 inputs, helpfulness counter and onClick behaviour
-//onClick behaviour coming from the parent component as a prop can change
-//the helpfulnessCounter; which is rendered on the DOM
-
 module.exports = ({
   helpfulnessCounter,
   onSuccess = () => {},
@@ -39,11 +34,6 @@ module.exports = ({
   qarId
 }) => {
   const classes = useStyles();
-
-  // primitive structure of this component:
-  // return <p onClick={onClick}>{helpfulnessCounter}</p>;
-
-  // Material-UI based rendering:
   return (
     <div>
       <Grid container spacing={1}>

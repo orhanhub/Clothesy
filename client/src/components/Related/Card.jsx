@@ -61,6 +61,7 @@ const getItemInfo = (id, styleNumber) => {
         productCategory: data[0].data.category,
         productName: data[0].data.name,
         productId: id,
+        features: data[0].data.features,
         //results[styleNumber]
         original_price: data[1].data.results[styleNumber].original_price,
         sale_price: data[1].data.results[styleNumber].sale_price,
@@ -83,6 +84,7 @@ module.exports = function CardItem(props) {
     productCategory: null,
     productName: null,
     productId: null,
+    features: null,
     original_price: null,
     sale_price: null,
     previewImage: null,
@@ -97,16 +99,19 @@ module.exports = function CardItem(props) {
   }, [1]);
 
   const starIconType = true;
+  let insideStar = false;
+
+  const handleClick = inside => {
+    if (inside === true) {
+      insideStar = true;
+      props.onStarClick(itemInfo);
+    } else if (!insideStar) props.changeCurrentProduct(itemInfo.productId);
+  };
 
   return (
     <div>
       <Card className={classes.card}>
-        <CardActionArea
-          component="div"
-          onClick={() => {
-            props.changeCurrentProduct(itemInfo.productId);
-          }}
-        >
+        <CardActionArea component="div" onClick={() => handleClick(false)}>
           <CardMedia
             className={classes.media}
             image={itemInfo.previewImage}
@@ -115,7 +120,7 @@ module.exports = function CardItem(props) {
             {starIconType ? (
               <StarBorder
                 className={classes.star}
-                onClick={() => props.onStarClick(itemInfo.productId)}
+                onClick={() => handleClick(true)}
               />
             ) : (
               <RemoveCircle />

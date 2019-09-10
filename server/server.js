@@ -11,7 +11,7 @@ app.use((req, res, next) => {
   var cookie = req.cookies.cookieName;
   if (!cookie) {
     var randomNumber = Math.random().toString();
-    randomNumber = randomNumber.substring(2, randomNumber.length);
+    randomNumber = randomNumber.substring(10, randomNumber.length);
     res.cookie("cookieName", randomNumber);
   } else {
   }
