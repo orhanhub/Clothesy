@@ -40,11 +40,11 @@ module.exports = ({ questionid }) => {
                 answerid={i.answer_id}
                 date={i.date}
                 answerername={i.answerer_name}
+                helpfulcount={i.helpfulness}
               />
             </Grid>
           );
         })}
-      <p>{console.log(apiDatas.results.sort(sortCriteria("helpfulness")))}</p>
       <ShowMore
         buttonText={"LOAD MORE ANSWERS"}
         onClick={() => {
