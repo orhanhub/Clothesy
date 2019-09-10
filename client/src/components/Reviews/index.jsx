@@ -20,11 +20,10 @@ module.exports = props => {
   const [displayCount, setDisplayCount] = useState(2);
   const classes = useStyles();
 
-  let sortedReviews = sortReviews(props.reviews)
-    [sortingBy].filter(
-      review => !Object.keys(starFilter).length || starFilter[review.rating]
-    )
-    .slice(0, displayCount);
+  let sortedReviews = sortReviews(props.reviews)[sortingBy].filter(
+    review => !Object.keys(starFilter).length || starFilter[review.rating]
+  );
+
   return (
     <Paper className={classes.root}>
       <Typography>{"RATINGS & REVIEWS"}</Typography>
@@ -44,15 +43,15 @@ module.exports = props => {
           currFilters={Object.keys(starFilter)}
         />
         <RevsList
-          reviews={sortedReviews}
+          reviews={sortedReviews.slice(0, displayCount)}
           // sortedReviews={sortReviews(props.reviews)[sortingBy]}
           changeSortBy={setSorting}
           sortingBy={sortingBy}
-          increaseDisplayCount={
+          increaseDisplayCount={() => {
             displayCount < sortedReviews.length
-              ? () => setDisplayCount(displayCount + 1)
-              : () => {}
-          }
+              ? setDisplayCount(displayCount + 1)
+              : null;
+          }}
           showShowMore={
             sortedReviews.length && displayCount < sortedReviews.length
           }
