@@ -5,7 +5,7 @@ const { Typography, Grid, Link } = require("@material-ui/core");
 const SingleA = require("./singlea.jsx");
 const Helpfulness = require("../shared/Helpfulness");
 const AddAnswer = require("../shared/Modal");
-//TODO: add the link format
+
 //styling section
 const useStyles = makeStyles(theme => ({
   singleqaroot: {
@@ -15,20 +15,6 @@ const useStyles = makeStyles(theme => ({
   },
   boldFont: {
     fontWeight: "bold"
-  },
-  smallGreyFont: {
-    fontWeight: "fontWeightLight",
-    fontSize: 10
-  },
-  smallGreyFontRightAlign: {
-    textAlign: "right",
-    fontWeight: "fontWeightLight",
-    fontSize: 10
-  },
-  link: {
-    margin: "",
-    color: "inherit",
-    variant: "body2"
   }
 }));
 
@@ -52,7 +38,12 @@ module.exports = ({ questions }) => {
               <Helpfulness helpfulnessCounter={0} />
             </Grid>
             <Grid item xs={1}>
-              <AddAnswer qarfield={"answer"} buttonText={"Add Answer"} />
+              <AddAnswer
+                qarfield={"answer"}
+                modalTitle={"Submit Your Answer"}
+                bodyTextPlaceholder={"Your Answer"}
+                buttonText={"Add Answer"}
+              />
             </Grid>
             <Grid item xs={1}>
               <Typography className={classes.boldFont}>A: </Typography>
@@ -66,9 +57,3 @@ module.exports = ({ questions }) => {
     </Grid>
   );
 };
-
-/*       <div id="afterq">
-        <SingleA questionid={question_id} answerlimit={answercount} />
-
-      </div>
-*/
