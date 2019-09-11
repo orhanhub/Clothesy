@@ -14,7 +14,6 @@ const calcAverageRatings = require("../../../../helpers/calcAverageRatings");
 const { useState, useEffect } = require("react");
 const StarFill = require("../shared/StarFill.jsx");
 const Price = require("../shared/Price");
-const { Link } = require("react-router-dom");
 
 const useStyles = makeStyles({
   card: {
@@ -115,7 +114,7 @@ module.exports = function CardItem(props) {
     getItemInfo(props.id || 1, 0).then(data => {
       setItemInfo(data);
     });
-  }, [1]);
+  }, [props.id]);
 
   const starIconType = props.showStarIcon;
   let insideStar = false;
@@ -130,8 +129,10 @@ module.exports = function CardItem(props) {
         insideRemove = true;
         props.onRemoveClick();
       }
-    } else if (!insideStar && !insideRemove)
+    } else if (!insideStar && !insideRemove) {
+      props.history.push(`/products/${itemInfo.productId}`);
       props.changeCurrentProduct(itemInfo.productId);
+    }
   };
 
   return (
