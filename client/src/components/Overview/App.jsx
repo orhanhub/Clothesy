@@ -14,23 +14,27 @@ const axios = require("../../../../helpers/axiosApi.js");
 const App = ({ initialProduct }) => {
   const [state, setState] = useState({
     styles: {},
-    tileIndex: 0,
     soldOut: false
   });
 
   const [productImages, setProductImages] = useState([]);
   const [productInfo, setProductInfo] = useState([]);
+  const [pictureIndex, setPictureIndex] = React.useState(0);
+
+  const handleSelect = selectedIndex => {
+    setPictureIndex(selectedIndex);
+  };
 
   const changeStyle = index => {
     setState({ ...state, styles: initialProduct.productStyles[index] });
   };
 
-  const changeTile = index => {
-    setState({ ...state, tileIndex: index });
-  };
-
   const updateDefaultStyle = style => {
     setState({ ...state, selectedStyle: style[0] });
+  };
+
+  const resetStyle = () => {
+    setState({ ...state, styles: {} });
   };
 
   const handleQuantity = info => {
@@ -83,6 +87,11 @@ const App = ({ initialProduct }) => {
     getCart();
   }, []);
 
+  useEffect(() => {
+    resetStyle();
+    handleSelect(0);
+  }, [initialProduct]);
+
   return (
     <div>
       {initialProduct.productStyles[0] && !state.selectedStyle
@@ -94,18 +103,19 @@ const App = ({ initialProduct }) => {
         : null}
 
       <Grid container spacing={1} justify="center">
-        <Grid item xs={1}>
+        <Grid item xs={1} style={{ overflowY: "auto" }}>
           <ImageGalleryList
             initialProduct={initialProduct}
             styles={state.styles}
-            changeTile={changeTile}
+            handleSelect={handleSelect}
           />
         </Grid>
         <Grid item xs={8}>
           <ImageGallery
             initialProduct={initialProduct}
             styles={state.styles}
-            tileIndex={state.tileIndex}
+            pictureIndex={pictureIndex}
+            handleSelect={handleSelect}
           />
         </Grid>
 
@@ -123,6 +133,9 @@ const App = ({ initialProduct }) => {
             <StyleSelector
               initialProduct={initialProduct}
               changeStyle={changeStyle}
+              handleSelect={handleSelect}
+              styles={state.styles}
+              selectedStyle={state.selectedStyle}
             />
           </Grid>
           <Grid item xs={12}>
@@ -131,6 +144,8 @@ const App = ({ initialProduct }) => {
                 <QuantitySizeSelect
                   selectedStyle={state.selectedStyle}
                   handleQuantity={handleQuantity}
+                  styles={state.styles}
+                  initialProduct={initialProduct}
                 />
               ) : null}
               <AddToCart

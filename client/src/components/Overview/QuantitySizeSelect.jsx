@@ -1,5 +1,6 @@
 const React = require("react");
 const { makeStyles } = require("@material-ui/core/styles");
+const { useState, useEffect } = require("react");
 const {
   InputLabel,
   FormControl,
@@ -21,30 +22,45 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const QuantitySizeSelect = ({ selectedStyle, handleQuantity }) => {
-  const [state, setState] = React.useState({
+const QuantitySizeSelect = ({
+  selectedStyle,
+  handleQuantity,
+  styles,
+  initialProduct
+}) => {
+  const [state, setState] = useState({
     size: "",
     quantity: 1
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     setLabelWidth(inputLabel.current.offsetWidth);
     addSkus(selectedStyle.skus);
   }, []);
+
+  useEffect(() => {
+    addSkus(initialProduct.productStyles[0].skus);
+  }, [initialProduct]);
+
+  useEffect(() => {
+    handleQuantityChange(state.size);
+  }, [state.size]);
+
+  useEffect(() => {
+    if (Object.entries(styles).length !== 0) {
+      addSkus(styles.skus);
+    }
+  }, [styles]);
+
+  const addSkus = skus => {
+    setState({ ...state, skus: skus });
+  };
 
   const handleChange = name => event => {
     setState({
       ...state,
       [name]: event.target.value
     });
-  };
-
-  React.useEffect(() => {
-    handleQuantityChange(state.size);
-  }, [state]);
-
-  const addSkus = skus => {
-    setState({ ...state, skus: skus });
   };
 
   const quantityChanger = number => {
@@ -58,7 +74,7 @@ const QuantitySizeSelect = ({ selectedStyle, handleQuantity }) => {
         quantityArray.push(i);
       }
     } else {
-      for (let i = 2; i < number; i++) {
+      for (let i = 2; i < number + 1; i++) {
         quantityArray.push(i);
       }
     }
@@ -68,7 +84,7 @@ const QuantitySizeSelect = ({ selectedStyle, handleQuantity }) => {
 
   const handleQuantityChange = size => {
     if (size) {
-      if (state.skus[size] === 0) {
+      if (state.skus[size] === 0 || size === "null") {
         handleQuantity("soldOut");
       } else {
         handleQuantity("inStock");
@@ -79,7 +95,6 @@ const QuantitySizeSelect = ({ selectedStyle, handleQuantity }) => {
   const classes = useStyles();
   const inputLabel = React.useRef(null);
   const [labelWidth, setLabelWidth] = React.useState(0);
-
   return (
     <div>
       <FormControl className={classes.formControl}>
@@ -106,7 +121,7 @@ const QuantitySizeSelect = ({ selectedStyle, handleQuantity }) => {
         <Select
           value={state.quantity}
           labelwidth={labelWidth}
-          onChange={handleChange("size")}
+          onChange={handleChange("quantity")}
         >
           <MenuItem value="1">1</MenuItem>
           {state.skus
