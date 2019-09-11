@@ -9,7 +9,7 @@ module.exports = props => {
     props.changeReviewsMeta(id);
   }, [props.currentProduct.id]);
   return (
-    <div>
+    <div className="overviewWrapper">
       <App initialProduct={props} />
     </div>
   );

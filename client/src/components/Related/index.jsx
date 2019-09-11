@@ -17,10 +17,11 @@ class Related extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="relatedwrapper">
         <Typography style={{ fontSize: "10pt", textTransform: "uppercase" }}>
           Related Products
         </Typography>
+
         <RelatedCardList
           indexProps={this.props}
           related={this.props.relatedProducts}
