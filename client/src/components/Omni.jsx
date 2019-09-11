@@ -12,7 +12,7 @@ module.exports = props => {
     console.log("useEffect props", JSON.stringify(props));
     console.log("props.match", props.match);
     props.changeCurrentProduct(Number(props.match.params.id));
-  }, []);
+  }, [props.match.params.id]);
   return (
     <div>
       <Container>
