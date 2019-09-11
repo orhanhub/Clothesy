@@ -30,7 +30,7 @@ module.exports = ({ answerid, date, answerername, helpfulcount }) => {
         <Grid item xs={2}>
           <Helpfulness
             qar={"answer"}
-            qarid={answerid}
+            qarId={answerid}
             helpfulnessCounter={helpfulcount}
           />
         </Grid>
