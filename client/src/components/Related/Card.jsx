@@ -14,6 +14,7 @@ const calcAverageRatings = require("../../../../helpers/calcAverageRatings");
 const { useState, useEffect } = require("react");
 const StarFill = require("../shared/StarFill.jsx");
 const Price = require("../shared/Price");
+const sharedStyles = require("../shared/sharedStyles.js");
 
 const useStyles = makeStyles({
   card: {
@@ -32,13 +33,12 @@ const useStyles = makeStyles({
     fontSize: 10,
     textTransform: "uppercase"
   },
-  productName: {
-    marginBottom: 0,
-    fontSize: 12,
-    fontWeight: "bold",
-    color: "black",
-    lineHeight: "10pt"
-  },
+  productName: sharedStyles.boldContent,
+  // sharedStyles
+  // // fontSize: 12,
+  // // fontWeight: "bold",
+  // // color: "black",
+  // lineHeight: "10pt"
   media: {
     height: "200px"
   },
@@ -172,7 +172,7 @@ module.exports = function CardItem(props) {
               salePrice={itemInfo.sale_price}
               originalPrice={itemInfo.original_price}
             />
-            <span className={classes.productName}>
+            <span>
               {itemInfo.ratingData !== null &&
               Object.keys(itemInfo.ratingData).length > 0 ? (
                 <StarFill stars={itemInfo.starRating} />
