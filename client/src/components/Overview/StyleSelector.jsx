@@ -39,6 +39,7 @@ const StyleSelector = ({
                   background: `url(${style.photos[0].url}) no-repeat center`,
                   backgroundSize: "80px auto"
                 }}
+                aria-label="style selector"
               ></button>
             </Grid>
           );
