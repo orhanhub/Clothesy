@@ -27,7 +27,7 @@ class Related extends React.Component {
           changeCurrentProduct={this.props.changeCurrentProduct}
         />
         <Typography style={{ fontSize: "10pt", textTransform: "uppercase" }}>
-          <Link to="/1000">Your Outfit</Link>
+          {/* <Link to="/1000">Your Outfit</Link> */}
         </Typography>
         <OutfitList
           productId={this.props.currentProduct.id}
