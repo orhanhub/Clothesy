@@ -14,7 +14,7 @@ const calcAverageRatings = require("../../../../helpers/calcAverageRatings");
 const { useState, useEffect } = require("react");
 const StarFill = require("../shared/StarFill.jsx");
 const Price = require("../shared/Price");
-const sharedStyles = require("../shared/sharedStyles.js");
+const sharedStyles = require("../../styles");
 
 const useStyles = makeStyles({
   card: {
