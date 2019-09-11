@@ -46,11 +46,13 @@ module.exports = ({ questionid }) => {
           );
         })}
       <ShowMore
+        qarfield={"answer"}
         buttonText={"LOAD MORE ANSWERS"}
         onClick={() => {
           setAnswerCount(answercount + 1);
         }}
       />
+      <br />
     </Grid>
   );
 };
