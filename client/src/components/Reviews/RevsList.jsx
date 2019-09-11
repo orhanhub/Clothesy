@@ -10,10 +10,12 @@ const ShowMoreReviews = require("../shared/ShowMoreButton.jsx");
 
 module.exports = ({
   reviews,
+  reviewsMeta,
   changeSortBy,
   sortingBy,
   increaseDisplayCount,
-  showShowMore
+  showShowMore,
+  currentProduct
 }) => {
   return (
     <Grid item xs={9}>
@@ -24,7 +26,7 @@ module.exports = ({
         ))}
       </Grid>
       <Grid container>
-        <AddReview />
+        <AddReview currentProduct={currentProduct} reviewsMeta={reviewsMeta} />
         {showShowMore ? (
           <ShowMoreReviews onClick={increaseDisplayCount} />
         ) : null}

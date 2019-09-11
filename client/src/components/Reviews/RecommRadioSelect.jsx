@@ -6,25 +6,25 @@ const styles = require("../../styles.js");
 
 const useStyles = makeStyles(theme => styles);
 
-module.exports = ({ characteristic, handleChange, value }) => {
+module.exports = ({ recommended, setRecommended }) => {
   const classes = useStyles();
   return (
     <RadioGroup
       className={classes.radioGroup}
-      aria-label={characteristic.name}
-      name={characteristic.name}
-      value={value}
+      aria-label={"Do you recommend this product?"}
+      name={"recommended"}
+      value={recommended}
       row
     >
-      {characteristic.levels.map((rating, i) => {
+      {[true, false].map((bool, i) => {
         return (
           <FormControlLabel
-            className={"quality-radio"}
-            key={"quality-radio-label-" + rating}
-            value={i + 1}
-            onClick={() => handleChange(i + 1)}
+            className={"recommended-radio"}
+            key={"recommended-radio-label-" + bool}
+            value={bool}
+            onClick={() => setRecommended(bool)}
             control={<Radio />}
-            label={i === 0 || i === 4 ? rating : ""}
+            label={bool ? "Yes" : "No"}
             labelPlacement="bottom"
           />
         );
