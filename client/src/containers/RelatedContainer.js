@@ -2,25 +2,19 @@ const { connect } = require("react-redux");
 const Related = require("../components/Related/index.jsx");
 const {
   changeCurrentProduct,
-  changeRelatedProducts,
-  changeReviews,
-  changeReviewsMeta,
-  changeProductStyles
+  changeRelatedProducts
 } = require("../../../store/action-creators");
 
+const mapStateToProps = ({ relatedProducts, currentProduct }) => ({
+  relatedProducts,
+  currentProduct
+});
+
 const mapDispatchToProps = dispatch => ({
-  changeCurrentProduct: id => {
-    dispatch(changeCurrentProduct(id));
-    dispatch(changeRelatedProducts(id));
-    dispatch(changeReviews(id));
-    dispatch(changeReviewsMeta(id));
-    dispatch(changeProductStyles(id));
-  }
+  changeCurrentProduct: id => dispatch(changeCurrentProduct(id)),
+  changeRelatedProducts: id => dispatch(changeRelatedProducts(id))
 });
 module.exports = connect(
-  ({ relatedProducts, currentProduct }) => ({
-    relatedProducts,
-    currentProduct
-  }),
+  mapStateToProps,
   mapDispatchToProps
 )(Related);

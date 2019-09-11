@@ -1,8 +1,22 @@
 const { connect } = require("react-redux");
 const Reviews = require("../components/Reviews/index.jsx");
+const {
+  changeReviews,
+  changeReviewsMeta
+} = require("../../../store/action-creators");
 
-module.exports = connect(({ reviewsMeta, reviews, currentProduct }) => ({
+const mapStateToProps = ({ reviewsMeta, reviews, currentProduct }) => ({
   reviewsMeta,
   reviews,
   currentProduct
-}))(Reviews);
+});
+
+const mapDispatchToProps = dispatch => ({
+  changeReviewsMeta: id => dispatch(changeReviewsMeta(id)),
+  changeReviews: id => dispatch(changeReviews(id))
+});
+
+module.exports = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Reviews);

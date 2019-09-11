@@ -14,7 +14,17 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-module.exports = ({ reviews, reviewsMeta, currentProduct }) => {
+module.exports = ({
+  reviews,
+  reviewsMeta,
+  currentProduct,
+  changeReviewsMeta,
+  changeReviews
+}) => {
+  useEffect(() => {
+    changeReviewsMeta(currentProduct.id);
+    changeReviews(currentProduct.id);
+  }, [currentProduct.id]);
   const [starFilter, setStarFilter] = useState({});
   const [sortingBy, setSorting] = useState("relevance");
   const [displayCount, setDisplayCount] = useState(2);

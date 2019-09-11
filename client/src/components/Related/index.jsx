@@ -10,6 +10,10 @@ class Related extends React.Component {
     super(props);
   }
 
+  componentDidMount() {
+    this.props.changeRelatedProducts(this.props.currentProduct.id);
+  }
+
   render() {
     return (
       <div>
