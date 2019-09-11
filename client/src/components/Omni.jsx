@@ -7,7 +7,7 @@ const Related = require("../containers/RelatedContainer.js");
 const Reviews = require("../containers/ReviewsContainer.js");
 
 module.exports = props => {
-  console.log(JSON.stringify(props));
+  // console.log(JSON.stringify(props));
   // useEffect(() => {
   //   console.log("useEffect props", JSON.stringify(props));
   //   console.log("props.match", props.match);
