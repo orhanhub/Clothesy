@@ -9,6 +9,7 @@
     "clean": "rm dist/bundle.js",
     "react-dev": "webpack -d --mode development --watch",
     "server-dev": "nodemon ./server/server.js",
+    "server-prod": "node ./server/server.js",
     "build": "webpack --config webpack.prod.js",
     "test": "jest --coverage"
   },
