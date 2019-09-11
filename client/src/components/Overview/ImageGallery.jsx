@@ -8,15 +8,20 @@ const ImageGallery = ({
   handleSelect
 }) => {
   const cropImage = {
-    width: "775px",
-    height: "550px",
+    width: "100%",
+    height: "600px",
     objectFit: "cover"
   };
   const initialProductHolder = initialProduct;
 
   return (
-    <div style={{ overflow: "hidden", marginTop: "20px", width: "775px" }}>
-      <Carousel wrap={true} activeIndex={pictureIndex} onSelect={handleSelect}>
+    <div>
+      <Carousel
+        wrap={true}
+        activeIndex={pictureIndex}
+        onSelect={handleSelect}
+        style={{ marginTop: "20px" }}
+      >
         {initialProductHolder.productStyles[0] && !styles.photos
           ? initialProductHolder.productStyles[0].photos.map((photo, i) => {
               return (

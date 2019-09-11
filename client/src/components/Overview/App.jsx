@@ -102,8 +102,8 @@ const App = ({ initialProduct }) => {
           )
         : null}
 
-      <Grid container spacing={1} justify="center">
-        <Grid item xs={1} style={{ overflowY: "auto" }}>
+      <Grid container spacing={4} justify="center">
+        <Grid item xs={1} style={{ marginBottom: "16px", overflowY: "auto" }}>
           <ImageGalleryList
             initialProduct={initialProduct}
             styles={state.styles}
