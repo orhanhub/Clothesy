@@ -130,7 +130,7 @@ module.exports = function CardItem(props) {
         props.onRemoveClick();
       }
     } else if (!insideStar && !insideRemove) {
-      props.history.push(`/${itemInfo.productId}`);
+      props.history.push(`/products/${itemInfo.productId}`);
       props.changeCurrentProduct(itemInfo.productId);
     }
   };
