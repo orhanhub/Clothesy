@@ -3,11 +3,16 @@ const RelatedCardList = require("./RelatedCardList.jsx");
 const data = require("./sampleData.js");
 const OutfitList = require("./OutfitList.jsx");
 const { Typography } = require("@material-ui/core");
+const { Link } = require("react-router-dom");
 
 // module.exports = props => <div>Hello, related world.</div>;
 class Related extends React.Component {
   constructor(props) {
     super(props);
+  }
+
+  componentDidMount() {
+    this.props.changeRelatedProducts(this.props.currentProduct.id);
   }
 
   render() {
@@ -22,7 +27,7 @@ class Related extends React.Component {
           changeCurrentProduct={this.props.changeCurrentProduct}
         />
         <Typography style={{ fontSize: "10pt", textTransform: "uppercase" }}>
-          Your Outfit
+          <Link to="/1000">Your Outfit</Link>
         </Typography>
         <OutfitList
           productId={this.props.currentProduct.id}
