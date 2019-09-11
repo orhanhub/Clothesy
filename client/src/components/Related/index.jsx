@@ -19,6 +19,7 @@ class Related extends React.Component {
   }
 
   render() {
+    console.log(this.props.history);
     return (
       <div>
         <Typography style={{ fontSize: "10pt", textTransform: "uppercase" }}>
@@ -28,6 +29,7 @@ class Related extends React.Component {
           indexProps={this.props}
           related={this.props.relatedProducts}
           changeCurrentProduct={this.props.changeCurrentProduct}
+          history={this.props.history}
         />
         <Typography style={{ fontSize: "10pt", textTransform: "uppercase" }}>
           <Link to="/1000">Your Outfit</Link>

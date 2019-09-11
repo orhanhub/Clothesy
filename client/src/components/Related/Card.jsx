@@ -14,7 +14,7 @@ const calcAverageRatings = require("../../../../helpers/calcAverageRatings");
 const { useState, useEffect } = require("react");
 const StarFill = require("../shared/StarFill.jsx");
 const Price = require("../shared/Price");
-const { Link } = require("react-router-dom");
+const Link = require("react-router-dom");
 
 const useStyles = makeStyles({
   card: {
@@ -98,6 +98,7 @@ const getItemInfo = id => {
 };
 
 module.exports = function CardItem(props) {
+  // console.log("Card Item Props", props);
   const classes = useStyles();
   const [itemInfo, setItemInfo] = useState({
     productCategory: null,
@@ -130,8 +131,10 @@ module.exports = function CardItem(props) {
         insideRemove = true;
         props.onRemoveClick();
       }
-    } else if (!insideStar && !insideRemove)
+    } else if (!insideStar && !insideRemove) {
+      history.push("/history");
       props.changeCurrentProduct(itemInfo.productId);
+    }
   };
 
   return (
