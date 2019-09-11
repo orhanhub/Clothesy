@@ -14,13 +14,13 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-module.exports = props => {
+module.exports = ({ reviews, reviewsMeta, currentProduct }) => {
   const [starFilter, setStarFilter] = useState({});
   const [sortingBy, setSorting] = useState("relevance");
   const [displayCount, setDisplayCount] = useState(2);
   const classes = useStyles();
 
-  let sortedReviews = sortReviews(props.reviews)[sortingBy].filter(
+  let sortedReviews = sortReviews(reviews)[sortingBy].filter(
     review => !Object.keys(starFilter).length || starFilter[review.rating]
   );
 
@@ -29,7 +29,7 @@ module.exports = props => {
       <Typography>{"RATINGS & REVIEWS"}</Typography>
       <Grid container spacing={2}>
         <Ratings
-          reviewsMeta={props.reviewsMeta}
+          reviewsMeta={reviewsMeta}
           setStarFilter={rating => {
             let currFilters = { ...starFilter };
             if (currFilters[rating]) {
@@ -44,7 +44,8 @@ module.exports = props => {
         />
         <RevsList
           reviews={sortedReviews.slice(0, displayCount)}
-          // sortedReviews={sortReviews(props.reviews)[sortingBy]}
+          reviewsMeta={reviewsMeta}
+          // sortedReviews={sortReviews(reviews)[sortingBy]}
           changeSortBy={setSorting}
           sortingBy={sortingBy}
           increaseDisplayCount={() => {
@@ -55,6 +56,7 @@ module.exports = props => {
           showShowMore={
             sortedReviews.length && displayCount < sortedReviews.length
           }
+          currentProduct={currentProduct}
         />
       </Grid>
       {/* <MarkerBar percentage={25} />

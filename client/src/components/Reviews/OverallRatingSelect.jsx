@@ -3,7 +3,7 @@ const StarFill = require("../shared/StarFill.jsx");
 const { Typography, Box, Grid } = require("@material-ui/core");
 //const { Box } = require("@material-ui/core");
 
-module.exports = () => {
+module.exports = ({ onChange }) => {
   const [value, setValue] = React.useState(2);
   const [percent, setPercent] = React.useState(0);
   const ratingDescs = ["Poor", "Fair", "Average", "Good", "Great"];
@@ -19,6 +19,7 @@ module.exports = () => {
         let { clientX, clientY } = e;
         if (clientY >= top && clientY <= bottom && clientX <= right) {
           setPercent(Math.abs(clientX - x) / width);
+          onChange(Math.floor(5 * percent) + 1);
         }
       }}
     >
