@@ -35,7 +35,7 @@ module.exports = ({
   );
 
   return (
-    <Paper className={classes.root}>
+    <Grid item xs={12}>
       <Typography>{"RATINGS & REVIEWS"}</Typography>
       <Grid container spacing={2}>
         <Ratings
@@ -60,7 +60,7 @@ module.exports = ({
           sortingBy={sortingBy}
           increaseDisplayCount={() => {
             displayCount < sortedReviews.length
-              ? setDisplayCount(displayCount + 1)
+              ? setDisplayCount(displayCount + 2)
               : null;
           }}
           showShowMore={
@@ -71,6 +71,6 @@ module.exports = ({
       </Grid>
       {/* <MarkerBar percentage={25} />
       <StarFill percentage={67.5} /> */}
-    </Paper>
+    </Grid>
   );
 };
