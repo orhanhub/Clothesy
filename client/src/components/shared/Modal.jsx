@@ -1,4 +1,5 @@
 const React = require("react");
+const axios = require("../../../../helpers/axiosApi.js");
 const { makeStyles } = require("@material-ui/core");
 const {
   Button,
@@ -22,17 +23,25 @@ const useStyles = makeStyles(theme => ({
   modal: {
     display: "flex",
     height: "100%",
-    overflow: "scroll",
+
     alignItems: "center",
     justifyContent: "center"
   },
-  paper: {
+  paperModalBody: {
+    height: "100%",
+    overflow: "scroll",
     backgroundColor: theme.palette.background.paper,
     border: "2px solid #000",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3)
   }
 }));
+
+const endpoint = {
+  review: id => `/reviews/${id}`,
+  question: id => `/qa/${id}`,
+  answer: id => `/qa/${id}/answers`
+};
 
 module.exports = ({
   fields,
@@ -41,12 +50,16 @@ module.exports = ({
   bodyTextPlaceholder,
   children,
   handleSubmit,
-  buttonText
+  buttonText,
+  subtitle,
+  addlFieldValues,
+  endpointId
 }) => {
   const classes = useStyles();
 
   const common = {
     modalTitle: modalTitle,
+    summaryText: "Review Summary",
     bodyText: bodyTextPlaceholder,
     nicknameText: "jack123",
     emailText: "jack@gmail.com"
@@ -96,9 +109,21 @@ module.exports = ({
         }}
       >
         <Fade in={open}>
-          <div className={classes.paper}>
+          <div className={classes.paperModalBody}>
             <Typography id="transition-modal-title">{modalTitle}</Typography>
+            <Typography>{subtitle || ""}</Typography>
             <form noValidate autoComplete="off">
+              {qarfield === "review" ? (
+                <TextField
+                  id="standard-multiline-flexible"
+                  label={"Review Summary"}
+                  placeholder={values.summaryText}
+                  onChange={handleChange("summaryText")}
+                  className={classes.textField}
+                  margin="normal"
+                />
+              ) : null}
+              <br />
               <TextField
                 id="standard-multiline-flexible"
                 label={bodyTextPlaceholder}
@@ -115,6 +140,7 @@ module.exports = ({
                 id="standard-required"
                 label="Nickname"
                 placeholder={values.nicknameText}
+                onChange={handleChange("nicknameText")}
                 className={classes.textField}
                 margin="normal"
                 helperText="For privacy reasons, do not use your full name or email address"
@@ -125,6 +151,7 @@ module.exports = ({
                 id="standard-required"
                 label="E-mail"
                 placeholder={values.emailText}
+                onChange={handleChange("emailText")}
                 className={classes.textField}
                 margin="normal"
                 helperText="For authentication reasons, you will not be emailed"
@@ -134,7 +161,23 @@ module.exports = ({
             <Button
               variant="outlined"
               className={classes.button}
-              onClick={handleSubmit || (() => {})}
+              onClick={() => {
+                let postObj = { ...addlFieldValues };
+                postObj.summary = values.summaryText;
+                postObj.body = values.bodyText;
+                postObj.name = values.nicknameText;
+                postObj.email = values.emailText;
+                axios
+                  .post(endpoint[qarfield](endpointId), postObj)
+                  .then(res => {
+                    console.log(res);
+                    handleClose();
+                  })
+                  .catch(err => {
+                    console.error(err);
+                    handleClose();
+                  });
+              }}
             >
               {`SUBMIT YOUR ${qarfield}`}
             </Button>

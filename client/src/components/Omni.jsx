@@ -8,11 +8,14 @@ const Reviews = require("../containers/ReviewsContainer.js");
 
 module.exports = props => {
   console.log(JSON.stringify(props));
-  useEffect(() => {
-    console.log("useEffect props", JSON.stringify(props));
-    console.log("props.match", props.match);
-    props.changeCurrentProduct(Number(props.match.params.id));
-  }, [props.match.params.id]);
+  // useEffect(() => {
+  //   console.log("useEffect props", JSON.stringify(props));
+  //   console.log("props.match", props.match);
+  //   props.changeCurrentProduct(Number(props.match.params.id));
+  // }, [props.match.params.id]);
+  // useEffect(() => {
+  //   props.changeCurrentProduct(1);
+  // }, []);
   return (
     <div>
       <Container>
