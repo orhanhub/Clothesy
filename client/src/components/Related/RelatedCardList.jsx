@@ -117,6 +117,7 @@ module.exports = function RelatedCardList(props) {
         setModalRows={setModalRows}
         changeCurrentProduct={props.changeCurrentProduct}
         showStarIcon={true}
+        history={props.history}
       />
     );
   });
