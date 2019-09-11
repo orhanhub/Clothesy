@@ -14,12 +14,12 @@ class Related extends React.Component {
   componentDidMount() {
     this.props.changeRelatedProducts(this.props.currentProduct.id);
   }
-  componentDidUpdate() {
-    this.props.changeRelatedProducts(this.props.currentProduct.id);
+  componentDidUpdate(prevProps) {
+    if (prevProps.currentProduct.id !== this.props.currentProduct.id)
+      this.props.changeRelatedProducts(this.props.currentProduct.id);
   }
 
   render() {
-    console.log(this.props.history);
     return (
       <div>
         <Typography style={{ fontSize: "10pt", textTransform: "uppercase" }}>
@@ -32,7 +32,7 @@ class Related extends React.Component {
           history={this.props.history}
         />
         <Typography style={{ fontSize: "10pt", textTransform: "uppercase" }}>
-          <Link to="/1000">Your Outfit</Link>
+          Your Outfit
         </Typography>
         <OutfitList
           productId={this.props.currentProduct.id}
