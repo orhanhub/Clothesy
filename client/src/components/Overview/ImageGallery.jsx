@@ -12,7 +12,8 @@ const ImageGallery = ({
   const cropImage = {
     width: "100%",
     height: "600px",
-    objectFit: "cover"
+    objectFit: "cover",
+    cursor: "zoom-in"
   };
 
   const expandImage = {
@@ -42,12 +43,14 @@ const ImageGallery = ({
                       style={cropImage}
                       src={photo.url}
                       onClick={handleClick}
+                      alt="carousel image"
                     />
                   ) : (
                     <img
                       style={expandImage}
                       src={photo.url}
                       onClick={handleClick}
+                      alt="carousel image"
                     />
                   )}
                 </Carousel.Item>
@@ -64,12 +67,14 @@ const ImageGallery = ({
                       style={cropImage}
                       src={photo.url}
                       onClick={handleClick}
+                      alt="carousel image"
                     />
                   ) : (
                     <img
                       style={expandImage}
                       src={photo.url}
                       onClick={handleClick}
+                      alt="carousel image"
                     />
                   )}
                 </Carousel.Item>
