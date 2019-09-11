@@ -7,9 +7,9 @@ const Related = require("../containers/RelatedContainer.js");
 const Reviews = require("../containers/ReviewsContainer.js");
 
 module.exports = props => {
-  useEffect(() => {
-    props.changeCurrentProduct(1);
-  }, []);
+  // useEffect(() => {
+  //   props.changeCurrentProduct(1);
+  // }, []);
   return (
     <Container>
       <Overview />
