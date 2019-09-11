@@ -16,7 +16,8 @@ module.exports = ({
   sortingBy,
   increaseDisplayCount,
   showShowMore,
-  currentProduct
+  currentProduct,
+  submitNewReview
 }) => {
   const [currThumbnail, setCurrThumbnail] = useState("");
   const [openModal, setOpenModal] = useState(false);
@@ -36,7 +37,11 @@ module.exports = ({
         ))}
       </Grid>
       <Grid container>
-        <AddReview currentProduct={currentProduct} reviewsMeta={reviewsMeta} />
+        <AddReview
+          currentProduct={currentProduct}
+          reviewsMeta={reviewsMeta}
+          submitNewReview={submitNewReview}
+        />
         {showShowMore ? (
           <ShowMoreReviews onClick={increaseDisplayCount} />
         ) : null}

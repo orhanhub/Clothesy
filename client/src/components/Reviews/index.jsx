@@ -67,6 +67,11 @@ module.exports = ({
             sortedReviews.length && displayCount < sortedReviews.length
           }
           currentProduct={currentProduct}
+          submitNewReview={() => {
+            console.log("changing");
+            changeReviews(currentProduct.id);
+            changeReviewsMeta(currentProduct.id);
+          }}
         />
       </Grid>
       {/* <MarkerBar percentage={25} />
