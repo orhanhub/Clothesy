@@ -35,7 +35,11 @@ module.exports = ({ questions }) => {
               </Typography>
             </Grid>
             <Grid item xs={2}>
-              <Helpfulness helpfulnessCounter={i.question_helpfulness} />
+              <Helpfulness
+                qar={"question"}
+                qarId={i.question_id}
+                helpfulnessCounter={i.question_helpfulness}
+              />
             </Grid>
             <Grid item xs={1}>
               <AddAnswer
