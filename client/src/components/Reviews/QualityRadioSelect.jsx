@@ -20,7 +20,7 @@ module.exports = ({ characteristic, handleChange, value }) => {
         return (
           <FormControlLabel
             className={"quality-radio"}
-            key={"quality-radio-label-" + rating}
+            key={"quality-radio-label-" + rating + "-" + characteristic.name}
             value={i + 1}
             onClick={() => handleChange(i + 1)}
             control={<Radio />}
