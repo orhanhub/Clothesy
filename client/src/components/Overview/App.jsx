@@ -9,6 +9,7 @@ const ImageGalleryList = require("./ImageGalleryList.jsx");
 const QuantitySizeSelect = require("./QuantitySizeSelect.jsx");
 const AddToCart = require("./AddToCart.jsx");
 const ShowCart = require("./ShowCart.jsx");
+const ViewButton = require("./ViewButton.jsx");
 const axios = require("../../../../helpers/axiosApi.js");
 
 const App = ({ initialProduct }) => {
@@ -20,6 +21,7 @@ const App = ({ initialProduct }) => {
   const [productImages, setProductImages] = useState([]);
   const [productInfo, setProductInfo] = useState([]);
   const [pictureIndex, setPictureIndex] = React.useState(0);
+  const [expandedView, setExpandedView] = React.useState(false);
 
   const handleSelect = selectedIndex => {
     setPictureIndex(selectedIndex);
@@ -35,6 +37,14 @@ const App = ({ initialProduct }) => {
 
   const resetStyle = () => {
     setState({ ...state, styles: {} });
+  };
+
+  const handleExpand = () => {
+    setExpandedView(true);
+  };
+
+  const handleBack = () => {
+    setExpandedView(false);
   };
 
   const handleQuantity = info => {
@@ -110,56 +120,79 @@ const App = ({ initialProduct }) => {
             handleSelect={handleSelect}
           />
         </Grid>
-        <Grid item xs={8}>
-          <ImageGallery
-            initialProduct={initialProduct}
-            styles={state.styles}
-            pictureIndex={pictureIndex}
-            handleSelect={handleSelect}
-          />
-        </Grid>
+        {!expandedView ? (
+          <Grid item xs={8}>
+            <ImageGallery
+              initialProduct={initialProduct}
+              styles={state.styles}
+              pictureIndex={pictureIndex}
+              handleSelect={handleSelect}
+              handleExpand={handleExpand}
+            />
+          </Grid>
+        ) : (
+          <Grid item xs={10}>
+            <Grid container spacing={2} justify="center">
+              <Grid item xs={11}>
+                <ImageGallery
+                  initialProduct={initialProduct}
+                  styles={state.styles}
+                  pictureIndex={pictureIndex}
+                  handleSelect={handleSelect}
+                  handleExpand={handleExpand}
+                  expandedView={expandedView}
+                />
+              </Grid>
+              <Grid item xs={1}>
+                <ViewButton handleBack={handleBack} />
+              </Grid>
+            </Grid>
+          </Grid>
+        )}
 
-        <Grid item xs={3}>
-          <Grid item xs={12}>
-            {state.selectedStyle ? (
-              <ProductInformation
+        {!expandedView ? (
+          <Grid item xs={3}>
+            <Grid item xs={12}>
+              {state.selectedStyle ? (
+                <ProductInformation
+                  initialProduct={initialProduct}
+                  styles={state.styles}
+                  selectedStyle={state.selectedStyle}
+                />
+              ) : null}
+            </Grid>
+            <Grid item xs={12}>
+              <StyleSelector
                 initialProduct={initialProduct}
+                changeStyle={changeStyle}
+                handleSelect={handleSelect}
                 styles={state.styles}
                 selectedStyle={state.selectedStyle}
               />
-            ) : null}
-          </Grid>
-          <Grid item xs={12}>
-            <StyleSelector
-              initialProduct={initialProduct}
-              changeStyle={changeStyle}
-              handleSelect={handleSelect}
-              styles={state.styles}
-              selectedStyle={state.selectedStyle}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <Grid container spacing={1} justify="center" alignItems="center">
-              {state.selectedStyle ? (
-                <QuantitySizeSelect
-                  selectedStyle={state.selectedStyle}
-                  handleQuantity={handleQuantity}
-                  styles={state.styles}
-                  initialProduct={initialProduct}
+            </Grid>
+            <Grid item xs={12}>
+              <Grid container spacing={1} justify="center" alignItems="center">
+                {state.selectedStyle ? (
+                  <QuantitySizeSelect
+                    selectedStyle={state.selectedStyle}
+                    handleQuantity={handleQuantity}
+                    styles={state.styles}
+                    initialProduct={initialProduct}
+                  />
+                ) : null}
+                <AddToCart
+                  soldOut={state.soldOut}
+                  productId={initialProduct.currentProduct.id}
+                  getCart={getCart}
                 />
-              ) : null}
-              <AddToCart
-                soldOut={state.soldOut}
-                productId={initialProduct.currentProduct.id}
-                getCart={getCart}
-              />
-              <ShowCart
-                productImages={productImages}
-                productInfo={productInfo}
-              />
+                <ShowCart
+                  productImages={productImages}
+                  productInfo={productInfo}
+                />
+              </Grid>
             </Grid>
           </Grid>
-        </Grid>
+        ) : null}
       </Grid>
 
       <Grid container spacing={1} justify="center">
