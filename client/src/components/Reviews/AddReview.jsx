@@ -49,12 +49,12 @@ module.exports = ({ currentProduct, reviewsMeta, submitNewReview }) => {
         subtitle={`About the ${currentProduct.name}`}
         endpointId={currentProduct.id}
         addlFieldValues={{
-          rating: overallRating,
+          rating: overallRating || 1,
           photos: thumbnails,
           characteristics: charValsToIdVals(charVals),
           recommend: recommended
         }}
-        handlSubmit={submitNewReview}
+        handleSubmit={submitNewReview}
       >
         <Divider />
         <br />
@@ -85,7 +85,9 @@ module.exports = ({ currentProduct, reviewsMeta, submitNewReview }) => {
         <Grid container>
           <UploadThumbnails thumbnails={thumbnails} />
           <Button
-            onClick={() => fileUpload(setThumbnails, 5 - thumbnails.length)}
+            onClick={() => {
+              fileUpload(setThumbnails, 5 - thumbnails.length);
+            }}
           >
             Upload
           </Button>

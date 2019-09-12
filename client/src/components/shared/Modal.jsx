@@ -170,8 +170,9 @@ module.exports = ({
                 axios
                   .post(endpoint[qarfield](endpointId), postObj)
                   .then(res => {
-                    console.log(res);
+                    //console.log(res);
                     handleClose();
+                    handleSubmit && handleSubmit();
                   })
                   .catch(err => {
                     console.error(err);

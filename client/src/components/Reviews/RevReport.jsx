@@ -3,7 +3,7 @@ const Report = require("../shared/Report.jsx");
 
 module.exports = ({ review }) => (
   <Report
-    onSuccess={() => console.log("reported")}
+    onSuccess={() => {}} //console.log("reported")}
     qar={"review"}
     qarId={review.review_id}
   />
