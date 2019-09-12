@@ -1,7 +1,7 @@
 const webpack = require("webpack");
 const path = require("path");
 
-const config = {
+const client = {
   entry: "./client/src/index.jsx",
   output: {
     path: path.resolve(__dirname, "./client/public/dist"),
@@ -44,4 +44,42 @@ const config = {
   }
 };
 
-module.exports = config;
+const server = {
+  entry: "./server/src/index.jsx",
+  target: "node",
+  output: {
+    path: path.resolve(__dirname, "./server/dist"),
+    filename: "ReviewsBundle.js",
+    libraryTarget: "commonjs-module"
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        use: "babel-loader",
+        exclude: /node_modules/
+      },
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"]
+      },
+      {
+        test: /\.svg$/,
+        use: "file-loader"
+      },
+      {
+        test: /\.png$/,
+        use: [
+          {
+            loader: "url-loader",
+            options: {
+              mimetype: "image/png"
+            }
+          }
+        ]
+      }
+    ]
+  }
+};
+
+module.exports = [client, server];
