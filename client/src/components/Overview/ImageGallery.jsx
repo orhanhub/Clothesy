@@ -60,6 +60,7 @@ const ImageGallery = ({
                         display: "flex",
                         alignItems: "center"
                       }}
+                      imageAlt="magnified image"
                     />
                   )}
                 </Carousel.Item>
@@ -98,6 +99,7 @@ const ImageGallery = ({
                         display: "flex",
                         alignItems: "center"
                       }}
+                      imageAlt="magnified image"
                     />
                   )}
                 </Carousel.Item>
