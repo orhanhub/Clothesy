@@ -31,9 +31,15 @@ const ImageGallery = ({
       >
         {initialProduct.productStyles[0] && !styles.photos
           ? initialProduct.productStyles[0].photos.map((photo, i) => {
-              let photoUrl = photo.url.split("w=");
-              let smallerPhoto = photoUrl[0] + "w=1000&q=80";
-              let largerPhoto = photoUrl[0] + "w=2000&q=80";
+              let photoUrl, smallerPhoto, largerPhoto;
+              if (photo.url) {
+                photoUrl = photo.url.split("w=");
+                smallerPhoto = photoUrl[0] + "w=1000&q=80";
+                largerPhoto = photoUrl[0] + "w=2000&q=80";
+              } else {
+                smallerPhoto = "";
+                largerPhoto = "";
+              }
               return (
                 <Carousel.Item key={i}>
                   {!expandedView ? (
@@ -63,9 +69,15 @@ const ImageGallery = ({
 
         {styles.photos
           ? styles.photos.map((photo, i) => {
-              let photoUrl = photo.url.split("w=");
-              let smallerPhoto = photoUrl[0] + "w=1000&q=80";
-              let largerPhoto = photoUrl[0] + "w=2000&q=80";
+              let photoUrl, smallerPhoto, largerPhoto;
+              if (photo.url) {
+                photoUrl = photo.url.split("w=");
+                smallerPhoto = photoUrl[0] + "w=1000&q=80";
+                largerPhoto = photoUrl[0] + "w=2000&q=80";
+              } else {
+                smallerPhoto = "";
+                largerPhoto = "";
+              }
               return (
                 <Carousel.Item key={i}>
                   {!expandedView ? (
