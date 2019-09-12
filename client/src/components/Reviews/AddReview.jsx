@@ -68,11 +68,10 @@ module.exports = ({ currentProduct, reviewsMeta, submitNewReview }) => {
         <OverallRatingSelect onChange={val => setOverallRating(val)} />
         <Divider />
         {Object.entries(characteristics).map(([char, ratings]) => (
-          <div>
+          <div key={"add-review-radio" + char}>
             {char}:{" "}
             {characteristics[char][charVals[char] - 1] || "none selected"}
             <QualityRadioSelect
-              key={"add-review-radio" + char}
               characteristic={{ name: char, levels: ratings }}
               handleChange={val => {
                 setCharVals({ ...charVals, [char]: val });

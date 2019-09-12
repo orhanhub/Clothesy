@@ -36,7 +36,7 @@ module.exports = ({
           />
         ))}
       </Grid>
-      <Grid container>
+      {/* <Grid container>
         <AddReview
           currentProduct={currentProduct}
           reviewsMeta={reviewsMeta}
@@ -45,7 +45,7 @@ module.exports = ({
         {showShowMore ? (
           <ShowMoreReviews onClick={increaseDisplayCount} />
         ) : null}
-      </Grid>
+      </Grid> */}
       <ThumbnailModal
         thumbnail={currThumbnail}
         isOpen={openModal}
