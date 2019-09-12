@@ -52,7 +52,11 @@ const ProductInformation = ({ initialProduct, styles, selectedStyle }) => {
               color: "dimgrey"
             }}
           >
-            <u>Reviews</u>
+            {initialProduct.reviewsMeta.avgRating ? (
+              <u>Reviews</u>
+            ) : (
+              <u>Add a review</u>
+            )}
           </a>
         </div>
         <div>{initialProduct.currentProduct.category}</div>
