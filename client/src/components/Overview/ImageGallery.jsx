@@ -5,23 +5,54 @@ const ImageGallery = ({
   initialProduct,
   styles,
   pictureIndex,
-  handleSelect
+  handleSelect,
+  handleExpand,
+  expandedView
 }) => {
   const cropImage = {
-    width: "775px",
-    height: "550px",
+    width: "100%",
+    height: "600px",
+    objectFit: "cover",
+    cursor: "zoom-in"
+  };
+
+  const expandImage = {
+    width: "100%",
+    height: "1000px",
     objectFit: "cover"
   };
-  const initialProductHolder = initialProduct;
+
+  const handleClick = () => {
+    handleExpand();
+  };
 
   return (
-    <div style={{ overflow: "hidden", marginTop: "20px", width: "775px" }}>
-      <Carousel wrap={true} activeIndex={pictureIndex} onSelect={handleSelect}>
-        {initialProductHolder.productStyles[0] && !styles.photos
-          ? initialProductHolder.productStyles[0].photos.map((photo, i) => {
+    <div>
+      <Carousel
+        wrap={true}
+        activeIndex={pictureIndex}
+        onSelect={handleSelect}
+        style={{ marginTop: "20px" }}
+      >
+        {initialProduct.productStyles[0] && !styles.photos
+          ? initialProduct.productStyles[0].photos.map((photo, i) => {
               return (
                 <Carousel.Item key={i}>
-                  <img style={cropImage} src={photo.url} />
+                  {!expandedView ? (
+                    <img
+                      style={cropImage}
+                      src={photo.url}
+                      onClick={handleClick}
+                      alt="carousel image"
+                    />
+                  ) : (
+                    <img
+                      style={expandImage}
+                      src={photo.url}
+                      onClick={handleClick}
+                      alt="carousel image"
+                    />
+                  )}
                 </Carousel.Item>
               );
             })
@@ -31,7 +62,21 @@ const ImageGallery = ({
           ? styles.photos.map((photo, i) => {
               return (
                 <Carousel.Item key={i}>
-                  <img style={cropImage} src={photo.url} />
+                  {!expandedView ? (
+                    <img
+                      style={cropImage}
+                      src={photo.url}
+                      onClick={handleClick}
+                      alt="carousel image"
+                    />
+                  ) : (
+                    <img
+                      style={expandImage}
+                      src={photo.url}
+                      onClick={handleClick}
+                      alt="carousel image"
+                    />
+                  )}
                 </Carousel.Item>
               );
             })

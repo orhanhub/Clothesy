@@ -7,6 +7,7 @@ const RevsListItem = require("./RevsListItem.jsx");
 const AddReview = require("./AddReview.jsx");
 const SortReviewSelect = require("./SortReviewSelect.jsx");
 const ShowMoreReviews = require("../shared/ShowMoreButton.jsx");
+const ThumbnailModal = require("./ThumbnailModal.jsx");
 
 module.exports = ({
   reviews,
@@ -15,22 +16,43 @@ module.exports = ({
   sortingBy,
   increaseDisplayCount,
   showShowMore,
-  currentProduct
+  currentProduct,
+  submitNewReview
 }) => {
+  const [currThumbnail, setCurrThumbnail] = useState("");
+  const [openModal, setOpenModal] = useState(false);
   return (
     <Grid item xs={9}>
       <SortReviewSelect changeSortBy={changeSortBy} sortingBy={sortingBy} />
       <Grid container>
         {reviews.map(review => (
-          <RevsListItem key={review.review_id} review={review} />
+          <RevsListItem
+            setCurrThumbnail={url => {
+              setCurrThumbnail(url);
+              setOpenModal(true);
+            }}
+            key={review.review_id}
+            review={review}
+          />
         ))}
       </Grid>
       <Grid container>
-        <AddReview currentProduct={currentProduct} reviewsMeta={reviewsMeta} />
+        <AddReview
+          currentProduct={currentProduct}
+          reviewsMeta={reviewsMeta}
+          submitNewReview={submitNewReview}
+        />
         {showShowMore ? (
           <ShowMoreReviews onClick={increaseDisplayCount} />
         ) : null}
       </Grid>
+      <ThumbnailModal
+        thumbnail={currThumbnail}
+        isOpen={openModal}
+        closeModal={() => {
+          setOpenModal(false);
+        }}
+      />
     </Grid>
   );
 };

@@ -48,7 +48,6 @@ const ProductInformation = ({ initialProduct, styles, selectedStyle }) => {
             href="#"
             style={{
               paddingTop: "1px",
-              paddingRight: "190px",
               fontSize: "11px",
               color: "dimgrey"
             }}

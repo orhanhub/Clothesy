@@ -21,7 +21,7 @@ module.exports = props => {
       <Container>
         <Overview />
         <Qna />
-        <Related />
+        <Related history={props.history} />
         <Reviews />
       </Container>
     </div>

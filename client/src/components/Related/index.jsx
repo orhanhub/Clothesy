@@ -14,6 +14,10 @@ class Related extends React.Component {
   componentDidMount() {
     this.props.changeRelatedProducts(this.props.currentProduct.id);
   }
+  componentDidUpdate(prevProps) {
+    if (prevProps.currentProduct.id !== this.props.currentProduct.id)
+      this.props.changeRelatedProducts(this.props.currentProduct.id);
+  }
 
   render() {
     return (
@@ -26,9 +30,10 @@ class Related extends React.Component {
           indexProps={this.props}
           related={this.props.relatedProducts}
           changeCurrentProduct={this.props.changeCurrentProduct}
+          history={this.props.history}
         />
         <Typography style={{ fontSize: "10pt", textTransform: "uppercase" }}>
-          <Link to="/1000">Your Outfit</Link>
+          Your Outfit
         </Typography>
         <OutfitList
           productId={this.props.currentProduct.id}

@@ -14,7 +14,7 @@ const calcAverageRatings = require("../../../../helpers/calcAverageRatings");
 const { useState, useEffect } = require("react");
 const StarFill = require("../shared/StarFill.jsx");
 const Price = require("../shared/Price");
-const { Link } = require("react-router-dom");
+const sharedStyles = require("../../styles");
 
 const useStyles = makeStyles({
   card: {
@@ -33,13 +33,12 @@ const useStyles = makeStyles({
     fontSize: 10,
     textTransform: "uppercase"
   },
-  productName: {
-    marginBottom: 0,
-    fontSize: 12,
-    fontWeight: "bold",
-    color: "black",
-    lineHeight: "10pt"
-  },
+  productName: sharedStyles.boldContent,
+  // sharedStyles
+  // // fontSize: 12,
+  // // fontWeight: "bold",
+  // // color: "black",
+  // lineHeight: "10pt"
   media: {
     height: "200px"
   },
@@ -115,7 +114,7 @@ module.exports = function CardItem(props) {
     getItemInfo(props.id || 1, 0).then(data => {
       setItemInfo(data);
     });
-  }, [1]);
+  }, [props.id]);
 
   const starIconType = props.showStarIcon;
   let insideStar = false;
@@ -130,8 +129,10 @@ module.exports = function CardItem(props) {
         insideRemove = true;
         props.onRemoveClick();
       }
-    } else if (!insideStar && !insideRemove)
+    } else if (!insideStar && !insideRemove) {
+      props.history.push(`/products/${itemInfo.productId}`);
       props.changeCurrentProduct(itemInfo.productId);
+    }
   };
 
   return (
@@ -171,7 +172,7 @@ module.exports = function CardItem(props) {
               salePrice={itemInfo.sale_price}
               originalPrice={itemInfo.original_price}
             />
-            <span className={classes.productName}>
+            <span>
               {itemInfo.ratingData !== null &&
               Object.keys(itemInfo.ratingData).length > 0 ? (
                 <StarFill stars={itemInfo.starRating} />
