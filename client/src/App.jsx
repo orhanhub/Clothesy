@@ -27,7 +27,7 @@ let App = () => {
           render={props => <OmniContainer {...props} id={4} />}
         ></Route> */}
         <Route
-          path={"/:id"}
+          path={"/products/:id"}
           // component={OmniContainer}
           // render={props => <About {...props} extra={someVariable} />}
           render={props => {
