@@ -1,6 +1,5 @@
 const React = require("react");
 const { Card } = require("@material-ui/core");
-const { CardActionArea } = require("@material-ui/core");
 const { CardContent } = require("@material-ui/core");
 const { Typography } = require("@material-ui/core");
 const { makeStyles } = require("@material-ui/core/styles");
@@ -24,13 +23,16 @@ const useStyles = makeStyles({
   },
   media: {
     height: "200px"
+  },
+  icon: {
+    textAlign: "center"
   }
 });
 
 module.exports = function AddToOutfitCard(props) {
   const classes = useStyles();
   return (
-    <div>
+    <div style={{ padding: "4px" }}>
       <Card className={classes.card}>
         <CardContent>
           <Typography className={classes.addToOutfit}>Add To Outfit</Typography>

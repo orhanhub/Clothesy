@@ -22,18 +22,14 @@ class Related extends React.Component {
   render() {
     return (
       <div>
-        <Typography style={{ fontSize: "10pt", textTransform: "uppercase" }}>
-          Related Products
-        </Typography>
+        RELATED PRODUCTS
         <RelatedCardList
           indexProps={this.props}
           related={this.props.relatedProducts}
           changeCurrentProduct={this.props.changeCurrentProduct}
           history={this.props.history}
         />
-        <Typography style={{ fontSize: "10pt", textTransform: "uppercase" }}>
-          Your Outfit
-        </Typography>
+        YOUR OUTFIT
         <OutfitList
           productId={this.props.currentProduct.id}
           data={data}
