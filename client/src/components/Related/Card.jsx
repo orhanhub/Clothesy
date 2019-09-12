@@ -27,30 +27,31 @@ const useStyles = makeStyles({
     display: "inline - block"
   },
   cardContent: {
-    padding: "2px"
+    padding: "2px",
+    margin: "10px"
   },
-  category: {
-    fontSize: 10,
-    textTransform: "uppercase"
+  category: sharedStyles.smallGreyFont,
+  productName: {
+    fontSize: "10pt",
+    lineHeight: "12px",
+    fontWeight: "bold"
   },
-  productName: sharedStyles.boldContent,
-  // sharedStyles
-  // // fontSize: 12,
-  // // fontWeight: "bold",
-  // // color: "black",
-  // lineHeight: "10pt"
   media: {
     height: "200px"
   },
   price: {
-    fontSize: 10,
-    lineHeight: "8pt"
+    fontSize: "10pt",
+    lineHeight: "8pt",
+    color: "green"
   },
   star: {
     margin: "10px 0 0 170px"
   },
   removeCircle: {
     margin: "10px 0 0 170px"
+  },
+  uppercase: {
+    textTransform: "uppercase"
   }
 });
 
@@ -136,7 +137,7 @@ module.exports = function CardItem(props) {
   };
 
   return (
-    <div>
+    <div style={{ padding: "4px" }}>
       <Card className={classes.card}>
         <CardActionArea component="div" onClick={() => handleClick(false)}>
           <CardMedia
@@ -159,7 +160,7 @@ module.exports = function CardItem(props) {
           </CardMedia>
           <CardContent className={classes.cardContent}>
             <Typography
-              className={classes.category}
+              className={[classes.category, classes.uppercase].join(" ")}
               color="textSecondary"
               gutterBottom
             >
