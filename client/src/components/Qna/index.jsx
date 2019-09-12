@@ -16,6 +16,10 @@ const handleGetQuestions = endpoint => {
   return axios.request(`/qa/${endpoint}`);
 };
 
+const clg = event => {
+  console.log(event.target);
+};
+
 module.exports = props => {
   const [apiData, setData] = useState({ product_id: undefined, results: [] });
   const [count, setCount] = useState(2);
@@ -30,8 +34,13 @@ module.exports = props => {
   return (
     <div className="qnaComponentWrapper">
       <div>
-        <Typography>QUESTIONS & ANSWERS</Typography>
-        {console.log(props)}
+        <Typography
+          onMouseEnter={event => {
+            clg(event);
+          }}
+        >
+          QUESTIONS & ANSWERS
+        </Typography>
       </div>
       <Container maxWidth="lg">
         <SearchQnaButton
