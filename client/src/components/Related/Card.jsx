@@ -112,9 +112,12 @@ module.exports = function CardItem(props) {
   });
 
   useEffect(() => {
+    let isSubscribed = true;
     getItemInfo(props.id || 1, 0).then(data => {
-      setItemInfo(data);
+      if (isSubscribed) setItemInfo(data);
+      // console.log("getting item info...");
     });
+    return () => (isSubscribed = false);
   }, [props.id]);
 
   const starIconType = props.showStarIcon;
@@ -153,6 +156,7 @@ module.exports = function CardItem(props) {
               />
             ) : (
               <RemoveCircleOutlineTwoTone
+                htmlColor="white"
                 className={classes.removeCircle}
                 onClick={() => handleClick(true, "remove")}
               />
