@@ -10,14 +10,10 @@ const AddQuestion = require("../shared/Modal");
 const ShowMore = require("../shared/ShowMoreButton");
 const sortCriteria = require("../../../../helpers/sortCriteria");
 const axios = require("../../../../helpers/axiosApi");
-
+const { logModule } = require("../../../../helpers/userTracking");
 //Get data
 const handleGetQuestions = endpoint => {
   return axios.request(`/qa/${endpoint}`);
-};
-
-const clg = event => {
-  console.log(event.target);
 };
 
 module.exports = props => {
@@ -34,13 +30,8 @@ module.exports = props => {
   return (
     <div className="qnaComponentWrapper">
       <div>
-        <Typography
-          onMouseEnter={event => {
-            clg(event);
-          }}
-        >
-          QUESTIONS & ANSWERS
-        </Typography>
+        <Typography>QUESTIONS & ANSWERS</Typography>
+        <p>{console.log(props)}</p>
       </div>
       <Container maxWidth="lg">
         <SearchQnaButton

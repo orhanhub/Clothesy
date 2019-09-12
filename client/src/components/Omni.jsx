@@ -16,9 +16,21 @@ module.exports = props => {
   // useEffect(() => {
   //   props.changeCurrentProduct(1);
   // }, []);
+
   return (
-    <div>
-      <Container>
+    <div
+      className={"level1"}
+      onMouseMove={e =>
+        console.log(
+          e.pageX,
+          e.pageY,
+          window.innerWidth,
+          window.innerHeight,
+          new Date()
+        )
+      }
+    >
+      <Container className={"level2"}>
         <Overview />
         <Qna />
         <Related history={props.history} />
@@ -27,3 +39,7 @@ module.exports = props => {
     </div>
   );
 };
+
+//  get mouse position on page; console logs for now
+// to get exact top right position; need to get the x page width and divide the e.pageX to pageWidth
+//     <div className={"level1"} onMouseMove={e => console.log(e.pageX, e.pageY)}>
