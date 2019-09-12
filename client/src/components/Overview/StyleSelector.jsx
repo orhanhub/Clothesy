@@ -31,7 +31,30 @@ const StyleSelector = ({
         {initialProduct.productStyles.map((style, i) => {
           return (
             <Grid key={i} item xs={3} style={{ padding: "10px" }}>
-              <button
+              {style.photos[0].url ? (
+                <button
+                  onClick={() => handleClick(i)}
+                  style={{
+                    borderRadius: "50%",
+                    padding: "25px",
+                    background: `url(${style.photos[0].url}) no-repeat center`,
+                    backgroundSize: "80px auto"
+                  }}
+                  aria-label="style selector"
+                ></button>
+              ) : (
+                <button
+                  onClick={() => handleClick(i)}
+                  style={{
+                    borderRadius: "50%",
+                    padding: "25px",
+                    background: `url(https://via.placeholder.com/60) no-repeat center`,
+                    backgroundSize: "80px auto"
+                  }}
+                  aria-label="style selector"
+                ></button>
+              )}
+              {/* <button
                 onClick={() => handleClick(i)}
                 style={{
                   borderRadius: "50%",
@@ -40,7 +63,7 @@ const StyleSelector = ({
                   backgroundSize: "80px auto"
                 }}
                 aria-label="style selector"
-              ></button>
+              ></button> */}
             </Grid>
           );
         })}
