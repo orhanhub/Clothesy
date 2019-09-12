@@ -1,5 +1,6 @@
 const React = require("react");
 const Carousel = require("react-bootstrap/Carousel");
+const { GlassMagnifier } = require("react-image-magnifiers");
 
 const ImageGallery = ({
   initialProduct,
@@ -16,12 +17,6 @@ const ImageGallery = ({
     cursor: "zoom-in"
   };
 
-  const expandImage = {
-    width: "100%",
-    height: "1000px",
-    objectFit: "cover"
-  };
-
   const handleClick = () => {
     handleExpand();
   };
@@ -36,6 +31,9 @@ const ImageGallery = ({
       >
         {initialProduct.productStyles[0] && !styles.photos
           ? initialProduct.productStyles[0].photos.map((photo, i) => {
+              let photoUrl = photo.url.split("w=");
+              let smallerPhoto = photoUrl[0] + "w=1000&q=80";
+              let largerPhoto = photoUrl[0] + "w=2000&q=80";
               return (
                 <Carousel.Item key={i}>
                   {!expandedView ? (
@@ -46,11 +44,16 @@ const ImageGallery = ({
                       alt="carousel image"
                     />
                   ) : (
-                    <img
-                      style={expandImage}
-                      src={photo.url}
-                      onClick={handleClick}
-                      alt="carousel image"
+                    <GlassMagnifier
+                      imageSrc={smallerPhoto}
+                      largeImageSrc={largerPhoto}
+                      style={{
+                        height: "50%",
+                        width: "100%",
+                        justifyContent: "center",
+                        display: "flex",
+                        alignItems: "center"
+                      }}
                     />
                   )}
                 </Carousel.Item>
@@ -60,6 +63,9 @@ const ImageGallery = ({
 
         {styles.photos
           ? styles.photos.map((photo, i) => {
+              let photoUrl = photo.url.split("w=");
+              let smallerPhoto = photoUrl[0] + "w=1000&q=80";
+              let largerPhoto = photoUrl[0] + "w=2000&q=80";
               return (
                 <Carousel.Item key={i}>
                   {!expandedView ? (
@@ -70,11 +76,16 @@ const ImageGallery = ({
                       alt="carousel image"
                     />
                   ) : (
-                    <img
-                      style={expandImage}
-                      src={photo.url}
-                      onClick={handleClick}
-                      alt="carousel image"
+                    <GlassMagnifier
+                      imageSrc={smallerPhoto}
+                      largeImageSrc={largerPhoto}
+                      style={{
+                        height: "50%",
+                        width: "100%",
+                        justifyContent: "center",
+                        display: "flex",
+                        alignItems: "center"
+                      }}
                     />
                   )}
                 </Carousel.Item>
