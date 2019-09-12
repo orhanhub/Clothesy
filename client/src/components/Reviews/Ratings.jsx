@@ -48,14 +48,18 @@ module.exports = ({
             setStarFilter={setStarFilter}
           />
         </Grid>
-        <Grid item xs={12}>
-          {`${reviewsMeta.recommended &&
-            Math.floor(
+        <br />
+        <br />
+        {!reviewsMeta.recommended ||
+        isNaN(reviewsMeta.recommended[0]) ? null : (
+          <Grid item xs={12}>
+            {`${Math.floor(
               100 *
                 (reviewsMeta.recommended[0] /
                   (reviewsMeta.recommended[0] + reviewsMeta.recommended[1]))
             )}% recommend`}
-        </Grid>
+          </Grid>
+        )}
       </Grid>
 
       <p></p>

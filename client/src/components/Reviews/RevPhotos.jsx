@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
 
 module.exports = ({ thumbnails, onClick }) => {
   const classes = useStyles();
-  console.log(thumbnails);
+
   return (
     <div className={classes.root}>
       <GridList cellHeight={100} className={classes.gridList} cols={3}>
