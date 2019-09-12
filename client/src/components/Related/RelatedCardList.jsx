@@ -5,7 +5,6 @@ const { makeStyles } = require("@material-ui/core");
 const { GridListTile } = require("@material-ui/core");
 const { Modal } = require("@material-ui/core");
 const { Backdrop, Fade } = require("@material-ui/core");
-const { useState, useEffect } = require("react");
 const {
   Table,
   TableRow,
@@ -23,26 +22,38 @@ const useStyles = makeStyles(theme => ({
   },
   gridList: {
     flexWrap: "nowrap",
-    transform: "translateZ(0)"
+    transform: "translateZ(0)",
+    padding: "4px",
+    margin: "5px"
     // // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
   },
   gridListItem: {
     width: "100px",
-    margin: "0px"
+    margin: "10px"
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
     border: "2px solid #000",
     boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3)
+    padding: theme.spacing(2, 4, 3),
+    width: "50%",
+    height: "50%",
+    overflow: "scroll"
   },
   modal: {
     position: "absolute",
     top: "10%",
     left: "10%",
     overflow: "scroll",
-    height: "100%",
-    display: "block"
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+    display: "flex",
+    justifyContent: "space-around",
+    overflow: "hidden",
+    margin: "auto"
+  },
+  table: {
+    margin: "auto"
   }
 }));
 
@@ -108,7 +119,8 @@ module.exports = function RelatedCardList(props) {
   };
 
   const classes = useStyles();
-  const items = props.related.map(item => {
+  let uniqueProductIds = [...new Set(props.related)];
+  const items = uniqueProductIds.map(item => {
     return (
       <CardItem
         id={item}
@@ -138,7 +150,8 @@ module.exports = function RelatedCardList(props) {
       >
         <Fade in={open} className={classes.paper}>
           <div>
-            <Table className={classes.table} size="small">
+            <h6 id="comparing">COMPARING</h6>
+            <Table padding="default" className={classes.table} size="small">
               <TableHead>
                 <TableRow>
                   <TableCell>{modalRows[0].current}</TableCell>

@@ -8,23 +8,30 @@ const { makeStyles } = require("@material-ui/core/styles");
 
 const useStyles = makeStyles({
   regularPrice: {
-    color: "black"
+    color: "black",
+    fontSize: "10pt"
   },
   struckthroughPrice: {
     color: "black",
     textDecoration: "line-through",
-    display: "inline-block"
+    display: "inline-block",
+    fontSize: "10pt"
   },
   salePrice: {
     color: "red",
-    display: "inline-block"
+    display: "inline-block",
+    fontSize: "10pt"
   }
 });
 
 module.exports = function Price(props) {
   const classes = useStyles();
   if (props.salePrice === undefined || props.salePrice === "0") {
-    return <Typography>${props.originalPrice}</Typography>;
+    return (
+      <Typography className={classes.regularPrice}>
+        ${props.originalPrice}
+      </Typography>
+    );
   } else {
     return (
       <div>
