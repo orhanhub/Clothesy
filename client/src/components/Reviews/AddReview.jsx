@@ -19,7 +19,7 @@ const RecommRadioSelect = require("./RecommRadioSelect.jsx");
 const characteristics = require("./constants/characteristics.js");
 const fileUpload = require("../shared/fileUpload.js");
 
-module.exports = ({ currentProduct, reviewsMeta }) => {
+module.exports = ({ currentProduct, reviewsMeta, submitNewReview }) => {
   let charsObj = {};
   Object.keys(characteristics).forEach(char => {
     charsObj[char] = 0;
@@ -54,6 +54,7 @@ module.exports = ({ currentProduct, reviewsMeta }) => {
           characteristics: charValsToIdVals(charVals),
           recommend: recommended
         }}
+        handlSubmit={submitNewReview}
       >
         <Divider />
         <br />

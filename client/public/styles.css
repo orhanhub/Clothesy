@@ -74,7 +74,7 @@
 }
 
 .progress-bar-custom .bar-full {
-  background: #808080;
+  background: green;
   z-index: 2;
 }
 
