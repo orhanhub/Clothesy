@@ -25,13 +25,15 @@ const useStyles = makeStyles(theme => ({
   imageCrop: {
     height: "100px",
     width: "100px",
-    objectFit: "cover"
+    objectFit: "cover",
+    borderStyle: "solid",
+    borderWidth: "1px"
   },
   spacing: {
     marginBottom: "20px",
     height: "100px",
     width: "100px",
-    marginTop: "10px"
+    marginTop: "20px"
   }
 }));
 
