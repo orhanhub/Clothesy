@@ -10,7 +10,7 @@ module.exports = reviews => {
     weightedAvgs[review.review_id] = { review, position: 0.5 * ri };
   });
   sortedByHelpfulness.forEach((review, ri) => {
-    weightedAvgs[review.review_id].position += 0.5 * ri;
+    weightedAvgs[review.review_id].position += review.helpfulness;
   });
   let sortedByRelevance = Object.values(weightedAvgs).sort(
     sortCriteria("position")
