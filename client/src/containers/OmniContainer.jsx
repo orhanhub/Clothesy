@@ -3,7 +3,8 @@ const {
   changeCurrentProduct,
   changeRelatedProducts,
   changeReviews,
-  changeReviewsMeta
+  changeReviewsMeta,
+  changeProductStyles
 } = require("../../../store/action-creators");
 const Omni = require("../components/Omni.jsx");
 
@@ -13,6 +14,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(changeRelatedProducts(id));
     dispatch(changeReviews(id));
     dispatch(changeReviewsMeta(id));
+    dispatch(changeProductStyles(id));
   }
 });
 module.exports = connect(
