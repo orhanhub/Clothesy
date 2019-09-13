@@ -38,14 +38,14 @@ const ImageGallery = ({
                 largerPhoto = photoUrl[0] + "w=2000&q=80";
               } else {
                 smallerPhoto = "";
-                largerPhoto = "";
+                largerPhoto = "https://via.placeholder.com/800";
               }
               return (
                 <Carousel.Item key={i}>
                   {!expandedView ? (
                     <img
                       style={cropImage}
-                      src={photo.url}
+                      src={largerPhoto}
                       onClick={handleClick}
                       alt="carousel image"
                     />
@@ -60,6 +60,7 @@ const ImageGallery = ({
                         display: "flex",
                         alignItems: "center"
                       }}
+                      imageAlt="magnified image"
                     />
                   )}
                 </Carousel.Item>
@@ -76,14 +77,14 @@ const ImageGallery = ({
                 largerPhoto = photoUrl[0] + "w=2000&q=80";
               } else {
                 smallerPhoto = "";
-                largerPhoto = "";
+                largerPhoto = "https://via.placeholder.com/800";
               }
               return (
                 <Carousel.Item key={i}>
                   {!expandedView ? (
                     <img
                       style={cropImage}
-                      src={photo.url}
+                      src={largerPhoto}
                       onClick={handleClick}
                       alt="carousel image"
                     />
@@ -98,6 +99,7 @@ const ImageGallery = ({
                         display: "flex",
                         alignItems: "center"
                       }}
+                      imageAlt="magnified image"
                     />
                   )}
                 </Carousel.Item>

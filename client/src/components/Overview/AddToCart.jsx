@@ -1,18 +1,9 @@
 const React = require("react");
-const { makeStyles } = require("@material-ui/core/styles");
 const { Button } = require("@material-ui/core");
+const AddCartMessage = require("./AddCartMessage.jsx");
 const axios = require("../../../../helpers/axiosApi.js");
 
-const useStyles = makeStyles(theme => ({
-  button: {
-    margin: theme.spacing(1),
-    width: "200px"
-  }
-}));
-
 const AddToCart = ({ soldOut, productId, getCart }) => {
-  const classes = useStyles();
-
   handleClick = () => {
     axios
       .post("/cart", {
@@ -29,13 +20,7 @@ const AddToCart = ({ soldOut, productId, getCart }) => {
   return (
     <div>
       {!soldOut ? (
-        <Button
-          variant="outlined"
-          className={classes.button}
-          onClick={handleClick}
-        >
-          ADD TO CART
-        </Button>
+        <AddCartMessage variant="outlined" handleCartClick={handleClick} />
       ) : (
         <Button
           variant="contained"
