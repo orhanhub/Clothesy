@@ -18,18 +18,7 @@ module.exports = props => {
   // }, []);
 
   return (
-    <div
-      className={"level1"}
-      onMouseMove={e =>
-        console.log(
-          e.pageX,
-          e.pageY,
-          window.innerWidth,
-          window.innerHeight,
-          new Date()
-        )
-      }
-    >
+    <div className={"level1"}>
       <Container className={"level2"}>
         <Overview />
         <Qna />
@@ -43,3 +32,16 @@ module.exports = props => {
 //  get mouse position on page; console logs for now
 // to get exact top right position; need to get the x page width and divide the e.pageX to pageWidth
 //     <div className={"level1"} onMouseMove={e => console.log(e.pageX, e.pageY)}>
+
+/*
+
+      onMouseMove={e =>
+        console.log(
+          e.pageX,
+          e.pageY,
+          window.innerWidth,
+          window.innerHeight,
+          new Date()
+        )
+      }
+      */

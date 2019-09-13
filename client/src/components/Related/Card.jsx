@@ -137,7 +137,17 @@ module.exports = function CardItem(props) {
 
   return (
     <div>
-      <Card className={classes.card}>
+      <Card
+        className={classes.card}
+        onClick={() =>
+          console.log(
+            "from Productid: ",
+            props.trackingParentId,
+            " toproduct ",
+            props.id
+          )
+        }
+      >
         <CardActionArea component="div" onClick={() => handleClick(false)}>
           <CardMedia
             className={classes.media}

@@ -31,7 +31,6 @@ module.exports = props => {
     <div className="qnaComponentWrapper">
       <div>
         <Typography>QUESTIONS & ANSWERS</Typography>
-        <p>{console.log(props)}</p>
       </div>
       <Container maxWidth="lg">
         <SearchQnaButton

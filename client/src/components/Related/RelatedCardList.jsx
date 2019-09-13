@@ -111,6 +111,7 @@ module.exports = function RelatedCardList(props) {
   const items = props.related.map(item => {
     return (
       <CardItem
+        trackingParentId={props.indexProps.currentProduct.id}
         id={item}
         key={item}
         onStarClick={onStarClick}
