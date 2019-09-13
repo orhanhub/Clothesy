@@ -109,7 +109,11 @@ ShowCart = ({ productImages, productInfo }) => {
             </Grid>
 
             <Grid container justify="center">
-              <Button>CHECKOUT</Button>
+              {productImages.length ? (
+                <Button>CHECKOUT</Button>
+              ) : (
+                <div>Add items to bag</div>
+              )}
             </Grid>
           </div>
         </Fade>
