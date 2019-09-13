@@ -3,7 +3,7 @@ const StarFill = require("../shared/StarFill.jsx");
 const { Typography } = require("@material-ui/core");
 const { makeStyles } = require("@material-ui/core/styles");
 
-const ProductInformation = ({ initialProduct, styles, selectedStyle }) => {
+const ProductInformation = ({ initialProduct, styles }) => {
   const style = {
     marginTop: "50px"
   };
@@ -48,12 +48,15 @@ const ProductInformation = ({ initialProduct, styles, selectedStyle }) => {
             href="#"
             style={{
               paddingTop: "1px",
-              paddingRight: "190px",
               fontSize: "11px",
               color: "dimgrey"
             }}
           >
-            <u>Reviews</u>
+            {initialProduct.reviewsMeta.avgRating ? (
+              <u>Reviews</u>
+            ) : (
+              <u>Add a review</u>
+            )}
           </a>
         </div>
         <div>{initialProduct.currentProduct.category}</div>

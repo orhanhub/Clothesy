@@ -14,7 +14,7 @@ const calcAverageRatings = require("../../../../helpers/calcAverageRatings");
 const { useState, useEffect } = require("react");
 const StarFill = require("../shared/StarFill.jsx");
 const Price = require("../shared/Price");
-const { Link } = require("react-router-dom");
+const sharedStyles = require("../../styles");
 
 const useStyles = makeStyles({
   card: {
@@ -27,31 +27,31 @@ const useStyles = makeStyles({
     display: "inline - block"
   },
   cardContent: {
-    padding: "2px"
+    padding: "2px",
+    margin: "10px"
   },
-  category: {
-    fontSize: 10,
-    textTransform: "uppercase"
-  },
+  category: sharedStyles.smallGreyFont,
   productName: {
-    marginBottom: 0,
-    fontSize: 12,
-    fontWeight: "bold",
-    color: "black",
-    lineHeight: "10pt"
+    fontSize: "10pt",
+    lineHeight: "12px",
+    fontWeight: "bold"
   },
   media: {
     height: "200px"
   },
   price: {
-    fontSize: 10,
-    lineHeight: "8pt"
+    fontSize: "10pt",
+    lineHeight: "8pt",
+    color: "green"
   },
   star: {
     margin: "10px 0 0 170px"
   },
   removeCircle: {
     margin: "10px 0 0 170px"
+  },
+  uppercase: {
+    textTransform: "uppercase"
   }
 });
 
@@ -112,10 +112,13 @@ module.exports = function CardItem(props) {
   });
 
   useEffect(() => {
+    let isSubscribed = true;
     getItemInfo(props.id || 1, 0).then(data => {
-      setItemInfo(data);
+      if (isSubscribed) setItemInfo(data);
+      // console.log("getting item info...");
     });
-  }, [1]);
+    return () => (isSubscribed = false);
+  }, [props.id]);
 
   const starIconType = props.showStarIcon;
   let insideStar = false;
@@ -130,12 +133,14 @@ module.exports = function CardItem(props) {
         insideRemove = true;
         props.onRemoveClick();
       }
-    } else if (!insideStar && !insideRemove)
+    } else if (!insideStar && !insideRemove) {
+      props.history.push(`/products/${itemInfo.productId}`);
       props.changeCurrentProduct(itemInfo.productId);
+    }
   };
 
   return (
-    <div>
+    <div style={{ padding: "4px" }}>
       <Card className={classes.card}>
         <CardActionArea component="div" onClick={() => handleClick(false)}>
           <CardMedia
@@ -151,6 +156,7 @@ module.exports = function CardItem(props) {
               />
             ) : (
               <RemoveCircleOutlineTwoTone
+                htmlColor="white"
                 className={classes.removeCircle}
                 onClick={() => handleClick(true, "remove")}
               />
@@ -158,7 +164,7 @@ module.exports = function CardItem(props) {
           </CardMedia>
           <CardContent className={classes.cardContent}>
             <Typography
-              className={classes.category}
+              className={[classes.category, classes.uppercase].join(" ")}
               color="textSecondary"
               gutterBottom
             >
@@ -171,7 +177,7 @@ module.exports = function CardItem(props) {
               salePrice={itemInfo.sale_price}
               originalPrice={itemInfo.original_price}
             />
-            <span className={classes.productName}>
+            <span>
               {itemInfo.ratingData !== null &&
               Object.keys(itemInfo.ratingData).length > 0 ? (
                 <StarFill stars={itemInfo.starRating} />

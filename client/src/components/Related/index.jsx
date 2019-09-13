@@ -14,21 +14,22 @@ class Related extends React.Component {
   componentDidMount() {
     this.props.changeRelatedProducts(this.props.currentProduct.id);
   }
+  componentDidUpdate(prevProps) {
+    if (prevProps.currentProduct.id !== this.props.currentProduct.id)
+      this.props.changeRelatedProducts(this.props.currentProduct.id);
+  }
 
   render() {
     return (
       <div>
-        <Typography style={{ fontSize: "10pt", textTransform: "uppercase" }}>
-          Related Products
-        </Typography>
+        RELATED PRODUCTS
         <RelatedCardList
           indexProps={this.props}
           related={this.props.relatedProducts}
           changeCurrentProduct={this.props.changeCurrentProduct}
+          history={this.props.history}
         />
-        <Typography style={{ fontSize: "10pt", textTransform: "uppercase" }}>
-          {/* <Link to="/1000">Your Outfit</Link> */}
-        </Typography>
+        YOUR OUTFIT
         <OutfitList
           productId={this.props.currentProduct.id}
           data={data}

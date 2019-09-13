@@ -21,7 +21,7 @@ module.exports = ({ review }) => {
       </Grid>
       <Grid item xs={6}>
         <Box align="right" className={classes.smallGreyFont}>
-          {review.reviewer_name},{" "}
+          {" "}
           <Moment format="MMMM D, YYYY" withTitle date={review.date} />
         </Box>
       </Grid>

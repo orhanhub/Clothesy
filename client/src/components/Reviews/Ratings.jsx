@@ -49,7 +49,16 @@ module.exports = ({
           />
         </Grid>
       </Grid>
-
+      <p></p>
+      {!reviewsMeta.recommended || isNaN(reviewsMeta.recommended[0]) ? null : (
+        <Grid item xs={12} style={{ textAlign: "center" }}>
+          {`${Math.floor(
+            100 *
+              (reviewsMeta.recommended[0] /
+                (reviewsMeta.recommended[0] + reviewsMeta.recommended[1]))
+          )}% recommend`}
+        </Grid>
+      )}
       <p></p>
       <QualityRatings characteristics={reviewsMeta.characteristics} />
     </Grid>
