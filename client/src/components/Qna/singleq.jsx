@@ -47,6 +47,7 @@ module.exports = ({ questions }) => {
                 modalTitle={"Submit Your Answer"}
                 bodyTextPlaceholder={"Your Answer"}
                 buttonText={"Add Answer"}
+                endpointId={i.question_id}
               />
             </Grid>
             <Grid item xs={1}>

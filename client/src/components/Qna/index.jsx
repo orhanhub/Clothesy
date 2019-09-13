@@ -66,6 +66,7 @@ module.exports = props => {
               qarfield={"question"}
               modalTitle={"Ask Your Question"}
               bodyTextPlaceholder={"Submit your question"}
+              endpointId={props.currentProduct.id}
             ></AddQuestion>
           </Grid>
         </Grid>

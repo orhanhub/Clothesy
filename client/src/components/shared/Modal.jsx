@@ -163,7 +163,7 @@ module.exports = ({
               className={classes.button}
               onClick={() => {
                 let postObj = { ...addlFieldValues };
-                postObj.summary = values.summaryText;
+                if (qarfield === "review") postObj.summary = values.summaryText;
                 postObj.body = values.bodyText;
                 postObj.name = values.nicknameText;
                 postObj.email = values.emailText;

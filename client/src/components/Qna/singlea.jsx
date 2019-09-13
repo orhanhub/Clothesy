@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const handleGetAnswers = qid => {
-  return axios.request(`/qa/${qid}/answers`);
+  return axios.request(`/qa/${qid}/answers?count=10000`);
 };
 
 module.exports = ({ questionid }) => {
