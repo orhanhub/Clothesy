@@ -19,7 +19,12 @@ const RecommRadioSelect = require("./RecommRadioSelect.jsx");
 const characteristics = require("./constants/characteristics.js");
 const fileUpload = require("../shared/fileUpload.js");
 
-module.exports = ({ currentProduct, reviewsMeta, submitNewReview }) => {
+module.exports = ({
+  currentProduct,
+  reviewsMeta,
+  submitNewReview,
+  eligibleChars
+}) => {
   let charsObj = {};
   Object.keys(characteristics).forEach(char => {
     charsObj[char] = 0;
@@ -33,8 +38,6 @@ module.exports = ({ currentProduct, reviewsMeta, submitNewReview }) => {
     Object.entries(charVals).forEach(([char, rating], ci) => {
       if (reviewsMeta.characteristics && reviewsMeta.characteristics[char]) {
         ret[reviewsMeta.characteristics[char].id] = rating;
-      } else {
-        ret[10 + ci] = rating;
       }
     });
     return ret;
@@ -67,20 +70,22 @@ module.exports = ({ currentProduct, reviewsMeta, submitNewReview }) => {
 
         <OverallRatingSelect onChange={val => setOverallRating(val)} />
         <Divider />
-        {Object.entries(characteristics).map(([char, ratings]) => (
-          <div>
-            {char}:{" "}
-            {characteristics[char][charVals[char] - 1] || "none selected"}
-            <QualityRadioSelect
-              key={"add-review-radio" + char}
-              characteristic={{ name: char, levels: ratings }}
-              handleChange={val => {
-                setCharVals({ ...charVals, [char]: val });
-              }}
-              value={charVals[char]}
-            />
-          </div>
-        ))}
+        {Object.entries(characteristics).map(([char, ratings]) =>
+          reviewsMeta.characteristics &&
+          reviewsMeta.characteristics[char] === undefined ? null : (
+            <div key={"add-review-radio" + char}>
+              {char}:{" "}
+              {characteristics[char][charVals[char] - 1] || "none selected"}
+              <QualityRadioSelect
+                characteristic={{ name: char, levels: ratings }}
+                handleChange={val => {
+                  setCharVals({ ...charVals, [char]: val });
+                }}
+                value={charVals[char]}
+              />
+            </div>
+          )
+        )}
         <Divider />
         <Grid container>
           <UploadThumbnails thumbnails={thumbnails} />

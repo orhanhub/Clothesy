@@ -29,7 +29,7 @@ module.exports = ({ thumbnails, onClick }) => {
             key={thumbnail}
             cols={1}
           >
-            <img src={thumbnail.url} />
+            <img alt={"Review Thumbnail"} src={thumbnail.url} />
           </GridListTile>
         ))}
       </GridList>
