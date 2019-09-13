@@ -37,14 +37,18 @@ module.exports = ({
         ))}
       </Grid>
       <Grid container>
-        <AddReview
-          currentProduct={currentProduct}
-          reviewsMeta={reviewsMeta}
-          submitNewReview={submitNewReview}
-        />
-        {showShowMore ? (
-          <ShowMoreReviews onClick={increaseDisplayCount} />
-        ) : null}
+        <Grid item xs={6}>
+          <AddReview
+            currentProduct={currentProduct}
+            reviewsMeta={reviewsMeta}
+            submitNewReview={submitNewReview}
+          />{" "}
+        </Grid>
+        <Grid item xs={6} style={{ textAlign: "right" }}>
+          {showShowMore ? (
+            <ShowMoreReviews onClick={increaseDisplayCount} />
+          ) : null}
+        </Grid>
       </Grid>
       <ThumbnailModal
         thumbnail={currThumbnail}
