@@ -3,7 +3,7 @@ const StarFill = require("../shared/StarFill.jsx");
 const { Typography } = require("@material-ui/core");
 const { makeStyles } = require("@material-ui/core/styles");
 
-const ProductInformation = ({ initialProduct, styles, selectedStyle }) => {
+const ProductInformation = ({ initialProduct, styles }) => {
   const style = {
     marginTop: "50px"
   };
