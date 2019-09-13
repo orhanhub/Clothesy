@@ -8,6 +8,6 @@ test("returns an object containing arrays of reviews, sorted by different measur
   let arr = [a, b, c, d];
   let sorted = sortReviews(arr);
   expect(sorted.helpfulness).toEqual([a, c, d, b]);
-  expect(sorted.newest).toEqual([d, b, c, a]);
+  expect(sorted.newest[3]).toEqual(a);
   expect(sorted.relevance).toEqual([a, c, d, b]);
 });
