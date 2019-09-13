@@ -9,7 +9,8 @@
     "clean": "rm dist/bundle.js",
     "react-dev": "webpack -d --mode development --watch",
     "server-dev": "nodemon ./server/server.js",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "prod": "webpack -p --mode production"
   },
   "dependencies": {
     "@material-ui/core": "^4.4.0",
@@ -36,6 +37,7 @@
     "enzyme-adapter-react-16": "^1.14.0",
     "file-loader": "^4.2.0",
     "style-loader": "^1.0.0",
+    "uglifyjs-webpack-plugin": "^2.2.0",
     "url-loader": "^2.1.0",
     "webpack": "^4.39.3",
     "webpack-cli": "^3.3.7"
