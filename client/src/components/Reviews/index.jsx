@@ -36,7 +36,7 @@ module.exports = ({
 
   return (
     <Grid item xs={12}>
-      <Typography>{"RATINGS & REVIEWS"}</Typography>
+      <Typography id="reviews">{"RATINGS & REVIEWS"}</Typography>
       <Grid container spacing={2}>
         <Ratings
           reviewsMeta={reviewsMeta}

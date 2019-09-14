@@ -45,7 +45,8 @@ const ProductInformation = ({ initialProduct, styles }) => {
             <StarFill stars={initialProduct.reviewsMeta.avgRating} />
           ) : null}
           <a
-            href="#"
+            id="reviews-jump"
+            href="#reviews"
             style={{
               paddingTop: "1px",
               fontSize: "11px",
