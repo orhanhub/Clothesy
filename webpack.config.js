@@ -1,6 +1,5 @@
 const webpack = require("webpack");
 const path = require("path");
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
 const config = {
   entry: "./client/src/index.jsx",
