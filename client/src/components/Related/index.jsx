@@ -34,6 +34,7 @@ class Related extends React.Component {
           productId={this.props.currentProduct.id}
           data={data}
           changeCurrentProduct={this.props.changeCurrentProduct}
+          history={this.props.history}
         />
       </div>
     );
