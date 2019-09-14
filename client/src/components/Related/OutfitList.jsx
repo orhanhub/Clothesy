@@ -73,6 +73,7 @@ module.exports = function OutfitList(props) {
               onRemoveClick={() => {
                 removeFromOutfit(product);
               }}
+              history={props.history}
             />
           );
         })}
