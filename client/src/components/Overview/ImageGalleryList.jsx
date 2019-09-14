@@ -25,10 +25,15 @@ const ImageGalleryList = ({ initialProduct, styles, handleSelect }) => {
       <GridList cellHeight={100} cols={1} spacing={6}>
         {initialProductHolder.productStyles[0] && !styles.photos
           ? initialProductHolder.productStyles[0].photos.map((photo, i) => {
+              let photoUrl;
+              if (photo.url) {
+                photoUrl = photo.url.split("w=");
+                thumbnailPhoto = photoUrl[0] + "w=300&q=80";
+              }
               return (
                 <GridListTile key={i} onClick={() => handleClick(i)}>
                   {photo.url ? (
-                    <img src={photo.url} alt="image thumbnails" />
+                    <img src={thumbnailPhoto} alt="image thumbnails" />
                   ) : (
                     <img
                       src="https://via.placeholder.com/200"
@@ -42,10 +47,15 @@ const ImageGalleryList = ({ initialProduct, styles, handleSelect }) => {
 
         {styles.photos
           ? styles.photos.map((photo, i) => {
+              let photoUrl;
+              if (photo.url) {
+                photoUrl = photo.url.split("w=");
+                thumbnailPhoto = photoUrl[0] + "w=300&q=80";
+              }
               return (
                 <GridListTile key={i} onClick={() => handleClick(i)}>
                   {photo.url ? (
-                    <img src={photo.url} alt="image thumbnails" />
+                    <img src={thumbnailPhoto} alt="image thumbnails" />
                   ) : (
                     <img
                       src="https://via.placeholder.com/200"
