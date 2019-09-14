@@ -1,6 +1,5 @@
 const React = require("react");
-const { GridList } = require("@material-ui/core");
-const { GridListTile } = require("@material-ui/core");
+const { GridList, GridListTile } = require("@material-ui/core");
 const { makeStyles } = require("@material-ui/core/styles");
 
 const ImageGalleryList = ({ initialProduct, styles, handleSelect }) => {
