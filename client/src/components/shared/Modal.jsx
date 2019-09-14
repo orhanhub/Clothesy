@@ -68,6 +68,7 @@ module.exports = ({
   const [values, setValues] = React.useState(
     Object.assign(common, fields || {})
   );
+  const [submitTried, setSubmitTried] = React.useState(false);
 
   const handleChange = name => event => {
     setValues({ ...values, [name]: event.target.value });
@@ -79,6 +80,23 @@ module.exports = ({
   };
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const isValid = () => {
+    return {
+      bodyText: qarfield !== "review" || 50 <= values.bodyText.length,
+      nicknameText: values.nicknameText !== common.nicknameText,
+      emailText: (() => {
+        const validEmailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/g;
+        let found = values.emailText.match(validEmailRegex);
+
+        return (
+          values.emailText !== common.emailText &&
+          found !== null &&
+          found[0].length === values.emailText.length
+        );
+      })()
+    };
   };
 
   return (
@@ -121,10 +139,12 @@ module.exports = ({
                   onChange={handleChange("summaryText")}
                   className={classes.textField}
                   margin="normal"
+                  inputProps={{ maxLength: 60 }}
                 />
               ) : null}
               <br />
               <TextField
+                required
                 id="standard-multiline-flexible"
                 label={bodyTextPlaceholder}
                 multiline
@@ -133,6 +153,19 @@ module.exports = ({
                 onChange={handleChange("bodyText")}
                 className={classes.textField}
                 margin="normal"
+                error={submitTried && !isValid().bodyText}
+                inputProps={{ maxLength: 1000 }}
+                helperText={
+                  qarfield === "review"
+                    ? 50 > values.bodyText.length
+                      ? `Minimum required characters left: ${
+                          values.bodyText === bodyTextPlaceholder
+                            ? 50
+                            : 50 - values["bodyText"].length
+                        }`
+                      : "Minimum reached"
+                    : ""
+                }
               />
               <br />
               <TextField
@@ -142,7 +175,9 @@ module.exports = ({
                 placeholder={values.nicknameText}
                 onChange={handleChange("nicknameText")}
                 className={classes.textField}
+                error={submitTried && !isValid().nicknameText}
                 margin="normal"
+                inputProps={{ maxLength: 60 }}
                 helperText="For privacy reasons, do not use your full name or email address"
               />
               <br />
@@ -153,7 +188,9 @@ module.exports = ({
                 placeholder={values.emailText}
                 onChange={handleChange("emailText")}
                 className={classes.textField}
+                error={submitTried && !isValid().emailText}
                 margin="normal"
+                inputProps={{ maxLength: 60 }}
                 helperText="For authentication reasons, you will not be emailed"
               />
               {children}
@@ -162,22 +199,27 @@ module.exports = ({
               variant="outlined"
               className={classes.button}
               onClick={() => {
-                let postObj = { ...addlFieldValues };
-                postObj.summary = values.summaryText;
-                postObj.body = values.bodyText;
-                postObj.name = values.nicknameText;
-                postObj.email = values.emailText;
-                axios
-                  .post(endpoint[qarfield](endpointId), postObj)
-                  .then(res => {
-                    //console.log(res);
-                    handleClose();
-                    handleSubmit && handleSubmit();
-                  })
-                  .catch(err => {
-                    console.error(err);
-                    handleClose();
-                  });
+                setSubmitTried(true);
+
+                if (Object.values(isValid()).some(item => !item)) {
+                } else {
+                  let postObj = { ...addlFieldValues };
+                  postObj.summary = values.summaryText;
+                  postObj.body = values.bodyText;
+                  postObj.name = values.nicknameText;
+                  postObj.email = values.emailText;
+                  axios
+                    .post(endpoint[qarfield](endpointId), postObj)
+                    .then(res => {
+                      //console.log(res);
+                      handleClose();
+                      handleSubmit && handleSubmit();
+                    })
+                    .catch(err => {
+                      console.error(err);
+                      handleClose();
+                    });
+                }
               }}
             >
               {`SUBMIT YOUR ${qarfield}`}
