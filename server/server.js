@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
+const compression = require("compression");
 
 const app = express();
 const port = 3000;
@@ -17,6 +18,7 @@ app.use((req, res, next) => {
   }
   next();
 });
+app.use(compression());
 
 app.use("/", express.static(path.join(__dirname, "../client/public/")));
 

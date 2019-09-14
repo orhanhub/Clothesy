@@ -1,6 +1,6 @@
 const webpack = require("webpack");
 const path = require("path");
-// const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
 const config = {
   entry: "./client/src/index.jsx",
@@ -43,9 +43,6 @@ const config = {
   devServer: {
     historyApiFallback: true
   }
-  // optimization: {
-  //   minimizer: [new UglifyJsPlugin()]
-  // }
 };
 
 module.exports = config;
