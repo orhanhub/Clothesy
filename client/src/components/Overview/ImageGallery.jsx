@@ -17,6 +17,14 @@ const ImageGallery = ({
     cursor: "zoom-in"
   };
 
+  const magnifyCrop = {
+    height: "50%",
+    width: "100%",
+    justifyContent: "center",
+    display: "flex",
+    alignItems: "center"
+  };
+
   const handleClick = () => {
     handleExpand();
   };
@@ -54,13 +62,7 @@ const ImageGallery = ({
                     <GlassMagnifier
                       imageSrc={smallerPhoto}
                       largeImageSrc={largerPhoto}
-                      style={{
-                        height: "50%",
-                        width: "100%",
-                        justifyContent: "center",
-                        display: "flex",
-                        alignItems: "center"
-                      }}
+                      style={magnifyCrop}
                       imageAlt="magnified image"
                     />
                   )}
@@ -93,13 +95,7 @@ const ImageGallery = ({
                     <GlassMagnifier
                       imageSrc={smallerPhoto}
                       largeImageSrc={largerPhoto}
-                      style={{
-                        height: "50%",
-                        width: "100%",
-                        justifyContent: "center",
-                        display: "flex",
-                        alignItems: "center"
-                      }}
+                      style={magnifyCrop}
                       imageAlt="magnified image"
                     />
                   )}

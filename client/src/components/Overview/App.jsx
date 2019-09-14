@@ -13,22 +13,20 @@ const ViewButton = require("./ViewButton.jsx");
 const axios = require("../../../../helpers/axiosApi.js");
 
 const App = ({ initialProduct }) => {
-  const [state, setState] = useState({
-    styles: {},
-    soldOut: false
-  });
-
+  const [state, setState] = useState({});
+  const [styles, setStyles] = useState({});
   const [productImages, setProductImages] = useState([]);
   const [productInfo, setProductInfo] = useState([]);
-  const [pictureIndex, setPictureIndex] = React.useState(0);
-  const [expandedView, setExpandedView] = React.useState(false);
+  const [pictureIndex, setPictureIndex] = useState(0);
+  const [expandedView, setExpandedView] = useState(false);
+  const [soldOut, setSoldOut] = useState(false);
 
   const handleSelect = selectedIndex => {
     setPictureIndex(selectedIndex);
   };
 
   const changeStyle = index => {
-    setState({ ...state, styles: initialProduct.productStyles[index] });
+    setStyles(initialProduct.productStyles[index]);
   };
 
   const updateDefaultStyle = style => {
@@ -36,7 +34,7 @@ const App = ({ initialProduct }) => {
   };
 
   const resetStyle = () => {
-    setState({ ...state, styles: {} });
+    setStyles({});
   };
 
   const handleExpand = () => {
@@ -49,10 +47,10 @@ const App = ({ initialProduct }) => {
 
   const handleQuantity = info => {
     if (info === "soldOut") {
-      setState({ ...state, soldOut: true });
+      setSoldOut(true);
     }
     if (info === "inStock") {
-      setState({ ...state, soldOut: false });
+      setSoldOut(false);
     }
   };
 
@@ -116,7 +114,7 @@ const App = ({ initialProduct }) => {
         <Grid item xs={1} style={{ marginBottom: "16px", overflowY: "auto" }}>
           <ImageGalleryList
             initialProduct={initialProduct}
-            styles={state.styles}
+            styles={styles}
             handleSelect={handleSelect}
           />
         </Grid>
@@ -124,7 +122,7 @@ const App = ({ initialProduct }) => {
           <Grid item xs={8}>
             <ImageGallery
               initialProduct={initialProduct}
-              styles={state.styles}
+              styles={styles}
               pictureIndex={pictureIndex}
               handleSelect={handleSelect}
               handleExpand={handleExpand}
@@ -136,7 +134,7 @@ const App = ({ initialProduct }) => {
               <Grid item xs={11}>
                 <ImageGallery
                   initialProduct={initialProduct}
-                  styles={state.styles}
+                  styles={styles}
                   pictureIndex={pictureIndex}
                   handleSelect={handleSelect}
                   handleExpand={handleExpand}
@@ -156,7 +154,7 @@ const App = ({ initialProduct }) => {
               {state.selectedStyle ? (
                 <ProductInformation
                   initialProduct={initialProduct}
-                  styles={state.styles}
+                  styles={styles}
                   selectedStyle={state.selectedStyle}
                 />
               ) : null}
@@ -166,7 +164,7 @@ const App = ({ initialProduct }) => {
                 initialProduct={initialProduct}
                 changeStyle={changeStyle}
                 handleSelect={handleSelect}
-                styles={state.styles}
+                styles={styles}
                 selectedStyle={state.selectedStyle}
               />
             </Grid>
@@ -176,12 +174,12 @@ const App = ({ initialProduct }) => {
                   <QuantitySizeSelect
                     selectedStyle={state.selectedStyle}
                     handleQuantity={handleQuantity}
-                    styles={state.styles}
+                    styles={styles}
                     initialProduct={initialProduct}
                   />
                 ) : null}
                 <AddToCart
-                  soldOut={state.soldOut}
+                  soldOut={soldOut}
                   productId={initialProduct.currentProduct.id}
                   getCart={getCart}
                 />
