@@ -33,6 +33,7 @@ const StyleSelector = ({
             <Grid key={i} item xs={3} style={{ padding: "10px" }}>
               {style.photos[0].url ? (
                 <button
+                  className="styleSelect"
                   onClick={() => handleClick(i)}
                   style={{
                     borderRadius: "50%",

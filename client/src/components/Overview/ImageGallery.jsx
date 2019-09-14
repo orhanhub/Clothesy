@@ -47,6 +47,7 @@ const ImageGallery = ({
                       style={cropImage}
                       src={largerPhoto}
                       onClick={handleClick}
+                      className="expandImage"
                       alt="carousel image"
                     />
                   ) : (
