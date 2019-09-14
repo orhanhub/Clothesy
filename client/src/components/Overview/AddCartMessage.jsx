@@ -36,6 +36,7 @@ AddCartMessage = ({ handleCartClick }) => {
         variant="outlined"
         onClick={handleClick}
         className={classes.button}
+        id={"addToCart"}
       >
         ADD TO CART
       </Button>
