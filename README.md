@@ -10,7 +10,7 @@ To check if you have Node.js installed, run this command in your terminal
 To install npm
 ```npm install npm@latest -g```
 
-## Installation:
+## Application Installation:
 ### Webpack build:
 ```npm run build```
 
@@ -18,15 +18,16 @@ To install npm
 ```npm run server-prod```
 
 ### Webpage Outlay
-![](MainScroll.gif)
-The webpage includes 4 widgets, Product Overview, Related Products, Questions and Answers, Reviews.
+The webpage includes 4 widgets, Product Overview, Related Products, Questions & Answers and Reviews.
 I built the Questions and Answers widget (Q&A), hence the below demonstration of only Q&A section functionality.
 
-### Search for a Question
+![](MainScroll.gif)
 
+### Search for a Question
+Search for a term when the search bar has more than 3 characters
 ![](Search.gif)
 
 ### Show More Questions and Answers
-
-
+Load more questions and more answers for each question;
+Initial and subsequent renders are sorted by Helpfulness ranking
 ![](LoadMore.gif)
