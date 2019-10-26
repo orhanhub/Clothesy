@@ -2,9 +2,11 @@
 Client facing retail sales and marketing web portal; replicates Amazon.com product page
 
 ## Installation:
-Webpack build:
+### Webpack build:
 ```npm run build```
-Run server:
+
+### Run server:
 ```npm run server-prod```
 
+### Webpage Outlay
 ![](MainScroll.gif)
