@@ -31,7 +31,7 @@ Search for a term when the search bar has more than 3 characters
 
 ### Show More Questions and Answers
 Load more questions and more answers for each question.
-Initial and subsequent renders are sorted by Helpfulness ranking
+Initial and subsequent renders are sorted by Helpfulness ranking for each question as well as for each answer
 ###
 ![](LoadMore.gif)
 
