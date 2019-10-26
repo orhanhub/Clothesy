@@ -39,15 +39,11 @@ Click on the image below for better resolution.
 
 ## Built With:
 * React
-
 * Redux
-
+* Material-UI
 * Bootstrap
-
 * Node.js
-
 * Express
-
 * Testing with Jest
 
 ## Authors:
