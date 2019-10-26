@@ -20,8 +20,13 @@ To install npm
 ### Webpage Outlay
 ![](MainScroll.gif)
 The webpage includes 4 widgets, Product Overview, Related Products, Questions and Answers, Reviews.
-My focus was Questions and Answers widget (Q&A), hence the below demonstration of only Q&A section functionality.
+I built the Questions and Answers widget (Q&A), hence the below demonstration of only Q&A section functionality.
 
 ### Search for a Question
 
 ![](Search.gif)
+
+### Show More Questions and Answers
+
+
+![](LoadMore.gif)
