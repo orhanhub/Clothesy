@@ -11,10 +11,10 @@ To install npm
 ```npm install npm@latest -g```
 
 ## Application Installation:
-### Webpack build:
+### Webpack build
 ```npm run build```
 
-### Run server:
+### Run server
 ```npm run server-prod```
 
 ### Webpage Outlay
@@ -36,3 +36,18 @@ Initial and subsequent renders are sorted by Helpfulness ranking
 Rendering the "Helpfulness" counter and "Report" flag on the front end and then sending the PUT request; on error, return to the original state. Optimistic rendering strategy is chosen for mobile users with low to no connectivity.
 Click on the image below for better resolution.
 ![](OptimisticRender.gif)
+
+## Built With:
+React
+Redux
+Bootstrap
+Node.js
+Express
+Testing with Jest
+
+## Authors:
+
+* **Eric Luu** [https://github.com/ericlus]
+* **Jared Sutton** [https://github.com/jaredasutton/]
+* **Kate Harney** [https://github.com/krharney/]
+
