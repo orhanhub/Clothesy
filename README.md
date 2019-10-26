@@ -33,5 +33,6 @@ Initial and subsequent renders are sorted by Helpfulness ranking
 ![](LoadMore.gif)
 
 ### Optimistic Render
-Rendering the "Helpfulness" counter and "Report" flag on the front end and then sending the PUT request; on error, return to the original state. Optimistic rendering strategy is chosen for mobile users with low to no connectivity 
+Rendering the "Helpfulness" counter and "Report" flag on the front end and then sending the PUT request; on error, return to the original state. Optimistic rendering strategy is chosen for mobile users with low to no connectivity.
+Click on the image below for better resolution.
 ![](OptimisticRender.gif)
