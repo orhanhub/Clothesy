@@ -28,6 +28,9 @@ Search for a term when the search bar has more than 3 characters
 ![](Search.gif)
 
 ### Show More Questions and Answers
-Load more questions and more answers for each question;
+Load more questions and more answers for each question.
 Initial and subsequent renders are sorted by Helpfulness ranking
 ![](LoadMore.gif)
+
+### Optimistic Render
+Rendering the "Helpfulness" counter and "Report" flag on the front end and then sending the PUT request; on error, return to the original state. Optimistic rendering strategy is chosen for mobile users with low to no connectivity 
