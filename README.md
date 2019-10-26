@@ -50,7 +50,7 @@ Click on the image below for better resolution.
 * Express
 * Testing with Jest
 
-## Authors:
+## Scrum Members:
 
 * **Eric Luu** [https://github.com/ericlus]
 * **Jared Sutton** [https://github.com/jaredasutton/]
