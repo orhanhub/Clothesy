@@ -1,6 +1,15 @@
 # Clothesy
 Client facing retail sales and marketing web portal; replicates Amazon.com product page
 
+## Prerequisites:
+If you do not have ***npm or Node.js***, you should install either one (npm is distributed with Node.js)
+
+To check if you have Node.js installed, run this command in your terminal
+```node -v```
+
+To install npm
+```npm install npm@latest -g```
+
 ## Installation:
 ### Webpack build:
 ```npm run build```
@@ -10,6 +19,8 @@ Client facing retail sales and marketing web portal; replicates Amazon.com produ
 
 ### Webpage Outlay
 ![](MainScroll.gif)
+The webpage includes 4 widgets, Product Overview, Related Products, Questions and Answers, Reviews.
+My focus was Questions and Answers widget (Q&A), hence the below demonstration of only Q&A section functionality.
 
 ### Search for a Question
 
