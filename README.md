@@ -38,12 +38,17 @@ Click on the image below for better resolution.
 ![](OptimisticRender.gif)
 
 ## Built With:
-React
-Redux
-Bootstrap
-Node.js
-Express
-Testing with Jest
+* React
+
+* Redux
+
+* Bootstrap
+
+* Node.js
+
+* Express
+
+* Testing with Jest
 
 ## Authors:
 
